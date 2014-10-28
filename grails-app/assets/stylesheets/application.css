@@ -1,0 +1,13 @@
+/*
+*= require utilitys/bootstrap.3.2.0/bootstrap.min.css
+*= require utilitys/bootstrap.3.2.0/bootstrap-theme.min.css
+*= require_tree .
+*/
+
+.width-total-content{
+    width: 100%;
+}
+
+.text-white{
+    color: #fff;
+}

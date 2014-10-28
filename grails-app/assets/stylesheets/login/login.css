@@ -1,0 +1,15 @@
+/**
+* Estilos de index general
+**/
+#header-login{
+    background: #4899D4;
+    height: 50px;
+}
+
+.footer-login{
+    background: #4899D4;
+    width: 100%;
+    height: 30px;
+    position: fixed;
+    bottom: 0;
+}
