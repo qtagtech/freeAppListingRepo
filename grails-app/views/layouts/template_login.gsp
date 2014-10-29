@@ -22,7 +22,7 @@
                 <div id="header-login">
                     <div class="col-md-1 text-right col-md-offset-1">
                         <figure style="margin-top: 5px">
-                            <a href="${app}"><i class="fa fa-home fa-3x text-white"></i></a>
+                            <i class="fa fa-home fa-3x text-white"></i>
                         </figure>
                     </div>
                     <div class="col-md-3">
@@ -35,10 +35,10 @@
                             <div class="col-md-4 col-md-offset-8">
                                 <div style="margin-top: 5px">
                                     <g:if test="${activeButton == 1}">
-                                        <g:link controller="register" class="btn btn-info">Register Now!</g:link>
+                                        <g:link controller="register" class="btn btn-info">Register Now! </g:link>
                                     </g:if>
                                     <g:else>
-                                        <g:link controller="register" class="btn btn-info">Sign In</g:link>
+                                        <g:link controller="login" class="btn btn-info">Sign In </g:link>
                                     </g:else>
                                 </div>
                             </div>
@@ -56,10 +56,10 @@
                     <div class="col-md-12">
                         <div class="row">
                             <div class="col-md-4 col-md-offset-8">
-                                <figure style="display: inline-block; margin-top: 2px; color: #4A6EA9">
+                                <figure style="display: inline-block; margin-top: 2px; color: #FFF">
                                     <i class="fa fa-facebook-square fa-2x"></i>
                                 </figure>
-                                <figure style="display: inline-block; margin-top: 2px; color: #00ACED">
+                                <figure style="display: inline-block; margin-top: 2px; color: #FFF">
                                     <i class="fa fa-twitter fa-2x"></i>
                                 </figure>
                             </div>

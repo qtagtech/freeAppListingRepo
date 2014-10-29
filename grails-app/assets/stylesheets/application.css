@@ -11,3 +11,7 @@
 .text-white{
     color: #fff;
 }
+
+.text-erro-login{
+    color: red;
+}
