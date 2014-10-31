@@ -1,6 +1,6 @@
 package com.freeAppListing.sprinSecurity.auth
 
-class SecUser {
+class SecUser{
 
 	transient springSecurityService
 
