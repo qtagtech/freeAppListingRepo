@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/freeAppListingNuevo.iml" filepath="$PROJECT_DIR$/freeAppListingNuevo.iml" />
-      <module fileurl="file://$PROJECT_DIR$/freeAppListingNuevo-grailsPlugins.iml" filepath="$PROJECT_DIR$/freeAppListingNuevo-grailsPlugins.iml" />
+      <module fileurl="file://$PROJECT_DIR$/freeAppListingRepo.iml" filepath="$PROJECT_DIR$/freeAppListingRepo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/freeAppListingRepo-grailsPlugins.iml" filepath="$PROJECT_DIR$/freeAppListingRepo-grailsPlugins.iml" />
     </modules>
   </component>
 </project>
