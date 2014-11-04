@@ -13,6 +13,6 @@ class UserDetails extends SecUser {
     }
 
     static mapping = {
-        datasource 'trans'
+        datasource "trans"
     }
 }

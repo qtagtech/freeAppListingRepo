@@ -1,6 +1,8 @@
 package com.freeAppListing
 
-class Company {
+import com.freeAppListing.sprinSecurity.auth.SecUser
+
+class Company extends SecUser{
 
     String companyName
     String companyAddress

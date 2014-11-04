@@ -18,11 +18,16 @@
 	<body>
         <div class="container-fluid">
             <div class="row">
+                <h2>Nav panel</h2><g:link controller='logout'>Logout</g:link>
+            </div>
+            <div class="row">
                 <div class="col-md-12">
                     <g:layoutBody/>
                 </div>
             </div>
-
+            <div class="row">
+                <h2>footer panel</h2>
+            </div>
         </div>
         <asset:javascript src="jquery.1.11.1/jquery1.11.1.min.js" />
         <asset:javascript src="application.js"/>

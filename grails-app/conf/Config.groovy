@@ -35,7 +35,7 @@ grails.mime.types = [ // the first one is the default format
 //grails.urlmapping.cache.maxsize = 1000
 
 // Legacy setting for codec used to encode data with ${}
-grails.views.default.codec = "html"
+grails.views.default.codec = "none"
 
 // The default scope for controllers. May be prototype, session or singleton.
 // If unspecified, controllers are prototype scoped.
@@ -122,6 +122,7 @@ grails.mongo.default.mapping = {
 }
 
 // Added by the Spring Security Core plugin:
+grails.plugin.springsecurity.successHandler.defaultTargetUrl = '/panel/'
 grails.plugin.springsecurity.userLookup.userDomainClassName = 'com.freeAppListing.sprinSecurity.auth.SecUser'
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'com.freeAppListing.sprinSecurity.auth.SecUserSecRole'
 grails.plugin.springsecurity.authority.className = 'com.freeAppListing.sprinSecurity.auth.SecRole'
@@ -134,6 +135,7 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	'/**/css/**':                     ['permitAll'],
 	'/**/images/**':                  ['permitAll'],
 	'/**/favicon.ico':                ['permitAll'],
-	'/register/**':                   ['permitAll']
+	'/register/**':                   ['permitAll'],
+	'/panel/**':                      ['ROLE_ADMIN','ROLE_USER']
 ]
 
