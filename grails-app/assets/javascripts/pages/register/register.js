@@ -21,15 +21,16 @@ var appfreeApplistingregister =(function($){
     var actionForm = {
         form :{
             sendForm: function(){
-                dataToSend = {
-                    holaData: "holaData"
-                }
+                var dataToSend = {
+                    "item": "hola",
+                    "itemUno": "rafael"
+                };
                 $.ajax({
                     url: registerLink,
                     contentType: "application/json",
                     type: "POST",
                     dataType: "JSON",
-                    data: dataToSend
+                    data: JSON.stringify(dataToSend)
                 }).done(function(data){
                     alert(data.messaje + ".............");
                 }).fail(function(data){
