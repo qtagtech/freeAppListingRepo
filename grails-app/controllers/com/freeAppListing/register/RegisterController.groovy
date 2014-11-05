@@ -13,8 +13,8 @@ class RegisterController {
     }
 
     def save(){
-        def parametrosJson = request.JSON
-        def respuesta = [status: 1, messaje:"Hola a todos usuarios registrados"]
+        def dataJson = request.JSON
+        def respuesta = [status: 1, messaje:"Now you are register, Thanks. "]
         render respuesta as JSON
     }
 

@@ -70,6 +70,7 @@
         </div>
         <asset:javascript src="jquery.1.11.1/jquery1.11.1.min.js" />
         <asset:javascript src="application.js"/>
+        <asset:javascript src="utilitys/jqueryAutocomplete.1.2.14/jquery.autocomplete.js"/>
         <asset:javascript src="pages/register/register.js"/>
 	</body>
 </html>
