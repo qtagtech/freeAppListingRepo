@@ -14,6 +14,8 @@
 		<link rel="apple-touch-icon" sizes="114x114" href="${assetPath(src: 'apple-touch-icon-retina.png')}">
   		<asset:stylesheet src="application.css"/>
         <asset:stylesheet src="login/login.css"/>
+        <asset:stylesheet src="login/login.css"/>
+        <asset:stylesheet src="register/register.css"/>
 		<g:layoutHead/>
 	</head>
 	<body>
@@ -56,10 +58,10 @@
                     <div class="col-md-12">
                         <div class="row">
                             <div class="col-md-4 col-md-offset-8">
-                                <figure style="display: inline-block; margin-top: 2px; color: #FFF">
+                                <figure style="display: inline-block; margin-top: 6px; margin-right: 10px ;color: #FFF">
                                     <i class="fa fa-facebook-square fa-2x"></i>
                                 </figure>
-                                <figure style="display: inline-block; margin-top: 2px; color: #FFF">
+                                <figure style="display: inline-block; margin-top: 6px; color: #FFF">
                                     <i class="fa fa-twitter fa-2x"></i>
                                 </figure>
                             </div>
