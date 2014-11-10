@@ -70,6 +70,11 @@
                 </div>
             </div>
         </div>
+        <div id="content-page" style="display: none">
+            <div class="content-loading">
+                <i class="fa fa-refresh fa-spin fa-5x" style="color: #f5f5f5"></i>
+            </div>
+        </div>
         <asset:javascript src="jquery.1.11.1/jquery1.11.1.min.js" />
         <asset:javascript src="application.js"/>
         <asset:javascript src="utilitys/jqueryAutocomplete.1.2.14/jquery.autocomplete.js"/>

@@ -18,16 +18,28 @@
                             <input type="text" class="form-control" id="txtUserFullName" name="userFullName" flagKnob="false" placeholder="">
                         </div>
                         <div class="form-group">
-                            <label for="txtUserName">Username:</label>
+                            <label for="txtUserName">Username:
+                                <i class="fa fa-question-circle tooltipInf" style="color: deepskyblue" data-toggle="tooltip" data-placement="top" title="This field is a user that you need to Sign In in this platform"></i>
+                                <i class="fa fa-spinner fa-spin waitValidationUsername" style="display: none"></i>
+                                <i class="fa fa-check checkValidationUsername" style="color: green; display: none"> Correct Username </i>
+                                <i class="fa fa-times errorValidationUsername" style="display: none; color: red"> Exists Username </i>
+                            </label>
                             <input type="text" class="form-control" id="txtUserName" name="userName" flagKnob="false" placeholder="">
                         </div>
                         <div class="form-group">
-                            <label for="txtUserEmail">E-mail:</label>
+                            <label for="txtUserEmail">E-mail:
+                                <i class="fa fa-question-circle tooltipInf" style="color: deepskyblue" data-toggle="tooltip" data-placement="top" title="This field is unique, the email isn't can repeat is unique to each user of this platform."></i>
+                                <i class="fa fa-spinner fa-spin waitValidationEmail" style="display: none"></i>
+                                <i class="fa fa-check checkValidationEmail" style="color: green; display: none"> Correct Email </i>
+                                <i class="fa fa-times errorValidationEmail" style="display: none; color: red"> Exists Email </i>
+                            </label>
                             <input type="email" class="form-control" id="txtUserEmail" name="userMail" flagKnob="false" placeholder="">
                         </div>
                         <div class="form-group">
-                            <label for="txtUserPosition">Position:</label>
-                            <input type="text" class="form-control autocompleteLocation" id="txtUserPosition" flagKnob="false" name="userPosition" placeholder="">
+                            <label for="txtUserPosition">Position:
+                                <i class="fa fa-question-circle tooltipInf" style="color: deepskyblue" data-toggle="tooltip" data-placement="top" title="This field is a position that you employ in your company, Example: Manager, Secretary. "></i>
+                            </label>
+                            <input type="text" class="form-control" id="txtUserPosition" flagKnob="false" name="userPosition" placeholder="">
                         </div>
                         <div class="form-group">
                             <label for="txtUserPassword">Password:</label>
@@ -155,7 +167,9 @@
         </div>
     </div>
     <g:javascript>
-      var registerLink = "${createLink(controller:'register',action:'save')}"
+      var registerLink = "${createLink(controller:'register',action:'save')}";
+      var validationEmail = "${createLink(controller:'register',action:'validationEmail')}";
+      var validationUsername = "${createLink(controller:'register',action:'validationUsername')}";
     </g:javascript>
 </body>
 </html>

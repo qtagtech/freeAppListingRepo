@@ -7,6 +7,7 @@ var appfreeApplistingregister =(function($){
         events:{
             init:function(){
                 app.events.cacheElements();
+                app.events.instance.tooltipsIns();
                 app.events.bindEvents();
                 stadisticForm.knobInit();
                 //app.events.instance.autocomplete();
@@ -18,26 +19,27 @@ var appfreeApplistingregister =(function($){
                 this.$btnBackSlide = $("#btn-back-slide");
                 this.$inpSlideUno = $("#slide-register-0 .form-group input");
                 this.$inpSlideDos = $("#slide-register-1 .form-group input");
+                this.$txtEmail = $("#txtUserEmail");
+                this.$txtUsername = $("#txtUserName");
             },
             bindEvents: function(){
-                this.$btnRegister.off("click").on("click",actionForm.form.sendData);
-                this.$btnNextSlide.off("click").on("click",controlsFomr.nextSlide);
-                this.$btnBackSlide.off("click").on("click",controlsFomr.backSlide);
-                this.$inpSlideUno.off("blur").on("blur",stadisticForm.calValueKnob);
-                this.$inpSlideDos.off("blur").on("blur",stadisticForm.calValueKnob);
-            }/*,
+                this.$btnRegister.off("click").on("click", actionForm.form.sendData);
+                this.$btnNextSlide.off("click").on("click", controlsFomr.nextSlide);
+                this.$btnBackSlide.off("click").on("click", controlsFomr.backSlide);
+                this.$inpSlideUno.off("blur").on("blur", stadisticForm.calValueKnob);
+                this.$inpSlideDos.off("blur").on("blur", stadisticForm.calValueKnob);
+                this.$txtEmail.off("keyup").on("keyup", actionForm.validationEmail);
+                this.$txtUsername.off("keyup").on("keyup", actionForm.validationUsername);
+            },
             instance:{
-                autocomplete:function(){
-                    $(".autocompleteLocation").autocomplete({
-                        serviceUrl:'https://maps.googleapis.com/maps/api/place/autocomplete/json',
-                        minChars:3,
-                        type:"GET",
-                        dataType:"JSON",
-                        paramName:"input",
-                        params: { sensor:"false",key:"AIzaSyDsmI7Hy52CUF-JRJ5gclqyt3B17q8ZM2c"}
-                    })
-                }
-            }*/
+                tooltipsIns:function(){
+                    $(".tooltipInf").tooltip()
+                }/*,
+                tooltipsOut: function (e) {
+                    e.preventDefault();
+                    $(this).tab('hide');
+                }*/
+            }
         }
     };
     var controlsFomr = {
@@ -234,14 +236,96 @@ var appfreeApplistingregister =(function($){
     };
     
     var actionForm = {
+        validationUsername: function (e) {
+
+            e.preventDefault();
+
+            var username = $("#txtUserName").val();
+            if(username == null || username ==""){
+                $(".waitValidationUsername").hide();
+                $(".checkValidationUsername").hide();
+                $(".errorValidationUsername").hide();
+                return false
+            }
+
+            $(".waitValidationUsername").show();
+
+            var dataToSend = {
+                "username":username
+            };
+
+            $.ajax({
+                url: validationUsername,
+                contentType: "application/json",
+                type: "POST",
+                dataType: "JSON",
+                data: JSON.stringify(dataToSend)
+            }).done(function(data){
+                if(data.status == 0){
+                    $(".waitValidationUsername").hide();
+                    $(".checkValidationUsername").hide();
+                    $(".errorValidationUsername").show();
+                }else{
+                    $(".waitValidationUsername").hide();
+                    $(".errorValidationUsername").hide();
+                    $(".checkValidationUsername").show();
+                }
+
+            }).fail(function(data){
+
+            })
+        },
+        validationEmail: function (e) {
+
+            var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+            e.preventDefault();
+
+            var email = $("#txtUserEmail").val();
+            if(!regex.test(email)){
+                $(".waitValidationEmail").hide();
+                $(".checkValidationEmail").hide();
+                $(".errorValidationEmail").hide();
+                return false
+            }
+
+            $(".waitValidationEmail").show();
+
+            var dataToSend = {
+                "email":email
+            };
+
+            $.ajax({
+                url: validationEmail,
+                contentType: "application/json",
+                type: "POST",
+                dataType: "JSON",
+                data: JSON.stringify(dataToSend)
+            }).done(function(data){
+                if(data.status == 0){
+                    $(".waitValidationEmail").hide();
+                    $(".checkValidationEmail").hide();
+                    $(".errorValidationEmail").show();
+                }else{
+                    $(".waitValidationEmail").hide();
+                    $(".errorValidationEmail").hide();
+                    $(".checkValidationEmail").show();
+                }
+
+            }).fail(function(data){
+
+            })
+        },
         form :{
             sendData: function(e){
 
                 e.preventDefault();
 
+                $("#content-page").show();
+
                 var respon = validationForm.validateSlideDos();
 
                 if(!respon.sendInfo){
+                    $("#content-page").hide();
                     validationForm.printErrors(respon.stringMessaje);
                     $("#modalErrorForm").modal("show");
                     return false;
@@ -285,14 +369,14 @@ var appfreeApplistingregister =(function($){
                 }).done(function(data){
 
                     $("#successMessaje").text(data.messaje);
-
+                    $("#content-page").hide();
                     if(data.status == 1){
                         $("#registerCallback").modal('show');
                     };
 
                 }).fail(function(data){
                     $("#successMessaje").text("Error in send data, please do again.");
-
+                    $("#content-page").hide();
                     if(data.status == 1){
                         $("#registerCallback").modal('show');
                     };
