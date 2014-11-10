@@ -6,7 +6,7 @@ class SecRole {
 
 	static mapping = {
 		cache true
-        datasource 'trans'
+        datasource "trans"
 	}
 
 	static constraints = {

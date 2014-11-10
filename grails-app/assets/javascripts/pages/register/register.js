@@ -17,12 +17,14 @@ var appfreeApplistingregister =(function($){
                 this.$btnNextSlide = $("#btn-next-slide");
                 this.$btnBackSlide = $("#btn-back-slide");
                 this.$inpSlideUno = $("#slide-register-0 .form-group input");
+                this.$inpSlideDos = $("#slide-register-1 .form-group input");
             },
             bindEvents: function(){
                 this.$btnRegister.off("click").on("click",actionForm.form.sendData);
                 this.$btnNextSlide.off("click").on("click",controlsFomr.nextSlide);
                 this.$btnBackSlide.off("click").on("click",controlsFomr.backSlide);
                 this.$inpSlideUno.off("blur").on("blur",stadisticForm.calValueKnob);
+                this.$inpSlideDos.off("blur").on("blur",stadisticForm.calValueKnob);
             }/*,
             instance:{
                 autocomplete:function(){
@@ -95,23 +97,35 @@ var appfreeApplistingregister =(function($){
                 var valueKnob = parseFloat($(".knobStadistic").val());
 
                 if(valueKnob==0){
-                    if($inputForm.val() != "" || $inputForm.val()!= null ){
+                    if($inputForm.val() != ""){
                         $(".knobStadistic").val(9).trigger('change');
+                        $inputForm.attr("flagKnob","true");
                     };
                 }
                 if(valueKnob>0){
-                    newValKnob = valueKnob + 9;
-                    $(".knobStadistic").val(newValKnob).trigger('change');
+                    if($inputForm.val() != ""){
+                        newValKnob = valueKnob + 9;
+                        $(".knobStadistic").val(newValKnob).trigger('change');
+                        $inputForm.attr("flagKnob","true");
+                    };
+                };
+                if(newValKnob == 99){
+                    $(".knobStadistic").val(100).trigger('change');
                 };
 
-                $inputForm.attr("flagKnob","true");
             }else{
                 var valueKnob = parseFloat($(".knobStadistic").val());
 
                 if($inputForm.val() == "" || $inputForm.val() == null ){
-                    newValKnob = valueKnob - 9
-                    $(".knobStadistic").val(newValKnob).trigger('change');
-                    $inputForm.attr("flagKnob","false");
+                    if(valueKnob == 100){
+                        newValKnob = valueKnob - 10
+                        $(".knobStadistic").val(newValKnob).trigger('change');
+                        $inputForm.attr("flagKnob","false");
+                    }else{
+                        newValKnob = valueKnob - 9
+                        $(".knobStadistic").val(newValKnob).trigger('change');
+                        $inputForm.attr("flagKnob","false");
+                    }
                 };
             }
         }
@@ -120,6 +134,7 @@ var appfreeApplistingregister =(function($){
     var validationForm = {
         validateSlideUno: function () {
             var userFullName, userName, email, position, password, passWordAgain, equalsPass;
+            var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 
             userFullName = ($("#txtUserFullName").val() == null || $("#txtUserFullName").val() == "")? false : true;
             userName = ($("#txtUserName").val() == null || $("#txtUserName").val() == "")? false : true;
@@ -144,6 +159,10 @@ var appfreeApplistingregister =(function($){
                 stringMesaje.push("The field Email is required");
                 sendInfo = false;
             };
+            if(!regex.test($("#txtUserEmail").val())){
+                stringMesaje.push("The Email isn't valid");
+                sendInfo = false;
+            }
             if(!position){
                 stringMesaje.push("The field Position is required");
                 sendInfo = false;
@@ -167,7 +186,42 @@ var appfreeApplistingregister =(function($){
             return respuesta;
         },
         validateSlideDos: function () {
+            var companyName, companyAddres, vatNumber, webPage, location;
 
+            companyName = ($("#txtCompanyName").val()==null || $("#txtCompanyName").val()=="" )? false:true;
+            companyAddres = ($("#txtCompanyAddress").val()==null || $("#txtCompanyAddress").val()=="" )? false:true;
+            vatNumber = ($("#txtCompanyVATNumber").val()==null || $("#txtCompanyVATNumber").val()=="" )? false:true;
+            webPage = ($("#txtCompanyWebPage").val()==null || $("#txtCompanyWebPage").val()=="" )? false:true;
+            location = ($("#txtCompanyLocation").val()==null || $("#txtCompanyLocation").val()=="" )? false:true;
+
+            var stringMesaje=[];
+            var sendInfo;
+
+            if(!companyName){
+                stringMesaje.push("The field Company Name is required");
+                sendInfo = false;
+            };
+            if(!companyAddres){
+                stringMesaje.push("The field Company Address is required");
+                sendInfo = false;
+            };
+            if(!vatNumber){
+                stringMesaje.push("The field VAT Number is required");
+                sendInfo = false;
+            };
+            if(!webPage){
+                stringMesaje.push("The field Web Page is required");
+                sendInfo = false;
+            }
+            if(!location){
+                stringMesaje.push("The field Location is required");
+                sendInfo = false;
+            };
+            if(sendInfo!=false || sendInfo==="" || sendInfo==null){
+                sendInfo = true
+            }
+            var respuesta={"sendInfo":sendInfo,"stringMessaje":stringMesaje};
+            return respuesta;
         },
         printErrors: function(stringMessage){
             // Delete list if exist
@@ -185,9 +239,42 @@ var appfreeApplistingregister =(function($){
 
                 e.preventDefault();
 
+                var respon = validationForm.validateSlideDos();
+
+                if(!respon.sendInfo){
+                    validationForm.printErrors(respon.stringMessaje);
+                    $("#modalErrorForm").modal("show");
+                    return false;
+                };
+
+                // User details
+                var fullname = $("#txtUserFullName").val();
+                var userName = $("#txtUserName").val();
+                var email = $("#txtUserEmail").val();
+                var position = $("#txtUserPosition").val();
+                var password = $("#txtUserPassword").val();
+                // Company Details
+                var companyName = $("#txtCompanyName").val();
+                var companyAddres = $("#txtCompanyAddress").val();
+                var vatNumber = $("#txtCompanyVATNumber").val();
+                var webPage = $("#txtCompanyWebPage").val();
+                var location = $("#txtCompanyLocation").val();
+
                 var dataToSend = {
-                    "item": "hola",
-                    "itemUno": "rafael"
+                    "userDetails": {
+                        "userFullName" : fullname,
+                        "userName" : userName ,
+                        "email" : email,
+                        "position" : position ,
+                        password : password
+                    },
+                    "companyDetails": {
+                        "companyName":companyName,
+                        "companyAddres":companyAddres,
+                        "vatNumber":vatNumber,
+                        "webPage":webPage,
+                        "location":location
+                    }
                 };
                 $.ajax({
                     url: registerLink,

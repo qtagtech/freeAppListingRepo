@@ -44,23 +44,23 @@
                         </div>
                         <div class="form-group">
                             <label for="txtCompanyName">Company Name:</label>
-                            <input type="text" class="form-control" id="txtCompanyName" name="companyName" placeholder="">
+                            <input type="text" class="form-control" id="txtCompanyName" flagKnob="false" name="companyName" placeholder="">
                         </div>
                         <div class="form-group">
                             <label for="txtCompanyAddress">Address:</label>
-                            <input type="text" class="form-control" id="txtCompanyAddress" name="companyAddress" placeholder="">
+                            <input type="text" class="form-control" id="txtCompanyAddress" flagKnob="false" name="companyAddress" placeholder="">
                         </div>
                         <div class="form-group">
                             <label for="txtCompanyVATNumber">VAT Number:</label>
-                            <input type="text" class="form-control" id="txtCompanyVATNumber" name="companyVatNumber" placeholder="">
+                            <input type="text" class="form-control" id="txtCompanyVATNumber" flagKnob="false" name="companyVatNumber" placeholder="">
                         </div>
                         <div class="form-group">
                             <label for="txtCompanyWebPage">WEB Page:</label>
-                            <input type="text" class="form-control" id="txtCompanyWebPage" name="companyWebpage" placeholder="">
+                            <input type="text" class="form-control" id="txtCompanyWebPage" flagKnob="false" name="companyWebpage" placeholder="">
                         </div>
                         <div class="form-group">
                             <label for="txtCompanyLocation">Location:</label>
-                            <input type="text" class="form-control autocompleteLocation" id="txtCompanyLocation" name="companyLocation" placeholder="">
+                            <input type="text" class="form-control autocompleteLocation" id="txtCompanyLocation" flagKnob="false" name="companyLocation" placeholder="">
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -71,16 +71,17 @@
                             <p class="zone-text-register-m text-justify">
                                 Remember that text field <em><mark>username</mark></em> is the same field that you use in the page of <em><mark>Sign In</mark></em>, the same form that you write in this field you must write in the page <em><mark>Sign In</mark></em> in the text field <em><mark>username</mark></em>.
                             </p>
-                            <br/><br/>
                         </div>
                         <div id="slide-text-register-1" style="display: none">
                             <p class="zone-text-register text-justify">
-                                This formulary contains basic information about your company that you want register, in text field that you see (*), this text field is optional field, if text field don't contain this then is required. Is very important that you complete of form correct this fields to you haven't problems in future, all text fields you can update within the plataform.
+                                This formulary contains basic information about your company that you want register. Is very important that you complete of form correct this fields to you haven't problems in future, all text fields you can update within the plataform.
                             </p>
-                            <br/><br/>
                         </div>
                         <div>
                             <div class="text-center">
+                                <p class="zone-text-register-m text-justify">
+                                    The next statistical circle, you can see the percent of completed of register, when you are in <em><mark>hundred percent(100%)</mark></em>, you can press the button <em><mark>register</mark></em> to that you information in our database.
+                                </p>
                                 <input class="knobStadistic" data-readOnly="true" value="0" type="text"/>
                             </div>
                         </div>
@@ -140,7 +141,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <h4 class="modal-title" id="modal-error-title">Errors Formulary</h4>
+                    <h4 class="modal-title" id="modal-error-title">Formulary Incomplete </h4>
                 </div>
                 <div class="modal-body">
                     <ul id="errorMessageList">

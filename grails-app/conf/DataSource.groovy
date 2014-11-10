@@ -24,6 +24,7 @@ environments {
             url = "jdbc:postgresql://localhost:5432/freeAppListing"
             username = "postgres"
             password = "qtagtech"
+            logSql = true
         }
 
         dataSource {
