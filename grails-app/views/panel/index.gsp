@@ -13,6 +13,19 @@
 </head>
 
 <body>
+    <h1>Stadistics Information</h1>
+    <div class="row">
+        <div class="col-md-4">
+            <h2>Application</h2>
+        </div>
 
+        <div class="col-md-4">
+            <h2>Link</h2>
+        </div>
+
+        <div class="col-md-4">
+            <h2>Campaigns</h2>
+        </div>
+    </div>
 </body>
 </html>

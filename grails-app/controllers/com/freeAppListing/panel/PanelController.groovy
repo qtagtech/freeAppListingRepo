@@ -7,10 +7,10 @@ import grails.plugin.springsecurity.annotation.Secured
 class PanelController {
     def springSecurityService
 
-    @Secured(['ROLE_ADMIN','ROLE_USER'])
+
     def index() {
         if(springSecurityService.isLoggedIn()){
-
+            // get info user loggin
             def userLoggin = springSecurityService.getCurrentUser()
             [dataUser:userLoggin]
         }
