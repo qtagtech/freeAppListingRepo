@@ -19,19 +19,27 @@
         <div class="container-fluid">
             <div class="row">
                 <div id="header-login">
-                    <div class="col-md-1 text-right col-md-offset-1">
+                    <div class="col-md-1 text-right">
                         <figure style="margin-top: 5px">
                             <i class="fa fa-home fa-3x text-white"></i>
                         </figure>
                     </div>
                     <div class="col-md-3">
-                        <figure style="margin-top: 5px">
-                            <img src="${assetPath(src: 'login/logo.png')}" alt="logo-freeapplisting" width="300"/>
+                        <figure style="margin-top: 8px">
+                            <g:link controller='panel'><img src="${assetPath(src: 'login/logo.png')}" alt="logo-freeapplisting" width="260"/></g:link>
                         </figure>
                     </div>
                     <div class="col-md-7">
                         <div class="row">
-                            <div class="col-md-4 col-md-offset-8">
+                            <div class="col-md-3 col-md-offset-7">
+                                <div class="text-center" style="padding-top: 6px; color: white">
+                                    <p>
+                                        Welcome ${dataUser.username} <br/>
+                                        ${dataUser.email}
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
                                 <div style="margin-top: 5px">
                                     <g:link class="btn btn-info" controller='logout'>Logout</g:link>
                                 </div>

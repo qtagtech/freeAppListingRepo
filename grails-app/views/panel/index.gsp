@@ -9,10 +9,10 @@
 <html>
 <head>
     <meta name='layout' content='main'/>
-    <title></title>
+    <title>Manager Panel</title>
 </head>
 
 <body>
-    <h2>Hola panel</h2>
+
 </body>
 </html>
