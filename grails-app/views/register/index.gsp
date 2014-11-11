@@ -22,18 +22,18 @@
                                 <i class="fa fa-question-circle tooltipInf" style="color: deepskyblue" data-toggle="tooltip" data-placement="top" title="This field is a user that you need to Sign In in this platform"></i>
                                 <i class="fa fa-spinner fa-spin waitValidationUsername" style="display: none"></i>
                                 <i class="fa fa-check checkValidationUsername" style="color: green; display: none"> Correct Username </i>
-                                <i class="fa fa-times errorValidationUsername" style="display: none; color: red"> Exists Username </i>
+                                <i class="fa fa-times errorValidationUsername" style="display: none; color: red"> Username Exists </i>
                             </label>
-                            <input type="text" class="form-control" id="txtUserName" name="userName" flagKnob="false" placeholder="">
+                            <input type="text" class="form-control" id="txtUserName" name="userName" flagNoRepeat="false" flagKnob="false" placeholder="">
                         </div>
                         <div class="form-group">
                             <label for="txtUserEmail">E-mail:
                                 <i class="fa fa-question-circle tooltipInf" style="color: deepskyblue" data-toggle="tooltip" data-placement="top" title="This field is unique, the email isn't can repeat is unique to each user of this platform."></i>
                                 <i class="fa fa-spinner fa-spin waitValidationEmail" style="display: none"></i>
                                 <i class="fa fa-check checkValidationEmail" style="color: green; display: none"> Correct Email </i>
-                                <i class="fa fa-times errorValidationEmail" style="display: none; color: red"> Exists Email </i>
+                                <i class="fa fa-times errorValidationEmail" style="display: none; color: red"> Email Exists </i>
                             </label>
-                            <input type="email" class="form-control" id="txtUserEmail" name="userMail" flagKnob="false" placeholder="">
+                            <input type="email" class="form-control" id="txtUserEmail" name="userMail" flagNoRepeat="false" flagKnob="false" placeholder="">
                         </div>
                         <div class="form-group">
                             <label for="txtUserPosition">Position:

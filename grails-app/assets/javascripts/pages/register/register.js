@@ -135,7 +135,7 @@ var appfreeApplistingregister =(function($){
 
     var validationForm = {
         validateSlideUno: function () {
-            var userFullName, userName, email, position, password, passWordAgain, equalsPass;
+            var userFullName, userName, email, position, password, passWordAgain, equalsPass, validUsername, validEmail;
             var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 
             userFullName = ($("#txtUserFullName").val() == null || $("#txtUserFullName").val() == "")? false : true;
@@ -145,9 +145,22 @@ var appfreeApplistingregister =(function($){
             password = ($("#txtUserPassword").val() == null || $("#txtUserPassword").val() == "")?false : true;
             passWordAgain = ($("#txtUserPasswordRep").val() == null || $("#txtUserPasswordRep").val() == "")? false : true;
             equalsPass = ($("#txtUserPassword").val() == $("#txtUserPasswordRep").val())? true : false;
+            validUsername = ($("#txtUserName").attr("flagNoRepeat")=="true")? true: false;
+            validEmail = ($("#txtUserEmail").attr("flagNoRepeat")=="true")? true: false;
+
 
             var stringMesaje=[];
             var sendInfo;
+
+            if(!validUsername){
+                stringMesaje.push("The username exists in our system.");
+                sendInfo = false;
+            }
+
+            if(!validEmail){
+                stringMesaje.push("The Email exists in our system.");
+                sendInfo = false;
+            }
 
             if(!userFullName){
                 stringMesaje.push("The field User Fullname is required");
@@ -245,6 +258,7 @@ var appfreeApplistingregister =(function($){
                 $(".waitValidationUsername").hide();
                 $(".checkValidationUsername").hide();
                 $(".errorValidationUsername").hide();
+                $("#txtUserName").attr("flagNoRepeat","false");
                 return false
             }
 
@@ -265,10 +279,12 @@ var appfreeApplistingregister =(function($){
                     $(".waitValidationUsername").hide();
                     $(".checkValidationUsername").hide();
                     $(".errorValidationUsername").show();
+                    $("#txtUserName").attr("flagNoRepeat","false");
                 }else{
                     $(".waitValidationUsername").hide();
                     $(".errorValidationUsername").hide();
                     $(".checkValidationUsername").show();
+                    $("#txtUserName").attr("flagNoRepeat","true");
                 }
 
             }).fail(function(data){
@@ -285,6 +301,7 @@ var appfreeApplistingregister =(function($){
                 $(".waitValidationEmail").hide();
                 $(".checkValidationEmail").hide();
                 $(".errorValidationEmail").hide();
+                $("#txtUserEmail").attr("flagNoRepeat","false");
                 return false
             }
 
@@ -305,10 +322,12 @@ var appfreeApplistingregister =(function($){
                     $(".waitValidationEmail").hide();
                     $(".checkValidationEmail").hide();
                     $(".errorValidationEmail").show();
+                    $("#txtUserEmail").attr("flagNoRepeat","false");
                 }else{
                     $(".waitValidationEmail").hide();
                     $(".errorValidationEmail").hide();
                     $(".checkValidationEmail").show();
+                    $("#txtUserEmail").attr("flagNoRepeat","true");
                 }
 
             }).fail(function(data){
