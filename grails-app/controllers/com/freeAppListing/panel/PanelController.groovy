@@ -3,7 +3,7 @@ package com.freeAppListing.panel
 import grails.plugin.springsecurity.SpringSecurityService
 import grails.plugin.springsecurity.annotation.Secured
 
-@Secured(['ROLE_ADMIN','ROLE_USER'])
+@Secured(['ROLE_SUPERADMIN','ROLE_USER'])
 class PanelController {
     def springSecurityService
 
@@ -12,6 +12,10 @@ class PanelController {
         if(springSecurityService.isLoggedIn()){
             // get info user loggin
             def userLoggin = springSecurityService.getCurrentUser()
+
+            //get info platform
+
+
             [dataUser:userLoggin]
         }
 

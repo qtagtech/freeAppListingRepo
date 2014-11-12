@@ -115,7 +115,7 @@ class RegisterController {
                     )
             ).save(failOnError: true)
 
-            def roleAdmin = SecRole.findOrSaveWhere(authority: "ROLE_ADMIN")
+            def roleAdmin = SecRole.findOrSaveWhere(authority: "ROLE_USER")
 
             SecUserSecRole.create(userAdmin, roleAdmin, true)
 
