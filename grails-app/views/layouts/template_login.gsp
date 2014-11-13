@@ -22,19 +22,19 @@
         <div class="container-fluid">
             <div class="row">
                 <div id="header-login">
-                    <div class="col-md-1 text-right col-md-offset-1">
+                    <div class="no-visible-mobile col-xs-2 col-md-1 text-right col-md-offset-1">
                         <figure style="margin-top: 5px">
                             <i class="fa fa-home fa-3x text-white"></i>
                         </figure>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-xs-7 col-md-3">
                         <figure style="margin-top: 5px">
-                            <img src="${assetPath(src: 'login/logo.png')}" alt="logo-freeapplisting" width="300"/>
+                            <img class="img-responsive" src="${assetPath(src: 'login/logo.png')}" alt="logo-freeapplisting" width="300"/>
                         </figure>
                     </div>
-                    <div class="col-md-7">
+                    <div class="col-xs-3 col-md-7">
                         <div class="row">
-                            <div class="col-md-4 col-md-offset-8">
+                            <div class="col-xs-12 col-md-4 col-md-offset-8">
                                 <div style="margin-top: 5px">
                                     <g:if test="${activeButton == 1}">
                                         <g:link controller="register" class="btn btn-info">Register Now! </g:link>
@@ -54,10 +54,10 @@
                 </div>
             </div>
             <div class="row">
-                <div class="footer-login">
-                    <div class="col-md-12">
+                <div class="footer-login footer-position-mobile">
+                    <div class="col-xs-12 col-md-12">
                         <div class="row">
-                            <div class="col-md-4 col-md-offset-8">
+                            <div class=" col-md-4 col-xs-4 col-md-offset-8 col-xs-offset-8">
                                 <figure style="display: inline-block; margin-top: 6px; margin-right: 10px ;color: #FFF">
                                     <i class="fa fa-facebook-square fa-2x"></i>
                                 </figure>

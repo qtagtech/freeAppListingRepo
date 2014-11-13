@@ -3,7 +3,16 @@
 *= require utilitys/bootstrap.3.2.0/bootstrap-theme.min.css
 *= require_tree .
 */
+@media only screen and (max-width:768px) {
+    .no-visible-mobile{
+        display: none;
+    }
 
+    .footer-position-mobile{
+        position: relative !important;
+        margin-top: 100px;
+    }
+}
 #content-page{
     position: fixed;
     width: 100%;

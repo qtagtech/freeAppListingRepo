@@ -1,0 +1,25 @@
+/**
+ *Estilos panel de administracion
+ */
+@media only screen and (min-width:970px) {
+    .height-fixed-setting{
+        height: 350px;
+    }
+}
+
+.background-blocks-admin{
+    border: 1px solid #4899D4;
+    padding: 5px 30px;
+}
+.background-blocks-title-admin{
+    border: 1px solid #4899D4;
+    background: #4899D4;
+    padding: 5px 30px;
+    border-radius:  5px 5px 0 0 ;
+}
+.background-blocks-btn-admin{
+    border: 1px solid #4899D4;
+    background: #4899D4;
+    padding: 5px 30px;
+    border-radius: 0 0 5px 5px ;
+}
