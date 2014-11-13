@@ -77,5 +77,6 @@
         </div>
         <asset:javascript src="jquery.1.11.1/jquery1.11.1.min.js" />
         <asset:javascript src="application.js"/>
+        <asset:javascript src="pages.panel-admin/panel-admin.js"/>
 	</body>
 </html>

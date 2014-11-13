@@ -18,41 +18,24 @@
     <div class="row">
         <div class="col-md-4">
             <div class="background-blocks-title-admin">
-                <h4 style="color: #f5f5f5"> Create Platform </h4>
-                <h4 style="display: none"> List Platform </h4>
+                <h4 id="" style="color: #f5f5f5"> List Platforms </h4>
             </div>
             <div class="row">
                 <g:if test="${platformsList.empty}">
-                    <div  class="col-md-12">
-                        <form role="form" novalidate>
-                            <div class="height-fixed-setting background-blocks-admin">
-                                <div class="form-group">
-                                    <label for="txtPlfName">Name:</label>
-                                    <input type="text" class="form-control" id="txtPlfName" name="plfName" placeholder="Example: Android, Windows, IOS. etc...">
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="txtPlfDescription">Description:</label>
-                                    <textarea class="form-control" id="txtPlfDescription" placeholder="Description of platform." rows="3" style="resize: none"></textarea>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="txtPlfDescription">Web:</label>
-                                    <input type="text" class="form-control" id="txtPlfWeb" name="plfWeb" placeholder="Direction web of the platform.">
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="txtPlfDescription">Market:</label>
-                                    <input type="text" class="form-control" id="txtPlfMarket" name="plfMarket" placeholder="">
-                                </div>
-                            </div>
-                        </form>
+                    <div class="col-md-12">
+                        <div class="height-fixed-setting background-blocks-admin">
+                            <h2 style="color: darkgray">Register a new Platform</h2>
+                        </div>
                     </div>
                 </g:if>
                 <g:else>
                     <div class="col-md-12">
-                        <div class="height-fixed-setting">
-
+                        <div class="height-fixed-setting background-blocks-admin">
+                            <ul>
+                                <g:each in="${platformsList}" var="platformsList">
+                                    <li>${platformsList.name}</li>
+                                </g:each>
+                            </ul>
                         </div>
                     </div>
                 </g:else>
@@ -61,13 +44,13 @@
                     <div class="background-blocks-btn-admin">
                         <div class="row" style="padding: 4px 10px">
                             <div class="col-md-4">
-                                <button class="btn btn-success width-total-content">Save</button>
+                                <button id="btn-create-platform" class="btn btn-default width-total-content" data-toggle="modal" data-target="#create-platform">Create</button>
                             </div>
                             <div class="col-md-4">
-                                <button class="btn btn-info width-total-content">List</button>
+                                <button id="btn-list-platform" class="btn btn-info width-total-content">List</button>
                             </div>
                             <div class="col-md-4">
-                                <button class="btn btn-danger width-total-content" >Delete</button>
+                                <button id="btn-delete-platform" class="btn btn-danger width-total-content" >Delete</button>
                             </div>
                         </div>
                     </div>
@@ -77,30 +60,14 @@
 
         <div class="col-md-4">
             <div class="background-blocks-title-admin">
-                <h4 style="color: #f5f5f5">Create Publisher</h4>
-                <h4 style="display: none">List Publisher</h4>
+                <h4 style="color: #f5f5f5">List Publisher</h4>
             </div>
             <div class="row">
                 <g:if test="${publisherList.empty}">
-                    <div class="col-md-12 " >
-                        <form role="form" novalidate>
-                            <div class="height-fixed-setting background-blocks-admin">
-                                <div class="form-group">
-                                    <label for="txtPlshName">Name:</label>
-                                    <input type="text" class="form-control" id="txtPlshName" name="plfName" placeholder="Example: Facebook, Google. etc...">
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="txtPlshKey">Key:</label>
-                                    <input type="text" class="form-control" id="txtPlshKey" name="plfWeb" placeholder="">
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="txtPlshWeb">Web:</label>
-                                    <input type="text" class="form-control" id="txtPlshWeb" name="plfWeb" placeholder="Direction web of the Publisher.">
-                                </div>
-                            </div>
-                        </form>
+                    <div class="col-md-12">
+                        <div class="height-fixed-setting background-blocks-admin">
+                            <h2 style="color: darkgray">Register a new Publisher</h2>
+                        </div>
                     </div>
                 </g:if>
                 <g:else>
@@ -115,7 +82,7 @@
                     <div class="background-blocks-btn-admin">
                         <div class="row" style="padding: 4px 10px">
                             <div class="col-md-4">
-                                <button class="btn btn-success width-total-content">Save</button>
+                                <button class="btn btn-default width-total-content" data-toggle="modal" data-target="#create-publisher">Create</button>
                             </div>
                             <div class="col-md-4">
                                 <button class="btn btn-info width-total-content">List</button>
@@ -131,26 +98,14 @@
 
         <div class="col-md-4">
             <div class="background-blocks-title-admin">
-                <h4 style="color: #f5f5f5">Create Event Type</h4>
-                <h4 style="display: none">List Event Type</h4>
+                <h4 style="color: #f5f5f5">List Event Type</h4>
             </div>
             <div class="row">
                 <g:if test="${eventTypeList.empty}">
                     <div class="col-md-12">
-                        <form role="form" novalidate>
-                            <div class="height-fixed-setting background-blocks-admin">
-                                <div class="form-group">
-                                    <label for="txtEvTpyName">Name:</label>
-                                    <input type="text" class="form-control" id="txtEvTpyName" name="evTpyName" placeholder="Name to the Event Type">
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="txtEvTpyDescription">Description:</label>
-                                    <textarea class="form-control" id="txtEvTpyDescription" placeholder="Description of Event Type." rows="3" style="resize: none"></textarea>
-                                </div>
-                            </div>
-
-                        </form>
+                        <div class="height-fixed-setting background-blocks-admin">
+                            <h2 style="color: darkgray">Register a new Event Type</h2>
+                        </div>
                     </div>
                 </g:if>
                 <g:else>
@@ -165,7 +120,7 @@
                     <div class="background-blocks-btn-admin">
                         <div class="row" style="padding: 4px 10px">
                             <div class="col-md-4">
-                                <button class="btn btn-success width-total-content">Save</button>
+                                <button class="btn btn-default width-total-content" data-toggle="modal" data-target="#create-eventType">Create</button>
                             </div>
                             <div class="col-md-4">
                                 <button class="btn btn-info width-total-content">List</button>
@@ -181,5 +136,116 @@
     </div>
     </sec:access>
 <br/><br/>
+
+<!-- Modal Create platform-->
+<div class="modal fade" id="create-platform" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" >Create Platform </h4>
+            </div>
+            <div class="modal-body">
+                <div id="form-create-platform">
+                    <form role="form" novalidate>
+                        <div class="form-group">
+                            <label for="txtPlfName">Name:</label>
+                            <input type="text" class="form-control" id="txtPlfName" name="plfName" placeholder="Example: Android, Windows, IOS. etc...">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="txtPlfDescription">Description:</label>
+                            <textarea class="form-control" id="txtPlfDescription" placeholder="Description of platform." rows="3" style="resize: none"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="txtPlfDescription">Web:</label>
+                            <input type="text" class="form-control" id="txtPlfWeb" name="plfWeb" placeholder="Direction web of the platform.">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="txtPlfDescription">Market:</label>
+                            <input type="text" class="form-control" id="txtPlfMarket" name="plfMarket" placeholder="">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="btn-save-platform" class="btn btn-success">Save</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Create publisher-->
+<div class="modal fade" id="create-publisher" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">Create Publisher </h4>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <form role="form" novalidate>
+                        <div class="form-group">
+                            <label for="txtPlshName">Name:</label>
+                            <input type="text" class="form-control" id="txtPlshName" name="plfName" placeholder="Example: Facebook, Google. etc...">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="txtPlshKey">Key:</label>
+                            <input type="text" class="form-control" id="txtPlshKey" name="plfWeb" placeholder="">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="txtPlshWeb">Web:</label>
+                            <input type="text" class="form-control" id="txtPlshWeb" name="plfWeb" placeholder="Direction web of the Publisher.">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="btn-save-publisher" class="btn btn-success">Save</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Create Event Type-->
+<div class="modal fade" id="create-eventType" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">Create Publisher </h4>
+            </div>
+            <div class="modal-body">
+                <div >
+                    <form role="form" novalidate>
+                        <div class="form-group">
+                            <label for="txtEvTpyName">Name:</label>
+                            <input type="text" class="form-control" id="txtEvTpyName" name="evTpyName" placeholder="Name to the Event Type">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="txtEvTpyDescription">Description:</label>
+                            <textarea class="form-control" id="txtEvTpyDescription" placeholder="Description of Event Type." rows="3" style="resize: none"></textarea>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="btn-save-eventType" class="btn btn-success">Save</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<g:javascript>
+      var platformSave = "${createLink(controller:'platforms',action:'save')}";
+</g:javascript>
 </body>
 </html>

@@ -7,7 +7,7 @@ class Platforms {
     static mapWith = "mongo"
 
     ObjectId id
-    String nombre
+    String name
     String description
     String web
     String market
