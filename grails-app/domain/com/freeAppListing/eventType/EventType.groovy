@@ -14,4 +14,12 @@ class EventType {
 
     static constraints = {
     }
+    def beforeUpdate() {
+        dateUpdate = new Date()
+    }
+
+    def beforeValidate(){
+        dateUpdate = new Date()
+    }
+
 }

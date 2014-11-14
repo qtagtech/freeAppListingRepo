@@ -1,37 +1,34 @@
-package com.freeAppListing.platform
+package com.freeAppListing.publisher
 
 import grails.converters.JSON
 import grails.plugin.springsecurity.annotation.Secured
 import grails.transaction.Transactional
 
 @Secured(['ROLE_SUPERADMIN'])
-class PlatformsController {
+class PublisherController {
 
     static allowedMethods = [save: "POST"]
 
     @Transactional
-    def save() {
+    def save(){
 
-        try{
-
-            def newPlatform = new Platforms(
+        def newPublisher
+        def respuesta
+        try {
+            newPublisher = new Publisher(
                     name: params.name,
-                    web: params.web,
-                    market: params.market,
-                    description: params.description,
-                    dateCreate: new Date(),
-                    dateUpdate: new Date()
+                    key: params.key,
+                    urlweb: params.web,
+                    dateCreate: new Date()
             ).save(failOnError: true)
 
         }catch (Exception e){
-
             e.printStackTrace()
-
-            def respuesta = [status:0]
+            respuesta = [status:0]
             render respuesta as JSON
         }
-
-        def respuesta = [status:1]
+        respuesta = [status:1]
         render respuesta as JSON
     }
+
 }
