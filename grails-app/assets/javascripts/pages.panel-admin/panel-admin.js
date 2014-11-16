@@ -12,11 +12,13 @@ var appfreeApplistingregister =(function($){
             },
             cacheElements:function(){
                 this.$btnCreatePlatform = $("#btn-save-platform");
+                this.$btnDeletePlatform = $("#btn-delete-platform");
                 this.$btnCreatePublisher = $("#btn-save-publisher");
                 this.$btnCreateEventType = $("#btn-save-eventType");
             },
             bindEvents: function(){
                 this.$btnCreatePlatform.off("click").on("click", platform.createNew);
+                this.$btnDeletePlatform.off("click").on("click", platform.delete);
                 this.$btnCreatePublisher.off("click").on("click", publisher.createNew);
                 this.$btnCreateEventType.off("click").on("click", eventType.createNew);
             },
@@ -136,8 +138,35 @@ var appfreeApplistingregister =(function($){
                     },4000);
                 }
             }).fail(function () {
-                alert("Error en el envio de formulario");
+                swal(
+                    "Error",
+                    "Don't save data by a error of system",
+                    "error");
             })
+        },
+        delete: function () {
+            sweetAlert({
+                title:"Delete Platforms",
+                type:"warning",
+                text: "¿Are you sure of delete to this platform?",
+                confirmButtonText: "Confirm",
+                closeOnConfirm: false,
+                showCancelButton: true,
+                cancelButtonText: "Cancel",
+                closeOnCancel: false
+            },function(isConfirm){
+                if (isConfirm) {
+                    swal(
+                        "Deleted!",
+                        "Your imaginary file has been deleted.",
+                        "success");
+                } else {
+                    swal(
+                        "Cancelled",
+                        "Your imaginary file is safe :)",
+                        "error");   }
+                }
+            );
         }
     }
 

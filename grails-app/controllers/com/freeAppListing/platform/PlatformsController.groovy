@@ -7,7 +7,7 @@ import grails.transaction.Transactional
 @Secured(['ROLE_SUPERADMIN'])
 class PlatformsController {
 
-    static allowedMethods = [save: "POST"]
+    static allowedMethods = [save: "POST", delete: "POST"]
 
     @Transactional
     def save() {
@@ -33,5 +33,10 @@ class PlatformsController {
 
         def respuesta = [status:1]
         render respuesta as JSON
+    }
+
+    @Transactional(readOnly = true)
+    def delete(){
+
     }
 }

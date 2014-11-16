@@ -82,6 +82,7 @@
             <h4 style="color: #f5f5f5">Error to save your register</h4>
         </div>
         <asset:javascript src="jquery.1.11.1/jquery1.11.1.min.js" />
+        <asset:javascript src="utilitys/sweetalert/sweet-alert.min.js"/>
         <asset:javascript src="application.js"/>
         <asset:javascript src="pages.panel-admin/panel-admin.js"/>
 	</body>
