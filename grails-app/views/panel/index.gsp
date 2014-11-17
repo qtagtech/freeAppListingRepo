@@ -90,7 +90,7 @@
                             <table id="table-publisher" class="table">
                                 <thead>
                                 <tr>
-                                    <th><input type="checkbox"></th>
+                                    <th><input id="chb-all-publisher" type="checkbox"></th>
                                     <th>#</th>
                                     <th>Name</th>
                                     <th>Key</th>
@@ -120,7 +120,7 @@
                                 <button class="btn btn-success width-total-content" data-toggle="modal" data-target="#create-publisher">Create</button>
                             </div>
                             <div class="col-md-6">
-                                <button class="btn btn-danger width-total-content" >Delete</button>
+                                <button id="btn-delete-publisher" class="btn btn-danger width-total-content" >Delete</button>
                             </div>
                         </div>
                     </div>
@@ -298,6 +298,7 @@
       var platformSave = "${createLink(controller:'platforms',action:'save')}";
       var platformDelete = "${createLink(controller:'platforms',action:'delete')}";
       var publisherSave = "${createLink(controller:'publisher',action:'save')}";
+      var publisherDelete = "${createLink(controller:'publisher',action:'delete')}";
       var eventTypeSave = "${createLink(controller:'eventType',action:'save')}";
 </g:javascript>
 </body>
