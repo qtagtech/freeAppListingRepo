@@ -37,6 +37,18 @@ class PlatformsController {
 
     @Transactional(readOnly = true)
     def delete(){
+        def respuesta
 
+        List<String> listId = request.JSON.ids
+
+        for(int i =0;i< listId.size();i++){
+            String value = listId[i].toString()
+
+            def platform = Platforms.findById(value)
+            platform.delete()
+        }
+
+        respuesta = [status:1]
+        render respuesta as JSON
     }
 }

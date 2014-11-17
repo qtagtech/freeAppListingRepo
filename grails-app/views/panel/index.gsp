@@ -31,13 +31,13 @@
                 <g:else>
                     <div class="col-md-12">
                         <div class="height-fixed-setting background-blocks-admin">
-                            <table class="table">
+                            <table id="table-platforms" class="table">
                                 <thead>
                                     <tr>
-                                        <th><input type="checkbox"></th>
+                                        <th><input id="chb-all-platforms" type="checkbox"></th>
                                         <th>#</th>
                                         <th>Name</th>
-                                        <th>Description</th>
+                                        <th>Web</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -47,7 +47,7 @@
                                             <td><input type="checkbox" value="${platforms.id}"></td>
                                             <td>${i+1}</td>
                                             <td data-colunmvalue="${platforms.name}">${platforms.name}</td>
-                                            <td data-colunmvalue="${platforms.description}">${platforms.description}</td>
+                                            <td data-colunmvalue="${platforms.web}">${platforms.web}</td>
                                             <td><button data-id="${platforms.id}" class="btn btn-xs btn-info">View All</button></td>
                                         </tr>
                                     </g:each>
@@ -87,7 +87,7 @@
                 <g:else>
                     <div class="col-md-12">
                         <div class="height-fixed-setting background-blocks-admin">
-                            <table class="table">
+                            <table id="table-publisher" class="table">
                                 <thead>
                                 <tr>
                                     <th><input type="checkbox"></th>
@@ -143,7 +143,7 @@
                 <g:else>
                     <div class="col-md-12">
                         <div class="height-fixed-setting background-blocks-admin">
-                            <table class="table">
+                            <table id="table-eventype" class="table">
                                 <thead>
                                 <tr>
                                     <th><input type="checkbox"></th>
@@ -197,7 +197,7 @@
             </div>
             <div class="modal-body">
                 <div id="form-create-platform">
-                    <form role="form" novalidate>
+                    <form id="form-crete-platforms" role="form" novalidate>
                         <div class="form-group">
                             <label for="txtPlfName">Name:</label>
                             <input type="text" class="form-control" id="txtPlfName" name="plfName" placeholder="Example: Android, Windows, IOS. etc...">
@@ -296,8 +296,10 @@
 </div>
 <g:javascript>
       var platformSave = "${createLink(controller:'platforms',action:'save')}";
+      var platformDelete = "${createLink(controller:'platforms',action:'delete')}";
       var publisherSave = "${createLink(controller:'publisher',action:'save')}";
       var eventTypeSave = "${createLink(controller:'eventType',action:'save')}";
 </g:javascript>
 </body>
 </html>
+
