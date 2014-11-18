@@ -22,6 +22,9 @@ var appfreeApplistingregister =(function($){
                 this.$inputsTypeCheckboxPublish = $("#table-publisher tbody tr td input");
                 this.$allSelectTypeCheckboxPublish = $("#chb-all-publisher");
                 this.$btnCreateEventType = $("#btn-save-eventType");
+                this.$btnDeleteEventType = $("#btn-delete-eventtype");
+                this.$inputsTypeCheckboxEventType = $("#table-eventype tbody tr td input");
+                this.$allSelectTypeCheckboxEventtype = $("#chb-all-eventtype");
             },
             bindEvents: function(){
                 this.$btnCreatePlatform.off("click").on("click", platform.createNew);
@@ -33,6 +36,9 @@ var appfreeApplistingregister =(function($){
                 this.$inputsTypeCheckboxPublish.off("click").on("click", publisher.saveIds);
                 this.$allSelectTypeCheckboxPublish.off("click").on("click", publisher.allSelectedPublisher);
                 this.$btnCreateEventType.off("click").on("click", eventType.createNew);
+                this.$btnDeleteEventType.off("click").on("click", eventType.delete);
+                this.$inputsTypeCheckboxEventType.off("click").on("click", eventType.saveIds);
+                this.$allSelectTypeCheckboxEventtype.off("click").on("click", eventType.allSelectedEventType);
             },
             instance:{
                 tooltipsIns:function(){
@@ -42,6 +48,7 @@ var appfreeApplistingregister =(function($){
                     var ids = [];
                     $("#table-platforms").data("platids", ids);
                     $("#table-publisher").data("publisherids", ids);
+                    $("#table-eventype").data("eventypeids", ids);
                 },
                 actionModalPlatform : function () {
                     $("#create-platform").on("hidden.bs.modal", function () {
@@ -84,6 +91,96 @@ var appfreeApplistingregister =(function($){
             }).fail(function () {
                 alert("Error en el envio de formulario");
             })
+        },
+        delete : function () {
+
+            var ids = $("#table-eventype").data("eventypeids");
+
+            if(ids == null || ids == ""){
+                swal({
+                    title:"Error",
+                    text:"You need select some plataform",
+                    type:"error"
+                });
+                return false
+            };
+
+            sweetAlert({
+                title:"Delete Event Type",
+                type:"warning",
+                text: "¿Are you sure of delete to this Event Type?",
+                confirmButtonText: "Confirm",
+                closeOnConfirm: false,
+                showCancelButton: true,
+                cancelButtonText: "Cancel",
+                closeOnCancel: false
+            },function(isConfirm){
+
+                if (isConfirm) {
+
+                    var dataToSend = {
+                        "ids": ids
+                    };
+
+                    $.ajax({
+                        url: eventTypeDelete,
+                        contentType:"application/json",
+                        type: "POST",
+                        data: JSON.stringify(dataToSend)
+                    }).done(function(data){
+                        swal({
+                            title:"Deleted!",
+                            text:"The Event() Type(s)selected has been deleted.",
+                            type:"success"
+                        },function(isConfirm){
+                            if(isConfirm){
+                                location.reload(true);
+                            }
+                        });
+                    }).fail(function () {
+                        swal({
+                            title:"Error",
+                            text:"Error in system",
+                            type:"error"
+                        });
+                    });
+
+                } else {
+                    swal({
+                        title:"Cancelled",
+                        text:"Cancelled operation",
+                        type:"error"
+                    });
+                }
+            });
+        },
+        saveIds: function () {
+
+            if($(this)[0].checked){
+                var ids = $("#table-eventype").data("eventypeids");
+                var eventTypeId = $(this).val();
+
+                if( ids=="" || ids == null){
+                    ids.push(eventTypeId);
+                    $("#table-eventype").data("eventypeids",ids);
+                }else{
+                    var respon = idsActions.existIdsPlatforms(eventTypeId,ids);
+                    if(!respon){
+                        ids.push(eventTypeId);
+                        $("#table-eventype").data("eventypeids",ids);
+                    }
+                }
+            }else{
+                var eventTypeId = $(this).val();
+                var ids = $("#table-eventype").data("eventypeids");
+                var respon = idsActions.existIdsPlatforms(eventTypeId,ids);
+                if(respon){
+                    idsActions.elminarIdPlatforms(eventTypeId,ids);
+                }
+            }
+        },
+        allSelectedEventType: function () {
+            $("#table-eventype tbody tr td input").click()
         }
     }
 
@@ -169,8 +266,8 @@ var appfreeApplistingregister =(function($){
                         });
                     }).fail(function () {
                         swal({
-                            title:"Cancelled",
-                            text:"Your imaginary file is safe :)",
+                            title:"Error",
+                            text:"Error system",
                             type:"error"
                         });
                     });

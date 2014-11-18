@@ -13,6 +13,12 @@
 </head>
 
 <body>
+    <sec:access expression="hasRole('ROLE_USER')">
+    <h2>Usuario</h2>
+    <div class="row">
+
+    </div>
+    </sec:access>
     <sec:access expression="hasRole('ROLE_SUPERADMIN')">
     <h2>Settings</h2>
     <div class="row">
@@ -146,7 +152,7 @@
                             <table id="table-eventype" class="table">
                                 <thead>
                                 <tr>
-                                    <th><input type="checkbox"></th>
+                                    <th><input id="chb-all-eventtype" type="checkbox"></th>
                                     <th>#</th>
                                     <th>Name</th>
                                     <th>Description</th>
@@ -176,7 +182,7 @@
                                 <button class="btn btn-success width-total-content" data-toggle="modal" data-target="#create-eventType">Create</button>
                             </div>
                             <div class="col-md-6">
-                                <button class="btn btn-danger width-total-content" >Delete</button>
+                                <button id="btn-delete-eventtype" class="btn btn-danger width-total-content" >Delete</button>
                             </div>
                         </div>
                     </div>
@@ -184,123 +190,125 @@
             </div>
         </div>
     </div>
-    </sec:access>
-<br/><br/>
-
-<!-- Modal Create platform-->
-<div class="modal fade" id="create-platform" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title" >Create Platform </h4>
-            </div>
-            <div class="modal-body">
-                <div id="form-create-platform">
-                    <form id="form-crete-platforms" role="form" novalidate>
-                        <div class="form-group">
-                            <label for="txtPlfName">Name:</label>
-                            <input type="text" class="form-control" id="txtPlfName" name="plfName" placeholder="Example: Android, Windows, IOS. etc...">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="txtPlfDescription">Description:</label>
-                            <textarea class="form-control" id="txtPlfDescription" placeholder="Description of platform." rows="3" style="resize: none"></textarea>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="txtPlfDescription">Web:</label>
-                            <input type="text" class="form-control" id="txtPlfWeb" name="plfWeb" placeholder="Direction web of the platform.">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="txtPlfDescription">Market:</label>
-                            <input type="text" class="form-control" id="txtPlfMarket" name="plfMarket" placeholder="">
-                        </div>
-                    </form>
+    <!-- Modal Create platform-->
+    <div class="modal fade" id="create-platform" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" >Create Platform </h4>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button id="btn-save-platform" class="btn btn-success">Save</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <div class="modal-body">
+                    <div id="form-create-platform">
+                        <form id="form-crete-platforms" role="form" novalidate>
+                            <div class="form-group">
+                                <label for="txtPlfName">Name:</label>
+                                <input type="text" class="form-control" id="txtPlfName" name="plfName" placeholder="Example: Android, Windows, IOS. etc...">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="txtPlfDescription">Description:</label>
+                                <textarea class="form-control" id="txtPlfDescription" placeholder="Description of platform." rows="3" style="resize: none"></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="txtPlfDescription">Web:</label>
+                                <input type="text" class="form-control" id="txtPlfWeb" name="plfWeb" placeholder="Direction web of the platform.">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="txtPlfDescription">Market:</label>
+                                <input type="text" class="form-control" id="txtPlfMarket" name="plfMarket" placeholder="">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="btn-save-platform" class="btn btn-success">Save</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<!-- Modal Create publisher-->
-<div class="modal fade" id="create-publisher" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title">Create Publisher </h4>
-            </div>
-            <div class="modal-body">
-                <div>
-                    <form role="form" novalidate>
-                        <div class="form-group">
-                            <label for="txtPlshName">Name:</label>
-                            <input type="text" class="form-control" id="txtPlshName" name="plfName" placeholder="Example: Facebook, Google. etc...">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="txtPlshKey">Key:</label>
-                            <input type="text" class="form-control" id="txtPlshKey" name="plfWeb" placeholder="">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="txtPlshWeb">Web:</label>
-                            <input type="text" class="form-control" id="txtPlshWeb" name="plfWeb" placeholder="Direction web of the Publisher.">
-                        </div>
-                    </form>
+    <!-- Modal Create publisher-->
+    <div class="modal fade" id="create-publisher" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">Create Publisher </h4>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button id="btn-save-publisher" class="btn btn-success">Save</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <div class="modal-body">
+                    <div>
+                        <form role="form" novalidate>
+                            <div class="form-group">
+                                <label for="txtPlshName">Name:</label>
+                                <input type="text" class="form-control" id="txtPlshName" name="plfName" placeholder="Example: Facebook, Google. etc...">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="txtPlshKey">Key:</label>
+                                <input type="text" class="form-control" id="txtPlshKey" name="plfWeb" placeholder="">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="txtPlshWeb">Web:</label>
+                                <input type="text" class="form-control" id="txtPlshWeb" name="plfWeb" placeholder="Direction web of the Publisher.">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="btn-save-publisher" class="btn btn-success">Save</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<!-- Modal Create Event Type-->
-<div class="modal fade" id="create-eventType" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title">Create Event Type </h4>
-            </div>
-            <div class="modal-body">
-                <div >
-                    <form role="form" novalidate>
-                        <div class="form-group">
-                            <label for="txtEvTpyName">Name:</label>
-                            <input type="text" class="form-control" id="txtEvTpyName" name="evTpyName" placeholder="Name to the Event Type">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="txtEvTpyDescription">Description:</label>
-                            <textarea class="form-control" id="txtEvTpyDescription" placeholder="Description of Event Type." rows="3" style="resize: none"></textarea>
-                        </div>
-                    </form>
+    <!-- Modal Create Event Type-->
+    <div class="modal fade" id="create-eventType" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">Create Event Type </h4>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button id="btn-save-eventType" class="btn btn-success">Save</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <div class="modal-body">
+                    <div >
+                        <form role="form" novalidate>
+                            <div class="form-group">
+                                <label for="txtEvTpyName">Name:</label>
+                                <input type="text" class="form-control" id="txtEvTpyName" name="evTpyName" placeholder="Name to the Event Type">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="txtEvTpyDescription">Description:</label>
+                                <textarea class="form-control" id="txtEvTpyDescription" placeholder="Description of Event Type." rows="3" style="resize: none"></textarea>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="btn-save-eventType" class="btn btn-success">Save</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<g:javascript>
+    <g:javascript>
       var platformSave = "${createLink(controller:'platforms',action:'save')}";
       var platformDelete = "${createLink(controller:'platforms',action:'delete')}";
       var publisherSave = "${createLink(controller:'publisher',action:'save')}";
       var publisherDelete = "${createLink(controller:'publisher',action:'delete')}";
       var eventTypeSave = "${createLink(controller:'eventType',action:'save')}";
-</g:javascript>
+      var eventTypeDelete = "${createLink(controller:'eventType',action:'delete')}";
+    </g:javascript>
+    </sec:access>
+<br/><br/>
+
+
 </body>
 </html>
 
