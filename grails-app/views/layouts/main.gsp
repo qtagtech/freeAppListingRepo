@@ -85,5 +85,6 @@
         <asset:javascript src="utilitys/sweetalert/sweet-alert.min.js"/>
         <asset:javascript src="application.js"/>
         <asset:javascript src="pages.panel-admin/panel-admin.js"/>
+        <asset:javascript src="pages.application/application.js"/>
 	</body>
 </html>

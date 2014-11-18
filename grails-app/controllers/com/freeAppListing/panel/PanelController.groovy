@@ -1,5 +1,6 @@
 package com.freeAppListing.panel
 
+import com.freeAppListing.application.Application
 import com.freeAppListing.eventType.EventType
 import com.freeAppListing.platform.Platforms
 import com.freeAppListing.publisher.Publisher
@@ -16,16 +17,28 @@ class PanelController {
             // get info user loggin
             def userLoggin = springSecurityService.getCurrentUser()
 
-            //get info platform
-            List<Platforms> platformsList = Platforms.list()
+            // Do is roler is superadmin
+            sec.ifAllGranted(roles: 'ROLE_SUPERADMIN'){
+                //get info platform
+                List<Platforms> platformsList = Platforms.list()
 
-            //get info Publisher
-            List<Publisher> publisherList = Publisher.list()
+                //get info Publisher
+                List<Publisher> publisherList = Publisher.list()
 
-            // get infor event Type
-            List<EventType> eventTypeList = EventType.list()
+                // get infor event Type
+                List<EventType> eventTypeList = EventType.list()
 
-            [dataUser:userLoggin,platformsList:platformsList, publisherList: publisherList, eventTypeList: eventTypeList]
+                render view:"index", model:[activeMenu: 1, dataUser:userLoggin,platformsList:platformsList, publisherList: publisherList, eventTypeList: eventTypeList]
+            }
+
+            // Do if role is user
+            sec.ifAllGranted(roles: 'ROLE_USER'){
+
+                def applicationData = Application.list()
+
+                render view:"index",  model: [activeMenu: 1, dataUser:userLoggin, applicationData:applicationData]
+            }
+
         }
 
     }

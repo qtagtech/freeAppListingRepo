@@ -131,13 +131,13 @@ grails.plugin.springsecurity.authority.className = 'com.freeAppListing.sprinSecu
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	'/':                              ['permitAll'],
 	'/index':                         ['permitAll'],
-	'/index.gsp':                     ['permitAll'],
+	'/application/**':                ['ROLE_USER'],
 	'/assets/**':                     ['permitAll'],
 	'/**/js/**':                      ['permitAll'],
 	'/**/css/**':                     ['permitAll'],
 	'/**/images/**':                  ['permitAll'],
 	'/**/favicon.ico':                ['permitAll'],
 	'/register/**':                   ['permitAll'],
-	'/panel/**':                      ['ROLE_ADMIN','ROLE_USER']
+	'/panel/**':                      ['ROLE_SUPERADMIN','ROLE_USER']
 ]
 

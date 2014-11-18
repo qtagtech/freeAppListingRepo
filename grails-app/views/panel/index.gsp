@@ -14,9 +14,58 @@
 
 <body>
     <sec:access expression="hasRole('ROLE_USER')">
-    <h2>Usuario</h2>
     <div class="row">
+        <div class="col-md-12">
+            <div class="row">
 
+                <div class="col-md-2">
+                    <h3>Menu</h3>
+                    <div>
+                        <ul class="nav nav-pills nav-stacked" id="stacked-collapse">
+                            <li <g:if test="${activeMenu==1}">class="active"</g:if> role="presentation">
+                                <a href="<g:createLink controller="panel" action="index"/>">Home</a>
+                            </li>
+                            <li <g:if test="${activeMenu==2}">class="active"</g:if> role="presentation">
+                                <a data-toggle="collapse" data-parent="#stacked-collapse" href="#one" aria-expanded="true" aria-controls="one" >
+                                    <div style="width: 76%; display: inline-block">Applications</div> <div style="display: inline-block"><i class="fa fa-caret-square-o-down"></i></div>
+                                </a>
+                                <ul id="one" class="nav nav-pills nav-stacked collapse in">
+                                    <li role="presentation">
+                                        <a href="<g:createLink controller="application" action="create"/>">
+                                            <div style="padding-left: 10px"><i class="fa fa-caret-right"></i> Create</div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li <g:if test="${activeMenu==3}">class="active"</g:if> role="presentation">
+                                <a data-toggle="collapse" data-parent="#stacked-collapse" href="#two" aria-expanded="true" aria-controls="two" >
+                                    <div style="width: 76%; display: inline-block">Campaigns</div> <div style="display: inline-block"><i class="fa fa-caret-square-o-down"></i></div>
+                                </a>
+                                <ul id="two" class="nav nav-pills nav-stacked collapse in">
+                                    <li role="presentation">
+                                        <a href="<g:createLink controller="panel" action="index"/>">
+                                            <div style="padding-left: 10px"><i class="fa fa-caret-right"></i> Create</div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+
+                <div class="col-md-10">
+                    <div class="row">
+                        <div style="height: 38px"></div>
+                    </div>
+                    <div class="row">
+                        <g:if test="${applicationData.empty}">
+                            <h2>No hay data</h2>
+                        </g:if>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     </sec:access>
     <sec:access expression="hasRole('ROLE_SUPERADMIN')">
