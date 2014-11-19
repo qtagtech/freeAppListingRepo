@@ -55,7 +55,7 @@
                                     <div class="col-md-5">
                                         <h2 id="data-link"><small> Link information </small></h2>
                                         <div class="content-form-links">
-                                            <div class="form-links" style="padding: 0 20px; border: 1px solid deepskyblue; border-radius: 5px; margin-bottom: 4px">
+                                            <div class="form-links" style="padding: 5px 20px; border: 1px solid deepskyblue; border-radius: 5px; margin-bottom: 4px">
                                                 <div class="form-group">
                                                     <label for="txtKeywords">Platform:</label>
                                                     <select id="sltPlatforms" class="form-control">
@@ -95,13 +95,13 @@
                                     <div class="col-md-5">
                                         <div id="content-more-links" style="display: none" class="row">
                                             <div class="col-md-6">
-                                                <button id="btn-add-more-link" type="button" class="btn btn-info width-total-content tooltipInfo" data-toggle="tooltip" data-placement="top" title="Add more links">
-                                                    <i class="fa fa-plus"></i>
+                                                <button id="btn-save-create-link" type="button" class="btn btn-info width-total-content tooltipInfo" data-toggle="tooltip" data-placement="top" title="Add more links">
+                                                    Save and Create New Link
                                                 </button>
                                             </div>
                                             <div class="col-md-6">
-                                                <button id="btn-delete-link" type="button" class="btn btn-info width-total-content tooltipInfo" data-toggle="tooltip" data-placement="top" title="Delete links">
-                                                    <i class="fa fa-minus"></i>
+                                                <button id="btn-save-link" type="button" class="btn btn-info width-total-content tooltipInfo" data-toggle="tooltip" data-placement="top" title="Delete links">
+                                                    Save unique Link
                                                 </button>
                                             </div>
                                             <br/>
@@ -130,7 +130,8 @@
         </div>
     </div>
     <g:javascript>
-      var applicationSave = "${createLink(controller:'application',action:'save')}";
+          var applicationSave = "${createLink(controller:'application',action:'save')}";
+          var redirectPanel = "${createLink(controller:'application',action:'list')}";
     </g:javascript>
 </sec:access>
 </body>

@@ -15,6 +15,11 @@
                             <div style="padding-left: 10px"><i class="fa fa-caret-right"></i> Create</div>
                         </a>
                     </li>
+                    <li role="presentation">
+                        <a href="<g:createLink controller="application" action="list"/>">
+                            <div style="padding-left: 10px"><i class="fa fa-caret-right"></i> List</div>
+                        </a>
+                    </li>
                 </ul>
             </li>
             <li <g:if test="${activeMenu==3}">class="active"</g:if> role="presentation">

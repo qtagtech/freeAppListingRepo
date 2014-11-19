@@ -81,7 +81,11 @@
         <div id="div-error" style="display: none; position: fixed; top: 200px; left: 0 ; height: 60px; width: 100%; background: rgba(255,0,0,0.8);padding-top: 10px; text-align: center; box-shadow: 2px 2px 10px black">
             <h4 style="color: #f5f5f5">Error to save your register</h4>
         </div>
-
+        <div id="content-page" style="display: none">
+            <div class="content-loading">
+                <i class="fa fa-refresh fa-spin fa-5x" style="color: #f5f5f5"></i>
+            </div>
+        </div>
         <asset:javascript src="jquery.1.11.1/jquery1.11.1.min.js" />
         <asset:javascript src="application.js"/>
         <asset:javascript src="pages.panel-admin/panel-admin.js"/>

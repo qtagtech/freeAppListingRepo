@@ -21,12 +21,151 @@
 
                 <div class="col-md-10">
                     <div class="row">
-                        <div style="height: 38px"></div>
-                    </div>
-                    <div class="row">
-                        <g:if test="${applicationData.empty}">
-                            <h2>No hay data</h2>
-                        </g:if>
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h2>Campaigns</h2>
+                                            <div>
+                                                <g:if test="${listCamp.empty}">
+                                                    <table class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>#</th>
+                                                                <th>Name</th>
+                                                                <th>Application</th>
+                                                                <th>Publisher</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td colspan="5"><h4 style="color: grey">No data</h4></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </g:if>
+                                                <g:else>
+                                                    <g:each in="${listCamp}" var="camp">
+                                                        <span>${camp}</span>
+                                                    </g:each>
+                                                </g:else>
+                                            </div>
+                                            <div>
+                                                <label for="">Total:</label>
+                                                <span>${countCamp}</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <h2>Applications</h2>
+                                            <div>
+                                                <g:if test="${listApp.empty}">
+                                                    <table class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>#</th>
+                                                                <th>Name</th>
+                                                                <th>Keywords</th>
+                                                                <th>Company</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td colspan="5"><h4 style="color: grey">No data</h4></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </g:if>
+                                                <g:else>
+                                                    <table class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>#</th>
+                                                                <th>Name</th>
+                                                                <th>Keywords</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <g:each in="${listApp}" var="app" status="i">
+                                                            <tr>
+                                                                <td>${i+1}</td>
+                                                                <td>${app.nombre}</td>
+                                                                <td>${app.keywords}</td>
+                                                            </tr>
+                                                            </g:each>
+                                                        </tbody>
+                                                    </table>
+                                                </g:else>
+                                            </div>
+                                            <div>
+                                                <label for="">Total:</label>
+                                                <span>${countApp}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <h2>Platforms</h2>
+                                            <div class="content-stadistics">
+                                                <p><strong>Names:</strong></p>
+                                                <g:if test="${listPlat.empty}">
+                                                    <h4>No data</h4>
+                                                </g:if>
+                                                <g:else>
+                                                    <g:each in="${listPlat}" var="plat">
+                                                        <p><span>${plat}</span></p>
+                                                    </g:each>
+                                                </g:else>
+                                            </div>
+                                            <div>
+                                                <label for="">Total:</label>
+                                                <span>${countPlat}</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <h2>Publishers</h2>
+                                            <div class="content-stadistics">
+                                                <p><strong>Names:</strong></p>
+                                                <g:if test="${listPub.empty}">
+                                                    <h4>No data</h4>
+                                                </g:if>
+                                                <g:else>
+                                                    <g:each in="${listPub}" var="pub">
+                                                        <p><span>${pub}</span></p>
+                                                    </g:each>
+                                                </g:else>
+                                            </div>
+                                            <div>
+                                                <label for="">Total:</label>
+                                                <span>${countPub}</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <h2>Event Types</h2>
+                                            <div class="content-stadistics">
+                                                <p><strong>Names:</strong></p>
+                                                <g:if test="${listEvTp.empty}">
+                                                    <h4>No data</h4>
+                                                </g:if>
+                                                <g:else>
+                                                    <g:each in="${listEvTp}" var="evTp">
+                                                        <p><span>${evTp}</span></p>
+                                                    </g:each>
+                                                </g:else>
+                                            </div>
+                                            <div>
+                                                <label for="">Total:</label>
+                                                <span>${countEvTp}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -318,6 +457,7 @@
       var publisherDelete = "${createLink(controller:'publisher',action:'delete')}";
       var eventTypeSave = "${createLink(controller:'eventType',action:'save')}";
       var eventTypeDelete = "${createLink(controller:'eventType',action:'delete')}";
+
     </g:javascript>
     </sec:access>
 <br/><br/>

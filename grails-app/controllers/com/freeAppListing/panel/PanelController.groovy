@@ -1,6 +1,7 @@
 package com.freeAppListing.panel
 
 import com.freeAppListing.application.Application
+import com.freeAppListing.company.Company
 import com.freeAppListing.eventType.EventType
 import com.freeAppListing.platform.Platforms
 import com.freeAppListing.publisher.Publisher
@@ -34,9 +35,31 @@ class PanelController {
             // Do if role is user
             sec.ifAllGranted(roles: 'ROLE_USER'){
 
-                def applicationData = Application.list()
+                def countCamp = 0
+                def listCamp = ""
+                def countApp = Application.count()
+                def listApp = Application.list()
+                def countPlat = Platforms.count()
+                def listPlat = Platforms.list()
+                def countPubli = Publisher.count()
+                def listPubli = Publisher.list()
+                def countEvTp = EventType.count()
+                def listEvTp = EventType.list()
 
-                render view:"index",  model: [activeMenu: 1, dataUser:userLoggin, applicationData:applicationData]
+                render view:"index",  model: [
+                        activeMenu: 1,
+                        dataUser:userLoggin,
+                        countCamp: countCamp,
+                        listCamp: listCamp,
+                        countApp: countApp,
+                        listApp: listApp,
+                        countPlat: countPlat,
+                        listPlat: listPlat.name,
+                        countPub: countPubli,
+                        listPub: listPubli.name,
+                        countEvTp: countEvTp,
+                        listEvTp: listEvTp.name
+                ]
             }
 
         }

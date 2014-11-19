@@ -4,24 +4,29 @@ var appfreeApplistingApplication =(function($){
             app.cacheElements();
             app.bindEvents();
             app.instance.tooltips();
+            app.instance.initialdataLink();
         },
         cacheElements: function () {
             this.$btnNext = $("#btn-next");
             this.$btnBack = $("#btn-back");
-            this.$moreLinks = $("#btn-add-more-link");
-            this.$deleteLinks = $("#btn-delete-link");
+            this.$saveMoreLinks = $("#btn-save-create-link");
+            this.$savelinks = $("#btn-save-link");
             this.$regiserApp = $("#btn-register-app");
         },
         bindEvents : function () {
             this.$btnNext.off("click").on("click", controllSlide.next);
             this.$btnBack.off("click").on("click", controllSlide.back);
-            this.$moreLinks.off("click").on("click", morelinks.more);
-            this.$deleteLinks.off("click").on("click", morelinks.delete);
+            this.$saveMoreLinks.off("click").on("click", saveLinks.saveAndMoreLinks);
+            this.$savelinks.off("click").on("click", saveLinks.saveLinks);
             this.$regiserApp.off("click").on("click", registerApp.save)
         },
         instance : {
             tooltips : function () {
                 $(".tooltipInfo").tooltip();
+            },
+            initialdataLink : function () {
+                var links = [];
+                $(".form-links").data("links",links);
             }
         }
     }
@@ -30,15 +35,11 @@ var appfreeApplistingApplication =(function($){
         save : function (e) {
 
             e.preventDefault();
-
+            $("#content-page").show();
             var name = $("#txtName").val();
             var description = $("#txtDescription").val();
             var keywords = $("#txtKeywords").val();
-            var link = {
-                "urlDirect": $("#txtUrlDirect").val(),
-                "urlHasOffer": $("#txtUrlHasoffers").val(),
-                "platformsId": $("#sltPlatforms").val()
-            };
+            var link = $.makeArray($(".form-links").data("links"));
 
             var dataToSend = {
                 "nombre":name,
@@ -53,29 +54,93 @@ var appfreeApplistingApplication =(function($){
                 contentType: "application/json",
                 data : JSON.stringify(dataToSend)
             }).done(function () {
+                $("#content-page").hide();
                 swal({
                     title:"Done",
                     text:"The Application is register",
                     type:"success"
                 });
+                setTimeout(function () {
+                    window.location.replace(redirectPanel);
+                },3000)
             }).fail(function () {
-
+                $("#content-page").hide();
             });
         }
     }
     
-    var morelinks = {
-        more: function () {
-            var html = $(".form-links").parent().html();
-            $(".content-form-links").append(html);
+    var saveLinks = {
+        saveAndMoreLinks: function () {
+            sweetAlert({
+                title:"Links",
+                text:"¿Are you sure of save this Link to create a new Link?",
+                type:"warning",
+                showCancelButton:true,
+                closeOnConfirm: false,
+                closeOnCancel: false
+            },function(isConfirm){
+                if(isConfirm){
+                    var links = $(".form-links").data("links");
+
+                    var link = {
+                        "urlDirect": $("#txtUrlDirect").val(),
+                        "urlHasOffer": $("#txtUrlHasoffers").val(),
+                        "platformsId": $("#sltPlatforms").val()
+                    };
+
+                    links.push(link);
+
+                    swal({
+                        title:"Links",
+                        text:"Save successfully",
+                        type:"success"
+                    });
+                }else{
+                    swal({
+                        title:"Links",
+                        text:"Cancel operation",
+                        type:"error"
+                    });
+                }
+            });
         },
-        delete : function () {
-            var countForms = $(".form-links")
-            if(countForms.length==1){
-                return false
-            }else{
-                $(".form-links").last().remove()
-            }
+        saveLinks : function () {
+            sweetAlert({
+                title:"Links",
+                text:"¿Are you sure of save the unique Link?",
+                type:"warning",
+                showCancelButton:true,
+                closeOnConfirm: false,
+                closeOnCancel: false
+            },function(isConfirm){
+                if(isConfirm){
+                    var links = $(".form-links").data("links");
+
+                    var link = {
+                        "urlDirect": $("#txtUrlDirect").val(),
+                        "urlHasOffer": $("#txtUrlHasoffers").val(),
+                        "platformsId": $("#sltPlatforms").val()
+                    };
+
+                    links.push(link);
+
+                    swal({
+                        title:"Links",
+                        text:"Save successfully, wait while the information be registered.",
+                        type:"success",
+                        timer: 3000
+                    });
+
+                    $("#btn-register-app").click();
+
+                }else{
+                    swal({
+                        title:"Links",
+                        text:"Cancel operation",
+                        type:"error"
+                    });
+                }
+            });
         }
     }
 
