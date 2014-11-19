@@ -28,7 +28,7 @@
                 </a>
                 <ul id="two" class="nav nav-pills nav-stacked collapse in" <g:if test="${activeMenu==3}">style="background: #f5f5f5; border-radius: 0 0 5px 5px "</g:if>>
                     <li role="presentation">
-                        <a href="<g:createLink controller="panel" action="index"/>">
+                        <a href="<g:createLink controller="campaigns" action="create"/>">
                             <div style="padding-left: 10px"><i class="fa fa-caret-right"></i> Create</div>
                         </a>
                     </li>

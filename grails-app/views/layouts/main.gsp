@@ -90,5 +90,6 @@
         <asset:javascript src="application.js"/>
         <asset:javascript src="pages.panel-admin/panel-admin.js"/>
         <asset:javascript src="pages.application/application.js"/>
+        <asset:javascript src="pages.application/list.js"/>
 	</body>
 </html>

@@ -9,7 +9,7 @@
 <html>
 <head>
     <meta name='layout' content='main'/>
-    <title>Manager Panel</title>
+    <title>List Applications</title>
 </head>
 <body>
 <sec:access expression="hasRole('ROLE_USER')">
@@ -40,7 +40,7 @@
                                         <td>${application.nombre}</td>
                                         <td>${application.description}</td>
                                         <td>${application.keywords}</td>
-                                        <td><button class="btn-delete-app btn btn-danger btn-xs">Delete</button></td>
+                                        <td><button data-id="${application.id}" class="btn-delete-app btn btn-danger btn-xs">Delete</button></td>
                                     </tr>
                                     </g:each>
                                 </tbody>
@@ -51,6 +51,9 @@
             </div>
         </div>
     </div>
+    <g:javascript>
+          var applicationDete = "${createLink(controller:'application',action:'delete')}";
+    </g:javascript>
 </sec:access>
 </body>
 </html>

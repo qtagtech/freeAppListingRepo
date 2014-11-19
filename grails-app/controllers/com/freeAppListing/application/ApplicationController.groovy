@@ -6,11 +6,12 @@ import com.freeAppListing.platform.Platforms
 import grails.converters.JSON
 import grails.plugin.springsecurity.annotation.Secured
 import grails.transaction.Transactional
+import org.apache.commons.lang.StringUtils
 
 @Secured(['ROLE_USER'])
 class ApplicationController {
 
-    static allowedMethods = [save: "POST"]
+    static allowedMethods = [save: "POST", delete: "POST"]
 
     def springSecurityService
 
@@ -52,19 +53,54 @@ class ApplicationController {
 
         println(application.errors.allErrors)
 
-        def platform = Platforms.get(data.link[0].platformsId)
+        if(data.link.size()>1){
+            for(int i=0; i<data.link.size();i++){
 
-        def link = new Link(
-                platforms: platform,
-                urlDirect: data.link[0].urlDirect,
-                urlHasOffer: data.link[0].urlHasOffer
-        )
+                def platform = Platforms.get(data.link[i].platformsId)
 
-        application.addToLink(link)
+                def link = new Link(
+                        platforms: platform,
+                        urlDirect: data.link[i].urlDirect,
+                        urlHasOffer: data.link[i].urlHasOffer
+                )
+
+                application.addToLink(link)
+            }
+        }else{
+            def platform = Platforms.get(data.link[0].platformsId)
+
+            def link = new Link(
+                    platforms: platform,
+                    urlDirect: data.link[0].urlDirect,
+                    urlHasOffer: data.link[0].urlHasOffer
+            )
+
+            application.addToLink(link)
+        }
 
         application.save(failOnError: true)
 
         def respuesta = [status:1]
         render respuesta as JSON
+    }
+
+    @Transactional
+    def delete(){
+
+        def respuesta
+
+        if( StringUtils.isEmpty(params.id.toString())){
+            throw new Exception("Id is null")
+        }
+
+        def application = Application.get(params.id)
+
+        if(application.nombre != null || application.nombre != ""){
+            application.delete()
+        }
+
+        respuesta = [status:1]
+        render respuesta as JSON
+
     }
 }

@@ -9,7 +9,7 @@
 <html>
 <head>
     <meta name='layout' content='main'/>
-    <title>Manager Panel</title>
+    <title>Create Applications</title>
 </head>
 <body>
 <sec:access expression="hasRole('ROLE_USER')">
