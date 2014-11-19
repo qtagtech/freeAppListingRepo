@@ -1,6 +1,7 @@
 package com.freeAppListing.application
 
 import com.freeAppListing.platform.Platforms
+import grails.converters.JSON
 import grails.plugin.springsecurity.annotation.Secured
 import grails.transaction.Transactional
 
@@ -24,5 +25,9 @@ class ApplicationController {
     @Transactional
     def save(){
 
+        def userLoggin = springSecurityService.getCurrentUser()
+
+        def respuesta = [status:1]
+        render respuesta as JSON
     }
 }

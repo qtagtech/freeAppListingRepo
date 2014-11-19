@@ -105,15 +105,20 @@ class RegisterController {
                     enabled: true,
                     accountExpired: false,
                     accountLocked: false,
-                    passwordExpired: false,
-                    company: new Company(
-                            name: dataCompanyDetail.companyName ,
-                            address:  dataCompanyDetail.companyAddres,
-                            location:  dataCompanyDetail.location,
-                            vatNumber: dataCompanyDetail.vatNumber ,
-                            webPage:  dataCompanyDetail.webPage
-                    )
+                    passwordExpired: false
             ).save(failOnError: true)
+
+            def company = new Company(
+                    name: dataCompanyDetail.companyName ,
+                    address:  dataCompanyDetail.companyAddres,
+                    location:  dataCompanyDetail.location,
+                    vatNumber: dataCompanyDetail.vatNumber ,
+                    webPage:  dataCompanyDetail.webPage
+            )
+
+            userAdmin.addToCompany(company)
+
+            userAdmin.save()
 
             def roleAdmin = SecRole.findOrSaveWhere(authority: "ROLE_USER")
 

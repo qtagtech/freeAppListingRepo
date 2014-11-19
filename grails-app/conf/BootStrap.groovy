@@ -22,15 +22,20 @@ class BootStrap {
                     enabled: true,
                     accountExpired: false,
                     accountLocked: false,
-                    passwordExpired: false,
-                    company: new Company(
-                            name: "FreeAppListing" ,
-                            address:  "Disabled",
-                            location:  "Disabled",
-                            vatNumber: "Disabled" ,
-                            webPage:  "Disabled"
-                    )
+                    passwordExpired: false
             ).save(failOnError: true)
+
+            def company =  new Company(
+                    name: "FreeAppListing" ,
+                    address:  "Disabled",
+                    location:  "Disabled",
+                    vatNumber: "Disabled" ,
+                    webPage:  "Disabled"
+            )
+
+            userAdmin.addToCompany(company)
+
+            userAdmin.save(flush: true)
 
             def roleAdmin = SecRole.findOrSaveWhere(authority: "ROLE_SUPERADMIN")
 

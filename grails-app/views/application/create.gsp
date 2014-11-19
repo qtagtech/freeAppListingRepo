@@ -53,7 +53,7 @@
                                 </div>
                                 <div class="slide-app-1 row" style="display: none">
                                     <div class="col-md-5">
-                                        <h2><small> Link information </small></h2>
+                                        <h2 id="data-link"><small> Link information </small></h2>
                                         <div class="content-form-links">
                                             <div class="form-links" style="padding: 0 20px; border: 1px solid deepskyblue; border-radius: 5px; margin-bottom: 4px">
                                                 <div class="form-group">
@@ -129,6 +129,9 @@
             </div>
         </div>
     </div>
+    <g:javascript>
+      var applicationSave = "${createLink(controller:'application',action:'save')}";
+    </g:javascript>
 </sec:access>
 </body>
 </html>

@@ -1,6 +1,6 @@
 package com.freeAppListing.company
 
-import org.bson.types.ObjectId
+import com.freeAppListing.userDetails.UserDetails
 
 class Company {
 
@@ -9,6 +9,8 @@ class Company {
     String location
     String vatNumber
     String webPage
+
+    static belongsTo = [userDetails: UserDetails]
 
     static constraints = {
     }
