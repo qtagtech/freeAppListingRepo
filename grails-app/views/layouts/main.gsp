@@ -59,7 +59,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="footer-login footer-position-mobile">
+                <div id="footer" class="footer-login footer-position-mobile">
                     <div class="col-xs-12 col-md-12">
                         <div class="row">
                             <div class=" col-md-4 col-xs-4 col-md-offset-8 col-xs-offset-8">
@@ -91,5 +91,6 @@
         <asset:javascript src="pages.panel-admin/panel-admin.js"/>
         <asset:javascript src="pages.application/application.js"/>
         <asset:javascript src="pages.application/list.js"/>
+        <asset:javascript src="pages.compaign/compaign.js"/>
 	</body>
 </html>

@@ -58,6 +58,16 @@
                                             </select>
                                         </div>
                                     </div>
+                                    <div class="col-md-5">
+                                        <div class="margin-create-campaign">
+                                            <p class="text-justify">
+                                                The formulary that you see in this page, contain the basic information to begin with a new campaign, with this campaign you can see or follow  the events that happen with the publication in various sites, you can see events as installs or clicks, how many times the publication or the application is executed by a events as these.
+                                            </p>
+                                        </div>
+                                        <div class="text-center paddingTop-30">
+                                            <button id="btn-create-campaign" class="btn btn-info btn-lg">Register Campaign</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </form>
                         </div>
@@ -66,6 +76,9 @@
             </div>
         </div>
     </div>
+    <g:javascript>
+          var campaignDelete = "${createLink(controller:'campaigns',action:'delete')}";
+    </g:javascript>
 </sec:access>
 </body>
 </html>

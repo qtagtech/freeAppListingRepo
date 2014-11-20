@@ -13,6 +13,8 @@ class Link {
     String urlHasOffer
     Platforms platforms
 
+    static embedded = ['platforms']
+
     static belongsTo = [application: Application]
 
     static constraints = {

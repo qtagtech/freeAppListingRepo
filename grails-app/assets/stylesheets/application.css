@@ -4,6 +4,15 @@
 *= require utilitys/sweetalert/sweet-alert.css
 *= require_tree .
 */
+@media only screen and (min-width:976px) {
+    .margin-create-campaign{
+        padding-top: 30px;
+    }
+    .paddingTop-30{
+        padding-top: 30px;
+    }
+}
+
 @media only screen and (max-width:768px) {
     .no-visible-mobile{
         display: none;
