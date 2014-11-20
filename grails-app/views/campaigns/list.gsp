@@ -22,12 +22,13 @@
                 <div class="col-md-10">
                     <div class="row">
                         <div class="col-md-12">
-                            <h2>List Applications</h2>
+                            <h2>List Campaigns</h2>
                             <table class="table">
                                 <thead>
                                 <tr>
                                     <th>#</th>
                                     <th>Name</th>
+                                    <th>Platforms</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
@@ -35,7 +36,12 @@
                                 <g:each in="${campaigns}" var="campaign" status="i">
                                     <tr>
                                         <td>${i+1}</td>
-                                        <td>${campaign.nombre}</td>
+                                        <td>${campaign.name}</td>
+                                        <td>
+                                            <g:each in="${campaign.application.link.platforms.name}" var="plat">
+                                                ${plat}
+                                            </g:each>
+                                        </td>
                                         <td><button data-id="${campaign.id}" class="btn-delete-app btn btn-danger btn-xs">Delete</button></td>
                                     </tr>
                                 </g:each>

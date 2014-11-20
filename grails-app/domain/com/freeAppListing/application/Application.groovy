@@ -13,7 +13,10 @@ class Application {
     String description
     String keywords
     Company company
+
     static hasMany = [link:Link]
+
+    static embedded = ['link']
 
     static constraints = {
     }

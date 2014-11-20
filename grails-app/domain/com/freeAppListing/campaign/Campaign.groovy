@@ -20,5 +20,7 @@ class Campaign {
     static embedded = ['application','publisher','platforms']
 
     static constraints = {
+        trakingUrl blank: true, nullable: true
+        externalId blank: true, nullable: true
     }
 }

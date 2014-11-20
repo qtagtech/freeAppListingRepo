@@ -77,7 +77,9 @@
         </div>
     </div>
     <g:javascript>
+          var campaignSave = "${createLink(controller:'campaigns',action:'save')}";
           var campaignDelete = "${createLink(controller:'campaigns',action:'delete')}";
+          var campaignList = "${createLink(controller:'campaigns',action:'list')}";
     </g:javascript>
 </sec:access>
 </body>

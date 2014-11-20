@@ -35,8 +35,8 @@
                             <div class="col-xs-6 col-md-3 col-md-offset-7">
                                 <div class="text-center" style="padding-top: 6px; color: white">
                                     <p>
-                                        Welcome ${dataUser.username} <br/>
-                                        ${dataUser.email}
+                                        Welcome ${dataUser?.username} <br/>
+                                        ${dataUser?.email}
                                     </p>
                                 </div>
                             </div>

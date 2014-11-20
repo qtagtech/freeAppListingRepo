@@ -88,9 +88,11 @@ grails.hibernate.osiv.readonly = false
 environments {
     development {
         grails.logging.jul.usebridge = true
+        com.freeAppListing.database = "freeAppListingRepo"
     }
     production {
         grails.logging.jul.usebridge = false
+        com.freeAppListing.database = "freeAppListingRepo"
         // TODO: grails.serverURL = "http://www.changeme.com"
     }
 }
