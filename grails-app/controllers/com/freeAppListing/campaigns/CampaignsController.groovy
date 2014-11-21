@@ -5,6 +5,7 @@ import com.freeAppListing.campaign.Campaign
 import com.freeAppListing.platform.Platforms
 import com.freeAppListing.publisher.Publisher
 import com.mongodb.BasicDBObject
+import com.mongodb.DBCollection
 import grails.converters.JSON
 import grails.plugin.springsecurity.annotation.Secured
 import grails.transaction.Transactional
@@ -18,6 +19,7 @@ class CampaignsController {
     static allowedMethods = [save: "POST", delete: "POST"]
 
     def springSecurityService
+
     def securityService
 
     @Transactional(readOnly = true)
@@ -93,13 +95,39 @@ class CampaignsController {
              * Logica Linktrakker
              */
             String campaignExternalId = campaign.externalId.toString()
-            String campaignInternalId = campaign._id.toString()
+            String campaignInternalId = campaign._id.toString()confi
 
-            def encriptCampaignExternalId = securityService.encrypt(campaignExternalId)
-            def encriptCampaignInternalId = securityService.encrypt(campaignInternalId)
+            String publisherInternalId = campaign.publisher._id.toString()
+            String publisherExternalId = campaign.publisher.externalId.toString()
 
-            def desencriptCampaignExternalId = securityService.desEncrypt(encriptCampaignExternalId)
-            def desencriptCampaignInternalId = securityService.desEncrypt(encriptCampaignInternalId)
+            def encryExternalCampId  = securityService.encryt(campaignExternalId)
+            def encryInternalCampId  = securityService.encryt(campaignInternalId)
+            def nameCampaig = campaign.name
+            def encryInternalPublId  = securityService.encryt(publisherInternalId)
+            def encryExternalPublId  = securityService.encryt(publisherExternalId)
+            def namePublisher = campaign.publisher.name
+
+            def linkConversion = g.createLink(
+                    controller: "conversion",
+                    params: [
+                            "publisherExId": encryExternalPublId,
+                            "publisherInId": encryInternalPublId,
+                            "publisherName": namePublisher,
+                            "campExId": encryExternalCampId,
+                            "campInId": encryInternalCampId,
+                            "campName": nameCampaig,
+                    ]
+            )
+
+            BasicDBObject queryNewTrakinlink = new BasicDBObject()
+            queryNewTrakinlink.append("trakingUrl",linkConversion)
+
+            BasicDBObject queryId = new BasicDBObject().append("_id",campaign._id)
+            DBCollection collection =  db.getCollection("campaign")
+            collection.update(queryId,queryNewTrakinlink)
+
+            def campaingWithLinkTraking  = campaign.findOne(queryId)
+
 
             respuesta = [status: 1]
             render respuesta as JSON

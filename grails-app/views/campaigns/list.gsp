@@ -38,7 +38,7 @@
                                         <td>${i+1}</td>
                                         <td>${campaign.name}</td>
                                         <td>${campaign.plataforma.name}</td>
-                                        <td><button data-id="${campaign.id}" class="btn-delete-campaign btn btn-danger btn-xs">Delete</button></td>
+                                        <td><button data-id="${campaign._id}" class="btn-delete-campaign btn btn-danger btn-xs">Delete</button></td>
                                     </tr>
                                 </g:each>
                                 </tbody>
