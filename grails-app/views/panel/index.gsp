@@ -19,43 +19,44 @@
             <div class="row">
                 <g:render template="/template/menu"/>
 
-                <div class="col-md-10">
+                <div class="col-md-10 col-md-offset-2">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="row">
-                                        <div class="col-md-6">
-                                            <h2>Campaigns</h2>
-                                            <div>
-                                                <g:if test="${listCampaign.empty}">
-                                                    <table class="table">
-                                                        <thead>
+                                        <div class="col-md-6 condence-content">
+                                            <div class="dashboard-rowone">
+                                                <h2>Campaigns</h2>
+                                                <div>
+                                                    <g:if test="${listCampaign.empty}">
+                                                        <table class="table">
+                                                            <thead>
                                                             <tr>
                                                                 <th>#</th>
                                                                 <th>Name</th>
                                                                 <th>Application</th>
                                                                 <th>Publisher</th>
                                                             </tr>
-                                                        </thead>
-                                                        <tbody>
+                                                            </thead>
+                                                            <tbody>
                                                             <tr>
                                                                 <td colspan="5"><h4 style="color: grey">No data</h4></td>
                                                             </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </g:if>
-                                                <g:else>
-                                                    <table class="table">
-                                                        <thead>
-                                                        <tr>
-                                                            <th>#</th>
-                                                            <th>Name</th>
-                                                            <th>Application</th>
-                                                            <th>Publisher</th>
-                                                        </tr>
-                                                        </thead>
-                                                        <tbody>
+                                                            </tbody>
+                                                        </table>
+                                                    </g:if>
+                                                    <g:else>
+                                                        <table class="table">
+                                                            <thead>
+                                                            <tr>
+                                                                <th>#</th>
+                                                                <th>Name</th>
+                                                                <th>Application</th>
+                                                                <th>Publisher</th>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
                                                             <g:each in="${listCampaign}" var="camp" status="i">
                                                                 <tr>
                                                                     <td>${i+1}</td>
@@ -64,119 +65,134 @@
                                                                     <td>${camp?.publisher.name}</td>
                                                                 </tr>
                                                             </g:each>
-                                                        </tbody>
-                                                    </table>
-                                                </g:else>
+                                                            </tbody>
+                                                        </table>
+                                                    </g:else>
+                                                </div>
+                                                <div>
+                                                    <label for="">Total:</label>
+                                                    <span>${countCampaign}</span>
+                                                </div>
                                             </div>
-                                            <div>
-                                                <label for="">Total:</label>
-                                                <span>${countCampaign}</span>
-                                            </div>
+
                                         </div>
-                                        <div class="col-md-6">
-                                            <h2>Applications</h2>
-                                            <div>
-                                                <g:if test="${listApp.empty}">
-                                                    <table class="table">
-                                                        <thead>
+                                        <div class="col-md-6 condence-content">
+
+                                            <div class="dashboard-rowtwo">
+                                                <h2>Applications</h2>
+                                                <div>
+                                                    <g:if test="${listApp.empty}">
+                                                        <table class="table">
+                                                            <thead>
                                                             <tr>
                                                                 <th>#</th>
                                                                 <th>Name</th>
                                                                 <th>Keywords</th>
                                                                 <th>Company</th>
                                                             </tr>
-                                                        </thead>
-                                                        <tbody>
+                                                            </thead>
+                                                            <tbody>
                                                             <tr>
                                                                 <td colspan="5"><h4 style="color: grey">No data</h4></td>
                                                             </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </g:if>
-                                                <g:else>
-                                                    <table class="table">
-                                                        <thead>
+                                                            </tbody>
+                                                        </table>
+                                                    </g:if>
+                                                    <g:else>
+                                                        <table class="table">
+                                                            <thead>
                                                             <tr>
                                                                 <th>#</th>
                                                                 <th>Name</th>
                                                                 <th>Keywords</th>
                                                             </tr>
-                                                        </thead>
-                                                        <tbody>
+                                                            </thead>
+                                                            <tbody>
                                                             <g:each in="${listApp}" var="app" status="i">
-                                                            <tr>
-                                                                <td>${i+1}</td>
-                                                                <td>${app.nombre}</td>
-                                                                <td>${app.keywords}</td>
-                                                            </tr>
+                                                                <tr>
+                                                                    <td>${i+1}</td>
+                                                                    <td>${app.nombre}</td>
+                                                                    <td>${app.keywords}</td>
+                                                                </tr>
                                                             </g:each>
-                                                        </tbody>
-                                                    </table>
-                                                </g:else>
+                                                            </tbody>
+                                                        </table>
+                                                    </g:else>
+                                                </div>
+                                                <div>
+                                                    <label for="">Total:</label>
+                                                    <span>${countApp}</span>
+                                                </div>
                                             </div>
-                                            <div>
-                                                <label for="">Total:</label>
-                                                <span>${countApp}</span>
-                                            </div>
+
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
+                                <div>
+                                    <div class="border-separed"></div>
+                                </div>
+                            </div>
+                            <div class="row">
                                 <div class="col-md-12">
                                     <div class="row">
-                                        <div class="col-md-4">
-                                            <h2>Platforms</h2>
-                                            <div class="content-stadistics">
-                                                <p><strong>Names:</strong></p>
-                                                <g:if test="${listPlat.empty}">
-                                                    <h4>No data</h4>
-                                                </g:if>
-                                                <g:else>
-                                                    <g:each in="${listPlat}" var="plat">
-                                                        <p><span>${plat}</span></p>
-                                                    </g:each>
-                                                </g:else>
-                                            </div>
-                                            <div>
-                                                <label for="">Total:</label>
-                                                <span>${countPlat}</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <h2>Publishers</h2>
-                                            <div class="content-stadistics">
-                                                <p><strong>Names:</strong></p>
-                                                <g:if test="${listPub.empty}">
-                                                    <h4>No data</h4>
-                                                </g:if>
-                                                <g:else>
-                                                    <g:each in="${listPub}" var="pub">
-                                                        <p><span>${pub}</span></p>
-                                                    </g:each>
-                                                </g:else>
-                                            </div>
-                                            <div>
-                                                <label for="">Total:</label>
-                                                <span>${countPub}</span>
+                                        <div class="col-md-4 condence-content">
+                                            <div class="text-center">
+                                                <h2>Platforms</h2>
+                                                <div class="content-stadistics text-left">
+                                                    <g:if test="${listPlat.empty}">
+                                                        <h4>No data</h4>
+                                                    </g:if>
+                                                    <g:else>
+                                                        <g:each in="${listPlat}" var="plat">
+                                                            <p><span><strong>Name:</strong> ${plat}</span></p>
+                                                        </g:each>
+                                                    </g:else>
+                                                </div>
+                                                <div>
+                                                    <label for="">Total:</label>
+                                                    <span>${countPlat}</span>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-4">
-                                            <h2>Event Types</h2>
-                                            <div class="content-stadistics">
-                                                <p><strong>Names:</strong></p>
-                                                <g:if test="${listEvTp.empty}">
-                                                    <h4>No data</h4>
-                                                </g:if>
-                                                <g:else>
-                                                    <g:each in="${listEvTp}" var="evTp">
-                                                        <p><span>${evTp}</span></p>
-                                                    </g:each>
-                                                </g:else>
+                                        <div class="col-md-4 condence-content">
+                                            <div class="text-center">
+                                                <h2>Publishers</h2>
+                                                <div class="content-stadistics text-left">
+                                                    <g:if test="${listPub.empty}">
+                                                        <h4>No data</h4>
+                                                    </g:if>
+                                                    <g:else>
+                                                        <g:each in="${listPub}" var="pub">
+                                                            <p><span><strong>Name:</strong> ${pub}</span></p>
+                                                        </g:each>
+                                                    </g:else>
+                                                </div>
+                                                <div>
+                                                    <label for="">Total:</label>
+                                                    <span>${countPub}</span>
+                                                </div>
                                             </div>
-                                            <div>
-                                                <label for="">Total:</label>
-                                                <span>${countEvTp}</span>
+                                        </div>
+                                        <div class="col-md-4 condence-content">
+                                            <div class="text-center">
+                                                <h2>Event Types</h2>
+                                                <div class="content-stadistics text-left">
+                                                    <p><strong>Names:</strong></p>
+                                                    <g:if test="${listEvTp.empty}">
+                                                        <h4>No data</h4>
+                                                    </g:if>
+                                                    <g:else>
+                                                        <g:each in="${listEvTp}" var="evTp">
+                                                            <p><span>${evTp}</span></p>
+                                                        </g:each>
+                                                    </g:else>
+                                                </div>
+                                                <div>
+                                                    <label for="">Total:</label>
+                                                    <span>${countEvTp}</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -193,7 +209,7 @@
     <sec:access expression="hasRole('ROLE_SUPERADMIN')">
     <div class="row">
         <g:render template="/template/menu"/>
-        <div class="col-md-10">
+        <div class="col-md-10 col-md-offset-2">
             <div class="row">
                 <div class="col-md-12">
                     <h2>Settings</h2>

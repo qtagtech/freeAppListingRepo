@@ -60,7 +60,7 @@
             </div>
             <div class="row">
                 <div id="footer" class="footer-login footer-position-mobile">
-                    <div class="col-xs-12 col-md-12">
+                    <div class="col-xs-12 col-md-10 col-md-offset-2">
                         <div class="row">
                             <div class=" col-md-4 col-xs-4 col-md-offset-8 col-xs-offset-8">
                                 <figure style="display: inline-block; margin-top: 6px; margin-right: 10px ;color: #FFF">
@@ -74,12 +74,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div id="div-success" style="display: none; position: fixed; top: 200px; left: 0 ; height: 60px; width: 100%; background: rgba(34, 139, 34,0.9);padding-top: 10px; text-align: center; box-shadow: 2px 2px 10px black">
-            <h4 style="color: #f5f5f5">Your register is saved successfully</h4>
-        </div>
-        <div id="div-error" style="display: none; position: fixed; top: 200px; left: 0 ; height: 60px; width: 100%; background: rgba(255,0,0,0.8);padding-top: 10px; text-align: center; box-shadow: 2px 2px 10px black">
-            <h4 style="color: #f5f5f5">Error to save your register</h4>
         </div>
         <div id="content-page" style="display: none">
             <div class="content-loading">
