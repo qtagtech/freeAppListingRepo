@@ -3,8 +3,12 @@
     <div>
         <ul class="nav nav-pills nav-stacked" id="stacked-collapse">
             <li <g:if test="${activeMenu==1}">class="active"</g:if> role="presentation">
-                <a href="<g:createLink controller="panel" action="index"/>">Home</a>
+                <a href="<g:createLink controller="panel" action="index"/>">
+                    <sec:access expression="hasRole('ROLE_USER')">Home</sec:access>
+                    <sec:access expression="hasRole('ROLE_SUPERADMIN')">Settings</sec:access>
+                </a>
             </li>
+            <sec:access expression="hasRole('ROLE_USER')">
             <li <g:if test="${activeMenu==2}">class="active"</g:if> role="presentation">
                 <a data-toggle="collapse" data-parent="#stacked-collapse" href="#one" aria-expanded="true" aria-controls="one" >
                     <div style="width: 76%; display: inline-block">Applications</div> <div style="display: inline-block"><i class="fa fa-caret-square-o-down"></i></div>
@@ -22,6 +26,8 @@
                     </li>
                 </ul>
             </li>
+            </sec:access>
+            <sec:access expression="hasRole('ROLE_USER')">
             <li <g:if test="${activeMenu==3}">class="active"</g:if> role="presentation">
                 <a data-toggle="collapse" data-parent="#stacked-collapse" href="#two" aria-expanded="true" aria-controls="two" >
                     <div style="width: 76%; display: inline-block">Campaigns</div> <div style="display: inline-block"><i class="fa fa-caret-square-o-down"></i></div>
@@ -39,6 +45,7 @@
                     </li>
                 </ul>
             </li>
+            </sec:access>
         </ul>
 
     </div>
