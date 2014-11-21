@@ -85,8 +85,14 @@ class CampaignsController {
             while(externalId == 0L){
                 externalId = randomNumber()
             }
-
-            def resultado = db.campaign.insert(name:params.name, externalId: externalId,application: application, plataforma: plataforma, publisher: publisher)
+            def resultado = db.campaign.insert(
+                    name: params.name,
+                    externalId: externalId,
+                    application: application,
+                    plataforma: plataforma,
+                    publisher: publisher,
+                    trakingUrl: ""
+            )
 
             BasicDBObject query = new BasicDBObject().append("name",params.name)
             def campaign = db.campaign.findOne(query)
@@ -95,7 +101,7 @@ class CampaignsController {
              * Logica Linktrakker
              */
             String campaignExternalId = campaign.externalId.toString()
-            String campaignInternalId = campaign._id.toString()confi
+            String campaignInternalId = campaign._id.toString()
 
             String publisherInternalId = campaign.publisher._id.toString()
             String publisherExternalId = campaign.publisher.externalId.toString()
@@ -115,19 +121,27 @@ class CampaignsController {
                             "publisherName": namePublisher,
                             "campExId": encryExternalCampId,
                             "campInId": encryInternalCampId,
-                            "campName": nameCampaig,
+                            "campName": nameCampaig
                     ]
             )
 
             BasicDBObject queryNewTrakinlink = new BasicDBObject()
-            queryNewTrakinlink.append("trakingUrl",linkConversion)
+            queryNewTrakinlink.append(
+                    "trakingUrl",linkConversion
+            ).append(
+                    "name",params.name
+            ).append(
+                    "externalId",externalId
+            ).append(
+                    "application",application
+            ).append(
+                    "plataforma",plataforma
+            ).append(
+                    "publisher",publisher
+            )
 
-            BasicDBObject queryId = new BasicDBObject().append("_id",campaign._id)
             DBCollection collection =  db.getCollection("campaign")
-            collection.update(queryId,queryNewTrakinlink)
-
-            def campaingWithLinkTraking  = campaign.findOne(queryId)
-
+            collection.update(query,queryNewTrakinlink)
 
             respuesta = [status: 1]
             render respuesta as JSON

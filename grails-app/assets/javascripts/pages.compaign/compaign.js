@@ -8,6 +8,7 @@ var amplificiusCampaigns = ( function ($) {
         init : function () {
             app.cacheElements();
             app.bindElements();
+            app.instance.modalBox();
         },
         cacheElements : function () {
             this.$btnCreateCampaign = $("#btn-create-campaign");
@@ -16,6 +17,14 @@ var amplificiusCampaigns = ( function ($) {
         bindElements : function () {
             this.$btnCreateCampaign.off("click").on("click", createCampaing.save);
             this.$btnDeleteCampaign.off("click").on("click", deleteCampaign.delete);
+        },
+        instance: {
+            modalBox : function () {
+                $('.open-popup-link').magnificPopup({
+                    type:'inline',
+                    midClick: true // allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source.
+                });
+            }
         }
     }
 
@@ -48,6 +57,10 @@ var amplificiusCampaigns = ( function ($) {
             return{status:1}
 
         }
+    }
+    
+    var listCampaing = {
+        
     }
     
     var deleteCampaign = {

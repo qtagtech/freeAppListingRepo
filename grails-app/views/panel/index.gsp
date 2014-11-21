@@ -28,7 +28,7 @@
                                         <div class="col-md-6">
                                             <h2>Campaigns</h2>
                                             <div>
-                                                <g:if test="${listCamp.empty}">
+                                                <g:if test="${listCampaign.empty}">
                                                     <table class="table">
                                                         <thead>
                                                             <tr>
@@ -46,14 +46,31 @@
                                                     </table>
                                                 </g:if>
                                                 <g:else>
-                                                    <g:each in="${listCamp}" var="camp">
-                                                        <span>${camp}</span>
-                                                    </g:each>
+                                                    <table class="table">
+                                                        <thead>
+                                                        <tr>
+                                                            <th>#</th>
+                                                            <th>Name</th>
+                                                            <th>Application</th>
+                                                            <th>Publisher</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <g:each in="${listCampaign}" var="camp" status="i">
+                                                                <tr>
+                                                                    <td>${i+1}</td>
+                                                                    <td>${camp?.name}</td>
+                                                                    <td>${camp?.application.nombre}</td>
+                                                                    <td>${camp?.publisher.name}</td>
+                                                                </tr>
+                                                            </g:each>
+                                                        </tbody>
+                                                    </table>
                                                 </g:else>
                                             </div>
                                             <div>
                                                 <label for="">Total:</label>
-                                                <span>${countCamp}</span>
+                                                <span>${countCampaign}</span>
                                             </div>
                                         </div>
                                         <div class="col-md-6">

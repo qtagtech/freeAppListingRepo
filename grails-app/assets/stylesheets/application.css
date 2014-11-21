@@ -2,6 +2,7 @@
 *= require utilitys/bootstrap.3.2.0/bootstrap.min.css
 *= require utilitys/bootstrap.3.2.0/bootstrap-theme.min.css
 *= require utilitys/sweetalert/sweet-alert.css
+*= require utilitys/magnificPopup/magnific-popup.css
 *= require_tree .
 */
 @media only screen and (min-width:976px) {
@@ -50,5 +51,14 @@
 
 .text-erro-login{
     color: red;
+}
+
+.white-popup {
+    position: relative;
+    background: #FFF;
+    padding: 20px;
+    width:auto;
+    max-width: 500px;
+    margin: 20px auto;
 }
 

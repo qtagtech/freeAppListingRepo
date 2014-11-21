@@ -1,6 +1,7 @@
 package com.freeAppListing.panel
 
 import com.freeAppListing.application.Application
+import com.freeAppListing.campaign.Campaign
 import com.freeAppListing.company.Company
 import com.freeAppListing.eventType.EventType
 import com.freeAppListing.platform.Platforms
@@ -45,6 +46,8 @@ class PanelController {
                 def listPubli = Publisher.list()
                 def countEvTp = EventType.count()
                 def listEvTp = EventType.list()
+                def countCampaign = Campaign.count()
+                def listCampaign = Campaign.list()
 
                 render view:"index",  model: [
                         activeMenu: 1,
@@ -58,7 +61,9 @@ class PanelController {
                         countPub: countPubli,
                         listPub: listPubli.name,
                         countEvTp: countEvTp,
-                        listEvTp: listEvTp.name
+                        listEvTp: listEvTp.name,
+                        countCampaign: countCampaign,
+                        listCampaign:listCampaign
                 ]
             }
 

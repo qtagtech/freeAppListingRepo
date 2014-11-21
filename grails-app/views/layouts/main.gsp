@@ -87,6 +87,7 @@
             </div>
         </div>
         <asset:javascript src="jquery.1.11.1/jquery1.11.1.min.js" />
+        <asset:javascript src="utilitys/mafnificPopup/jquery.magnific-popup.min.js"/>
         <asset:javascript src="application.js"/>
         <asset:javascript src="pages.panel-admin/panel-admin.js"/>
         <asset:javascript src="pages.application/application.js"/>

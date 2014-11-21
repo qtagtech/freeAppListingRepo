@@ -23,12 +23,14 @@
                     <div class="row">
                         <div class="col-md-12">
                             <h2>List Campaigns</h2>
-                            <table class="table">
+                            <table class="table table-hover">
                                 <thead>
                                 <tr>
                                     <th>#</th>
                                     <th>Name</th>
                                     <th>Platforms</th>
+                                    <th>Publisher</th>
+                                    <th>Traking Link</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
@@ -38,6 +40,15 @@
                                         <td>${i+1}</td>
                                         <td>${campaign.name}</td>
                                         <td>${campaign.plataforma.name}</td>
+                                        <td>${campaign.publisher.name}</td>
+                                        <td>
+                                            <a href="#${campaign._id}" class="open-popup-link btn btn-info btn-xs">Show Traking Link</a>
+                                            <div id="${campaign._id}" class="white-popup mfp-hide">
+                                                <label>Tracking Link:</label>
+                                                <p>You can copy link to add in the place that you want. </p>
+                                                <p style="word-wrap: break-word;">Link: http://localhost:8080/${campaign.trakingUrl}<p>
+                                            </div>
+                                        </td>
                                         <td><button data-id="${campaign._id}" class="btn-delete-campaign btn btn-danger btn-xs">Delete</button></td>
                                     </tr>
                                 </g:each>
