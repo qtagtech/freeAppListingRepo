@@ -10,10 +10,12 @@ var amplificiusCampaigns = ( function ($) {
             app.bindElements();
         },
         cacheElements : function () {
-            this.$btnCreateCampaign = $("#btn-create-campaign")
+            this.$btnCreateCampaign = $("#btn-create-campaign");
+            this.$btnDeleteCampaign = $(".btn-delete-campaign");
         },
         bindElements : function () {
-            this.$btnCreateCampaign.off("click").on("click", createCampaing.save)
+            this.$btnCreateCampaign.off("click").on("click", createCampaing.save);
+            this.$btnDeleteCampaign.off("click").on("click", deleteCampaign.delete);
         }
     }
 
@@ -47,7 +49,43 @@ var amplificiusCampaigns = ( function ($) {
 
         }
     }
+    
+    var deleteCampaign = {
+        delete : function () {
+            var id = $(this).data("id");
 
+            if(id == null || id == ""){
+                swal("Error","Error in the system","error")
+            };
+
+            var dataToSend = {
+                "id" : id
+            };
+
+            $.ajax({
+               url: campaignDelete,
+               type : "POST",
+               data : dataToSend
+            }).done(function (data) {
+                if(data.status==1){
+                    sweetAlert({
+                        title:"Delete Campaign",
+                        text:"The campaign has been deleted with successful ",
+                        type:"success"
+                    }, function (isConfirm) {
+                        if(isConfirm){
+                            window.location.reload(true);
+                        }
+                    });
+                }else{
+                    swal("Delete Campaign","The campaign hasn't been deleted with successful ","Error")
+                }
+            }).fail(function () {
+                swal("Error","Error in the system","error")
+            });
+        }  
+    };
+    
     var createCampaing = {
         save : function(e){
 

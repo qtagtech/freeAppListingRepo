@@ -37,12 +37,8 @@
                                     <tr>
                                         <td>${i+1}</td>
                                         <td>${campaign.name}</td>
-                                        <td>
-                                            <g:each in="${campaign.application.link.platforms.name}" var="plat">
-                                                ${plat}
-                                            </g:each>
-                                        </td>
-                                        <td><button data-id="${campaign.id}" class="btn-delete-app btn btn-danger btn-xs">Delete</button></td>
+                                        <td>${campaign.plataforma.name}</td>
+                                        <td><button data-id="${campaign.id}" class="btn-delete-campaign btn btn-danger btn-xs">Delete</button></td>
                                     </tr>
                                 </g:each>
                                 </tbody>
@@ -53,6 +49,9 @@
             </div>
         </div>
     </div>
+    <g:javascript>
+          var campaignDelete = "${createLink(controller:'campaigns',action:'delete')}";
+    </g:javascript>
 </sec:access>
 </body>
 </html>

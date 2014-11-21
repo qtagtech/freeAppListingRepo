@@ -12,11 +12,13 @@ import org.bson.types.ObjectId
 
 @Secured(['ROLE_USER'])
 class CampaignsController {
+
     def mongo
 
     static allowedMethods = [save: "POST", delete: "POST"]
 
     def springSecurityService
+    def securityService
 
     @Transactional(readOnly = true)
     def create() {
@@ -41,15 +43,22 @@ class CampaignsController {
 
     @Transactional(readOnly = true)
     def list(){
+        def db = mongo.getDB(grailsApplication.config.com.freeAppListing.database)
         if(springSecurityService.isLoggedIn()){
             def userLoggin = springSecurityService.getCurrentUser()
 
-            List<Campaign> campaigns = Campaign.list()
+            def campaigns = db.campaign.find()
+
+            def listCampaign = []
+            while(campaigns.hasNext()){
+                def actual = campaigns.next()
+                listCampaign.add(actual)
+            }
 
             render view: "list", model: [
                     activeMenu:3 ,
                     dataUser:userLoggin,
-                    campaigns:campaigns
+                    campaigns:listCampaign
             ]
         }
     }
@@ -70,16 +79,27 @@ class CampaignsController {
             BasicDBObject queryPubl = new BasicDBObject().append("_id",new ObjectId(params.plshrId))
             def publisher = db.publisher.findOne(queryPubl)
 
-
-            def resultado = db.campaign.insert(name:params.name, application: application, plataforma: plataforma, publisher: publisher)
-            if(resultado.error)
-            {
-                respuesta = [status: 0]
-                render respuesta as JSON
-                return
+            def externalId = randomNumber() //it gets a random number, if the number already exists in the database the function is going to return 0 so it will cycle the while until it gets a number different from 0L
+            while(externalId == 0L){
+                externalId = randomNumber()
             }
+
+            def resultado = db.campaign.insert(name:params.name, externalId: externalId,application: application, plataforma: plataforma, publisher: publisher)
+
             BasicDBObject query = new BasicDBObject().append("name",params.name)
             def campaign = db.campaign.findOne(query)
+
+            /**
+             * Logica Linktrakker
+             */
+            String campaignExternalId = campaign.externalId.toString()
+            String campaignInternalId = campaign._id.toString()
+
+            def encriptCampaignExternalId = securityService.encrypt(campaignExternalId)
+            def encriptCampaignInternalId = securityService.encrypt(campaignInternalId)
+
+            def desencriptCampaignExternalId = securityService.desEncrypt(encriptCampaignExternalId)
+            def desencriptCampaignInternalId = securityService.desEncrypt(encriptCampaignInternalId)
 
             respuesta = [status: 1]
             render respuesta as JSON
@@ -88,12 +108,30 @@ class CampaignsController {
 
     @Transactional
     def delete(){
+
         def db = mongo.getDB(grailsApplication.config.com.freeAppListing.database)
+
         if(springSecurityService.isLoggedIn()){
             def respuesta
+
+            BasicDBObject query = new BasicDBObject().append("_id",new ObjectId(params.id))
+            def campaignToDelete = db.campaign.findOne(query)
+
+            db.campaign.remove(campaignToDelete)
 
             respuesta = [status: 1]
             render respuesta as JSON
         }
+    }
+
+    /**
+     * Funciones utiles
+     */
+    private Long randomNumber (){
+        def number =  (long) Math.floor(Math.random() * 900000000000L) + 100000000000L
+        if(Campaign.findByExternalId(number)){
+            return 0L
+        }
+        return number
     }
 }
