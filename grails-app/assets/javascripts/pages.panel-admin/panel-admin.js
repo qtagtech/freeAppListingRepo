@@ -69,27 +69,36 @@ var appfreeApplistingregister =(function($){
                 "description" : description
             };
 
+            $("#create-eventType").modal('hide');
+
             $.ajax({
                 url: eventTypeSave,
                 type: "POST",
                 data: dataToSend
             }).done(function (data){
                 if(data.status==1){
-                    $("#create-eventType").modal('hide');
-                    $("#div-success").show();
-                    setTimeout(function(){
-                        $("#div-success").hide();
-                        location.reload();
-                    },2000);
+                    swal({
+                        title:"Save!",
+                        text:"The Event Type register has finished successfully.",
+                        type:"success"
+                    },function(isConfirm){
+                        if(isConfirm){
+                            location.reload(true);
+                        }
+                    });
                 }else{
-                    $("#create-eventType").modal('hide');
-                    $("#div-error").show();
-                    setTimeout(function(){
-                        $("#div-error").hide();
-                    },4000);
+                    swal({
+                        title:"Error",
+                        text:"Operation save, failed!",
+                        type:"error"
+                    });
                 }
             }).fail(function () {
-                alert("Error en el envio de formulario");
+                swal({
+                    title:"Error",
+                    text:"Operation save, failed!",
+                    type:"error"
+                });
             })
         },
         delete : function () {
@@ -99,7 +108,7 @@ var appfreeApplistingregister =(function($){
             if(ids == null || ids == ""){
                 swal({
                     title:"Error",
-                    text:"You need select some plataform",
+                    text:"You need select some Event Type",
                     type:"error"
                 });
                 return false
@@ -130,7 +139,7 @@ var appfreeApplistingregister =(function($){
                     }).done(function(data){
                         swal({
                             title:"Deleted!",
-                            text:"The Event() Type(s)selected has been deleted.",
+                            text:"The Event Type(s)selected has been deleted.",
                             type:"success"
                         },function(isConfirm){
                             if(isConfirm){
@@ -140,7 +149,7 @@ var appfreeApplistingregister =(function($){
                     }).fail(function () {
                         swal({
                             title:"Error",
-                            text:"Error in system",
+                            text:"Operation delete, failed!",
                             type:"error"
                         });
                     });
@@ -148,7 +157,7 @@ var appfreeApplistingregister =(function($){
                 } else {
                     swal({
                         title:"Cancelled",
-                        text:"Cancelled operation",
+                        text:"Operation cancelled",
                         type:"error"
                     });
                 }
@@ -190,6 +199,8 @@ var appfreeApplistingregister =(function($){
             var key = $("#txtPlshKey").val();
             var web = $("#txtPlshWeb").val();
 
+            $("#create-publisher").modal('hide');
+
             var dataToSend = {
                 "name": name,
                 "key" : key,
@@ -202,21 +213,28 @@ var appfreeApplistingregister =(function($){
                 data: dataToSend
             }).done(function (data){
                 if(data.status==1){
-                    $("#create-publisher").modal('hide');
-                    $("#div-success").show();
-                    setTimeout(function(){
-                        $("#div-success").hide();
-                        location.reload(true);
-                    },2000);
+                    swal({
+                        title:"Save!",
+                        text:"The publisher register has finished successfully.",
+                        type:"success"
+                    },function(isConfirm){
+                        if(isConfirm){
+                            location.reload(true);
+                        }
+                    });
                 }else{
-                    $("#create-publisher").modal('hide');
-                    $("#div-error").show();
-                    setTimeout(function(){
-                        $("#div-error").hide();
-                    },4000);
+                    swal({
+                        title:"Error",
+                        text:"Operation save, failed!",
+                        type:"error"
+                    });
                 }
             }).fail(function () {
-                alert("Error en el envio de formulario");
+                swal({
+                    title:"Error",
+                    text:"Operation save, failed!",
+                    type:"error"
+                });
             })
         },
         delete: function () {
@@ -226,7 +244,7 @@ var appfreeApplistingregister =(function($){
             if(ids == null || ids == ""){
                 swal({
                     title:"Error",
-                    text:"You need select some plataform",
+                    text:"You need select some publisher",
                     type:"error"
                 });
                 return false
@@ -257,7 +275,7 @@ var appfreeApplistingregister =(function($){
                     }).done(function(data){
                         swal({
                             title:"Deleted!",
-                            text:"The platform(s)selected has been deleted.",
+                            text:"The publisher(s)selected has been deleted.",
                             type:"success"
                         },function(isConfirm){
                             if(isConfirm){
@@ -267,7 +285,7 @@ var appfreeApplistingregister =(function($){
                     }).fail(function () {
                         swal({
                             title:"Error",
-                            text:"Error system",
+                            text:"Operation delete, failed!",
                             type:"error"
                         });
                     });
@@ -275,7 +293,7 @@ var appfreeApplistingregister =(function($){
                 } else {
                     swal({
                         title:"Cancelled",
-                        text:"Your imaginary file is safe :)",
+                        text:"Operation cancelled",
                         type:"error"
                     });
                 }
@@ -319,6 +337,8 @@ var appfreeApplistingregister =(function($){
             var web = $("#txtPlfWeb").val();
             var market = $("#txtPlfMarket").val();
 
+            $("#create-platform").modal('hide');
+
             var dataToSend = {
                 "name": name,
                 "description": description,
@@ -332,24 +352,29 @@ var appfreeApplistingregister =(function($){
                 data: dataToSend
             }).done(function (data){
                 if(data.status==1){
-                    $("#create-platform").modal('hide');
-                    $("#div-success").show();
-                    setTimeout(function(){
-                        $("#div-success").hide();
-                        location.reload();
-                    },2000);
+
+                    swal({
+                        title:"Save!",
+                        text:"The platform register has finished successfully.",
+                        type:"success"
+                    },function(isConfirm){
+                        if(isConfirm){
+                            location.reload(true);
+                        }
+                    });
                 }else{
-                    $("#create-platform").modal('hide');
-                    $("#div-error").show();
-                    setTimeout(function(){
-                        $("#div-error").hide();
-                    },4000);
+                    swal({
+                        title:"Error",
+                        text:"Operation save, failed!",
+                        type:"error"
+                    });
                 }
             }).fail(function () {
-                swal(
-                    "Error",
-                    "Don't save data by a error of system",
-                    "error");
+                swal({
+                    title:"Error",
+                    text:"Operation save, failed!",
+                    type:"error"
+                });
             })
         },
         delete: function () {
@@ -398,8 +423,8 @@ var appfreeApplistingregister =(function($){
                         });
                     }).fail(function () {
                         swal({
-                            title:"Cancelled",
-                            text:"Your imaginary file is safe :)",
+                            title:"Error",
+                            text:"Operation delete, failed!",
                             type:"error"
                         });
                     });
@@ -407,7 +432,7 @@ var appfreeApplistingregister =(function($){
                 } else {
                     swal({
                         title:"Cancelled",
-                        text:"Your imaginary file is safe :)",
+                        text:"Operation cancelled",
                         type:"error"
                     });
                 }
