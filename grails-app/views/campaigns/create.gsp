@@ -19,7 +19,7 @@
             <div class="row">
                 <g:render template="/template/menu"/>
                 <div class="col-md-10 col-md-offset-2">
-                    <div class="row">
+                    <div class="row" style="margin-top: 60px">
                         <div class="col-md-12">
                             <h2>Create Campaigns</h2>
                             <form role="form">

@@ -20,7 +20,7 @@
                 <g:render template="/template/menu"/>
 
                 <div class="col-md-10 col-md-offset-2">
-                    <div class="row">
+                    <div class="row" style="margin-top: 60px">
                         <div class="col-md-12">
                             <h2>List Campaigns</h2>
                             <table class="table table-hover">

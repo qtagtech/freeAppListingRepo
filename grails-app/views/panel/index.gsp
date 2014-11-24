@@ -20,7 +20,7 @@
                 <g:render template="/template/menu"/>
 
                 <div class="col-md-10 col-md-offset-2">
-                    <div class="row">
+                    <div class="row" style="margin-top: 60px">
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-12">
@@ -33,10 +33,10 @@
                                                         <table class="table">
                                                             <thead>
                                                             <tr>
-                                                                <th>#</th>
-                                                                <th>Name</th>
-                                                                <th>Application</th>
-                                                                <th>Publisher</th>
+                                                                <th style="color: #FF5A57">#</th>
+                                                                <th style="color: #FF5A57">Name</th>
+                                                                <th style="color: #FF5A57">Application</th>
+                                                                <th style="color: #FF5A57">Publisher</th>
                                                             </tr>
                                                             </thead>
                                                             <tbody>
@@ -50,16 +50,16 @@
                                                         <table class="table">
                                                             <thead>
                                                             <tr>
-                                                                <th>#</th>
-                                                                <th>Name</th>
-                                                                <th>Application</th>
-                                                                <th>Publisher</th>
+                                                                <th style="color: #FF5A57">#</th>
+                                                                <th style="color: #FF5A57">Name</th>
+                                                                <th style="color: #FF5A57">Application</th>
+                                                                <th style="color: #FF5A57">Publisher</th>
                                                             </tr>
                                                             </thead>
                                                             <tbody>
                                                             <g:each in="${listCampaign}" var="camp" status="i">
                                                                 <tr>
-                                                                    <td>${i+1}</td>
+                                                                    <td style="color: #FF5A57">${i+1}</td>
                                                                     <td>${camp?.name}</td>
                                                                     <td>${camp?.application.nombre}</td>
                                                                     <td>${camp?.publisher.name}</td>
@@ -85,10 +85,10 @@
                                                         <table class="table">
                                                             <thead>
                                                             <tr>
-                                                                <th>#</th>
-                                                                <th>Name</th>
-                                                                <th>Keywords</th>
-                                                                <th>Company</th>
+                                                                <th style="color: #FF5A57">#</th>
+                                                                <th style="color: #FF5A57" >Name</th>
+                                                                <th style="color: #FF5A57">Keywords</th>
+                                                                <th style="color: #FF5A57">Company</th>
                                                             </tr>
                                                             </thead>
                                                             <tbody>
@@ -102,15 +102,15 @@
                                                         <table class="table">
                                                             <thead>
                                                             <tr>
-                                                                <th>#</th>
-                                                                <th>Name</th>
-                                                                <th>Keywords</th>
+                                                                <th style="color: #FF5A57">#</th>
+                                                                <th style="color: #FF5A57">Name</th>
+                                                                <th style="color: #FF5A57">Keywords</th>
                                                             </tr>
                                                             </thead>
                                                             <tbody>
                                                             <g:each in="${listApp}" var="app" status="i">
                                                                 <tr>
-                                                                    <td>${i+1}</td>
+                                                                    <td style="color: #FF5A57">${i+1}</td>
                                                                     <td>${app.nombre}</td>
                                                                     <td>${app.keywords}</td>
                                                                 </tr>

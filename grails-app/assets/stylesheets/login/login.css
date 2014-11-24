@@ -4,6 +4,9 @@
 #header-login{
     background: #4899D4;
     height: 50px;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
 }
 
 #content-login{

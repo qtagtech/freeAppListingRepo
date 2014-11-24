@@ -20,7 +20,7 @@
                 <g:render template="/template/menu"/>
 
                 <div class="col-md-10 col-md-offset-2">
-                    <div class="row">
+                    <div class="row" style="margin-top: 60px">
                         <div class="col-md-12">
                             <h2>Create Application</h2>
                             <form id="create-application" role="form">
