@@ -39,6 +39,15 @@
         margin-top: 100px;
     }
 }
+
+i{
+    color:#F27373
+}
+
+table tbody tr:nth-child(even){
+    background: #E8E8E8;
+}
+
 #content-page{
     position: fixed;
     width: 100%;
@@ -83,14 +92,12 @@
 
 .dashboard-rowone{
     background: #DBDBDB;
-    padding: 6px 12px;
-    border-radius: 6px;
+    border-radius: 0 0 6px 6px;
     box-shadow: 3px 3px 3px #D1D1D1;
 }
 .dashboard-rowtwo{
     background: #DBDBDB;
-    padding: 6px 12px;
-    border-radius: 6px;
+    border-radius: 0 0 6px 6px;
     box-shadow: 3px 3px 3px #D1D1D1;
 }
 
@@ -99,5 +106,19 @@
     width: 90%;
     padding: 10px 0;
     margin: 0 auto;
+}
+
+.content-title-dashboard{
+    background: #428BCA;
+    color: white;
+    padding: 5px 18px;
+    border-radius: 2px 2px 0 0;
+}
+
+.contetn-title-second-dashboard {
+    background: #428BCA;
+    padding: 6px;
+    color: white;
+    border-radius: 4px 4px 0 0;
 }
 

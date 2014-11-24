@@ -11,17 +11,17 @@
             <sec:access expression="hasRole('ROLE_USER')">
             <li <g:if test="${activeMenu==2}">class="active"</g:if> role="presentation">
                 <a data-toggle="collapse" data-parent="#stacked-collapse" href="#one" aria-expanded="true" aria-controls="one" >
-                    <div style="width: 76%; display: inline-block"> <i class="fa fa-cubes"></i> Applications</div> <div style="display: inline-block"><i class="fa fa-caret-square-o-down"></i></div>
+                    <div style="width: 76%; display: inline-block"> <i class="fa fa-rocket"></i> Applications</div> <div style="display: inline-block"><i class="fa fa-caret-square-o-down"></i></div>
                 </a>
                 <ul id="one" class="nav nav-pills nav-stacked collapse in" <g:if test="${activeMenu==2}">style="background: #f5f5f5; border-radius: 0 0 5px 5px "</g:if>>
                     <li role="presentation">
                         <a href="<g:createLink controller="application" action="create"/>">
-                            <div style="padding-left: 10px"><i class="fa fa-pencil-square-o"></i> Create</div>
+                            <div style="padding-left: 10px"><i class="fa fa-arrow-right" style="color: #C52D39"></i> Create</div>
                         </a>
                     </li>
                     <li role="presentation">
                         <a href="<g:createLink controller="application" action="list"/>">
-                            <div style="padding-left: 10px"><i class="fa fa-ellipsis-v"></i> List</div>
+                            <div style="padding-left: 10px"><i class="fa fa-arrow-right" style="color: #C52D39"></i> List</div>
                         </a>
                     </li>
                 </ul>
@@ -35,12 +35,12 @@
                 <ul id="two" class="nav nav-pills nav-stacked collapse in" <g:if test="${activeMenu==3}">style="background: #f5f5f5; border-radius: 0 0 5px 5px "</g:if>>
                     <li role="presentation">
                         <a href="<g:createLink controller="campaigns" action="create"/>">
-                            <div style="padding-left: 10px"><i class="fa fa-pencil-square-o"></i> Create</div>
+                            <div style="padding-left: 10px"><i class="fa fa-arrow-right" style="color: #C52D39"></i> Create</div>
                         </a>
                     </li>
                     <li role="presentation">
                         <a href="<g:createLink controller="campaigns" action="list"/>">
-                            <div style="padding-left: 10px"><i class="fa fa-ellipsis-v"></i> List</div>
+                            <div style="padding-left: 10px"><i class="fa fa-arrow-right" style="color: #C52D39"></i> List</div>
                         </a>
                     </li>
                 </ul>

@@ -20,7 +20,12 @@
                 <g:render template="/template/menu"/>
 
                 <div class="col-md-10 col-md-offset-2">
-                    <div class="row" style="margin-top: 60px">
+                    <div class="row" style="border-bottom: 1px solid #D6D6D6; margin-top: 60px">
+                        <div class="col-md-4" style="padding-left: 40px">
+                            <h3> <span><i class="fa fa-desktop fa-2x"></i></span>&nbsp;&nbsp;  Dashboard  <i class="fa fa-caret-right"></i> Application</h3>
+                        </div>
+                    </div>
+                    <div class="row">
                         <div class="col-md-12">
                             <h2>Create Application</h2>
                             <form id="create-application" role="form">

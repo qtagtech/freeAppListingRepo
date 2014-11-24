@@ -20,7 +20,12 @@
                 <g:render template="/template/menu"/>
 
                 <div class="col-md-10 col-md-offset-2">
-                    <div class="row" style="margin-top: 60px">
+                    <div class="row" style="border-bottom: 1px solid #D6D6D6; margin-top: 60px">
+                        <div class="col-md-4" style="padding-left: 40px">
+                            <h3> <span><i class="fa fa-desktop fa-2x"></i></span>&nbsp;&nbsp;  Dashboard  <i class="fa fa-caret-right"></i> Campaign</h3>
+                        </div>
+                    </div>
+                    <div class="row">
                         <div class="col-md-12">
                             <h2>List Campaigns</h2>
                             <table class="table table-hover">
@@ -46,7 +51,7 @@
                                             <div id="${campaign._id}" class="white-popup mfp-hide">
                                                 <label>Tracking Link:</label>
                                                 <p>You can copy link to add in the place that you want. </p>
-                                                <p style="word-wrap: break-word;">Link: http://localhost:8080/${campaign.trakingUrl}<p>
+                                                <p style="word-wrap: break-word;">Link: http://localhost:8080${campaign.trakingUrl}<p>
                                             </div>
                                         </td>
                                         <td><button data-id="${campaign._id}" class="btn-delete-campaign btn btn-danger btn-xs">Delete</button></td>

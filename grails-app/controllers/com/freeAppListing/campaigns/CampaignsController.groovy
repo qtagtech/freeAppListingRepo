@@ -81,7 +81,7 @@ class CampaignsController {
             BasicDBObject queryPubl = new BasicDBObject().append("_id",new ObjectId(params.plshrId))
             def publisher = db.publisher.findOne(queryPubl)
 
-            def externalId = randomNumber() //it gets a random number, if the number already exists in the database the function is going to return 0 so it will cycle the while until it gets a number different from 0L
+            def externalId = randomNumber()
             while(externalId == 0L){
                 externalId = randomNumber()
             }
@@ -116,12 +116,12 @@ class CampaignsController {
             def linkConversion = g.createLink(
                     controller: "conversion",
                     params: [
-                            "publisherExId": encryExternalPublId,
-                            "publisherInId": encryInternalPublId,
-                            "publisherName": namePublisher,
-                            "campExId": encryExternalCampId,
-                            "campInId": encryInternalCampId,
-                            "campName": nameCampaig
+                            "peId": encryExternalPublId,
+                            "piId": encryInternalPublId,
+                            "pn": namePublisher,
+                            "ceId": encryExternalCampId,
+                            "ciId": encryInternalCampId,
+                            "cn": nameCampaig
                     ]
             )
 

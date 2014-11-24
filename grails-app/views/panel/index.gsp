@@ -24,107 +24,89 @@
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-12">
+                                    <div class="row" style="border-bottom: 1px solid #D6D6D6">
+                                        <div class="col-md-4" style="padding-left: 40px">
+                                            <h3> <span><i class="fa fa-desktop fa-2x"></i></span>&nbsp;&nbsp;  Dashboard  <i class="fa fa-caret-right"></i> Home</h3>
+                                        </div>
+                                    </div>
                                     <div class="row">
                                         <div class="col-md-6 condence-content">
+                                            <div class="content-title-dashboard">
+                                                <h3 style="margin: 0"> <i class="fa fa-globe"></i> Campaigns</h3>
+                                            </div>
                                             <div class="dashboard-rowone">
-                                                <h2>Campaigns</h2>
                                                 <div>
-                                                    <g:if test="${listCampaign.empty}">
-                                                        <table class="table">
-                                                            <thead>
-                                                            <tr>
-                                                                <th style="color: #FF5A57">#</th>
-                                                                <th style="color: #FF5A57">Name</th>
-                                                                <th style="color: #FF5A57">Application</th>
-                                                                <th style="color: #FF5A57">Publisher</th>
-                                                            </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                            <tr>
-                                                                <td colspan="5"><h4 style="color: grey">No data</h4></td>
-                                                            </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </g:if>
-                                                    <g:else>
-                                                        <table class="table">
-                                                            <thead>
-                                                            <tr>
-                                                                <th style="color: #FF5A57">#</th>
-                                                                <th style="color: #FF5A57">Name</th>
-                                                                <th style="color: #FF5A57">Application</th>
-                                                                <th style="color: #FF5A57">Publisher</th>
-                                                            </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                            <g:each in="${listCampaign}" var="camp" status="i">
+                                                    <table class="table">
+                                                        <thead>
+                                                        <tr>
+                                                            <th >#</th>
+                                                            <th >Name</th>
+                                                            <th >Application</th>
+                                                            <th >Publisher</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <g:if test="${listCampaign.empty}">
                                                                 <tr>
-                                                                    <td style="color: #FF5A57">${i+1}</td>
-                                                                    <td>${camp?.name}</td>
-                                                                    <td>${camp?.application.nombre}</td>
-                                                                    <td>${camp?.publisher.name}</td>
+                                                                    <td colspan="5"><h4 style="color: grey">No data</h4></td>
                                                                 </tr>
-                                                            </g:each>
-                                                            </tbody>
-                                                        </table>
-                                                    </g:else>
-                                                </div>
-                                                <div>
-                                                    <label for="">Total:</label>
-                                                    <span>${countCampaign}</span>
+                                                            </g:if>
+                                                            <g:else>
+                                                                <g:each in="${listCampaign}" var="camp" status="i">
+                                                                    <tr>
+                                                                        <td>${i+1}</td>
+                                                                        <td>${camp?.name}</td>
+                                                                        <td>${camp?.application.nombre}</td>
+                                                                        <td>${camp?.publisher.name}</td>
+                                                                    </tr>
+                                                                </g:each>
+                                                            </g:else>
+                                                        </tbody>
+                                                    </table>
+                                                    <div style="padding-left: 15px">
+                                                        <label for="">Total:</label>
+                                                        <span>${countCampaign}</span>
+                                                    </div>
                                                 </div>
                                             </div>
-
                                         </div>
                                         <div class="col-md-6 condence-content">
-
+                                            <div class="content-title-dashboard">
+                                                <h3 style="margin: 0"> <i class="fa fa-rocket"></i> Applications</h3>
+                                            </div>
                                             <div class="dashboard-rowtwo">
-                                                <h2>Applications</h2>
                                                 <div>
-                                                    <g:if test="${listApp.empty}">
-                                                        <table class="table">
-                                                            <thead>
+                                                    <table class="table">
+                                                        <thead>
                                                             <tr>
-                                                                <th style="color: #FF5A57">#</th>
-                                                                <th style="color: #FF5A57" >Name</th>
-                                                                <th style="color: #FF5A57">Keywords</th>
-                                                                <th style="color: #FF5A57">Company</th>
+                                                                <th >#</th>
+                                                                <th >Name</th>
+                                                                <th >Keywords</th>
                                                             </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                            <tr>
-                                                                <td colspan="5"><h4 style="color: grey">No data</h4></td>
-                                                            </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </g:if>
-                                                    <g:else>
-                                                        <table class="table">
-                                                            <thead>
-                                                            <tr>
-                                                                <th style="color: #FF5A57">#</th>
-                                                                <th style="color: #FF5A57">Name</th>
-                                                                <th style="color: #FF5A57">Keywords</th>
-                                                            </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                            <g:each in="${listApp}" var="app" status="i">
+                                                        </thead>
+                                                        <tbody>
+                                                            <g:if test="${listApp.empty}">
                                                                 <tr>
-                                                                    <td style="color: #FF5A57">${i+1}</td>
-                                                                    <td>${app.nombre}</td>
-                                                                    <td>${app.keywords}</td>
+                                                                    <td colspan="5"><h4 style="color: grey">No data</h4></td>
                                                                 </tr>
-                                                            </g:each>
-                                                            </tbody>
-                                                        </table>
-                                                    </g:else>
-                                                </div>
-                                                <div>
-                                                    <label for="">Total:</label>
-                                                    <span>${countApp}</span>
+                                                            </g:if>
+                                                            <g:else>
+                                                                <g:each in="${listApp}" var="app" status="i">
+                                                                    <tr>
+                                                                        <td>${i+1}</td>
+                                                                        <td>${app.nombre}</td>
+                                                                        <td>${app.keywords}</td>
+                                                                    </tr>
+                                                                </g:each>
+                                                            </g:else>
+                                                        </tbody>
+                                                    </table>
+                                                    <div style="padding-left: 15px">
+                                                        <label for="">Total:</label>
+                                                        <span>${countApp}</span>
+                                                    </div>
                                                 </div>
                                             </div>
-
                                         </div>
                                     </div>
                                 </div>
@@ -139,59 +121,109 @@
                                     <div class="row">
                                         <div class="col-md-4 condence-content">
                                             <div class="text-center">
-                                                <h2>Platforms</h2>
-                                                <div class="content-stadistics text-left">
-                                                    <g:if test="${listPlat.empty}">
-                                                        <h4>No data</h4>
-                                                    </g:if>
-                                                    <g:else>
-                                                        <g:each in="${listPlat}" var="plat">
-                                                            <p><span><strong>Name:</strong> ${plat}</span></p>
-                                                        </g:each>
-                                                    </g:else>
+                                                <div class="contetn-title-second-dashboard">
+                                                    <h3 style="margin: 0"> <i class="fa fa-cubes"></i> Platforms</h3>
                                                 </div>
-                                                <div>
-                                                    <label for="">Total:</label>
-                                                    <span>${countPlat}</span>
+                                                <div class="content-stadistics text-left">
+                                                    <table class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>#</th>
+                                                                <th>Name</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <g:if test="${listPlat.empty}">
+                                                                <tr>
+                                                                    <td colspan="2"><h4>No data</h4></td>
+                                                                </tr>
+                                                            </g:if>
+                                                            <g:else>
+                                                                <g:each in="${listPlat}" var="plat" status="i">
+                                                                    <tr>
+                                                                        <td>${i+1}</td>
+                                                                        <td>${plat}</td>
+                                                                    </tr>
+                                                                </g:each>
+                                                            </g:else>
+                                                        </tbody>
+                                                    </table>
+                                                    <div style="padding-left: 15px">
+                                                        <label for="">Total:</label>
+                                                        <span>${countPlat}</span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-md-4 condence-content">
                                             <div class="text-center">
-                                                <h2>Publishers</h2>
-                                                <div class="content-stadistics text-left">
-                                                    <g:if test="${listPub.empty}">
-                                                        <h4>No data</h4>
-                                                    </g:if>
-                                                    <g:else>
-                                                        <g:each in="${listPub}" var="pub">
-                                                            <p><span><strong>Name:</strong> ${pub}</span></p>
-                                                        </g:each>
-                                                    </g:else>
+                                                <div class="contetn-title-second-dashboard">
+                                                    <h3 style="margin: 0"> <i class="fa fa-newspaper-o"></i> Publishers</h3>
                                                 </div>
-                                                <div>
-                                                    <label for="">Total:</label>
-                                                    <span>${countPub}</span>
+                                                <div class="content-stadistics text-left">
+                                                    <table class="table">
+                                                        <thead>
+                                                        <tr>
+                                                            <th>#</th>
+                                                            <th>Name</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        <g:if test="${listPub.empty}">
+                                                            <tr>
+                                                                <td colspan="2"><h4>No data</h4></td>
+                                                            </tr>
+                                                        </g:if>
+                                                        <g:else>
+                                                            <g:each in="${listPub}" var="pub" status="i">
+                                                                <tr>
+                                                                    <td>${i+1}</td>
+                                                                    <td>${pub}</td>
+                                                                </tr>
+                                                            </g:each>
+                                                        </g:else>
+                                                        </tbody>
+                                                    </table>
+                                                    <div style="padding-left: 15px">
+                                                        <label for="">Total:</label>
+                                                        <span>${countPub}</span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-md-4 condence-content">
                                             <div class="text-center">
-                                                <h2>Event Types</h2>
-                                                <div class="content-stadistics text-left">
-                                                    <p><strong>Names:</strong></p>
-                                                    <g:if test="${listEvTp.empty}">
-                                                        <h4>No data</h4>
-                                                    </g:if>
-                                                    <g:else>
-                                                        <g:each in="${listEvTp}" var="evTp">
-                                                            <p><span>${evTp}</span></p>
-                                                        </g:each>
-                                                    </g:else>
+                                                <div class="contetn-title-second-dashboard">
+                                                    <h3 style="margin: 0"> <i class="fa fa-bars"></i> Event Types</h3>
                                                 </div>
-                                                <div>
-                                                    <label for="">Total:</label>
-                                                    <span>${countEvTp}</span>
+                                                <div class="content-stadistics text-left">
+                                                    <table class="table">
+                                                        <thead>
+                                                        <tr>
+                                                            <th>#</th>
+                                                            <th>Name</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        <g:if test="${listEvTp.empty}">
+                                                            <tr>
+                                                                <td colspan="2"><h4>No data</h4></td>
+                                                            </tr>
+                                                        </g:if>
+                                                        <g:else>
+                                                            <g:each in="${listEvTp}" var="evTp" status="i">
+                                                                <tr>
+                                                                    <td>${i+1}</td>
+                                                                    <td>${evTp}</td>
+                                                                </tr>
+                                                            </g:each>
+                                                        </g:else>
+                                                        </tbody>
+                                                    </table>
+                                                    <div style="padding-left: 15px">
+                                                        <label for="">Total:</label>
+                                                        <span>${countEvTp}</span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -210,13 +242,14 @@
     <div class="row">
         <g:render template="/template/menu"/>
         <div class="col-md-10 col-md-offset-2">
-            <div class="row">
+            <div class="row" style="margin-top: 60px; border-bottom: 1px solid #D6D6D6">
                 <div class="col-md-12">
-                    <h2>Settings</h2>
-                    <h2><small>Basic information about settings</small></h2>
+                    <div class="col-md-4">
+                        <h3> <span><i class="fa fa-desktop fa-2x"></i></span>&nbsp;&nbsp;  Dashboard  <i class="fa fa-caret-right"></i> Settings</h3>
+                    </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row" style="padding-top: 30px">
                 <div class="col-md-4">
                     <div class="background-blocks-title-admin">
                         <h4 id="" style="color: #f5f5f5"> List Platforms </h4>
