@@ -54,23 +54,47 @@ class ConversionController {
         params.remove("format")
 
         BasicDBObject conversion = new BasicDBObject()
+
+        /**
+         * Producer external id to conversion
+         */
+        def randomNum = utilsService.randomNumber(conversion)
+        while(randomNum == 0L){
+            randomNum = utilsService.randomNumber(conversion)
+        }
+        def ecrypExIdConver = securityService.encryt(randomNum.toString())
+        conversion.append("exConvId",ecrypExIdConver)
+
+        /**
+         * Assigned id of the campaign
+         */
+        conversion.append("campaignId",campaign._id)
+
+        /**
+         * Assigned the aplication id to conversion
+         */
+        //TODO agregar id de la aplicacion con links
+
+        /**
+         * Assigned event click to conversion
+         */
+        // TODO agregar evento clic
+
+        /**
+         * Looping the all parameters that need save
+         */
         params.each() { key, value ->
             conversion.append(key, value)
         }
 
-        def randomNum = utilsService.randomNumber(conversion)
-
-        while(randomNum == 0L){
-            randomNum = utilsService.randomNumber(conversion)
-        }
-
-        def ecrypExIdConver = securityService.encryt(randomNum.toString())
-
-        conversion.append("externalId",ecrypExIdConver)
-        conversion.append("campaign",campaign._id)
-
+        /**
+        * Save all parameters in document conversion
+         */
         def resultadoConversion = db.conversion.insert(conversion)
 
+        /**
+         * Look if has been ocurred a error
+         */
         if(resultadoConversion.error)
         {
             response.setStatus(400)
@@ -79,6 +103,10 @@ class ConversionController {
             return
         }
 
+        /**
+         * Redirect if have link to store app o hassoffers
+         */
+        // TODO redireccionr correctamente
         redirect url: "http://www.google.com.co"
     }
 }
