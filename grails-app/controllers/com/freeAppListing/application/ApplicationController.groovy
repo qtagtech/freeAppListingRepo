@@ -32,7 +32,14 @@ class ApplicationController {
 
             List<Application> applicationList = Application.list()
 
-            render view: "list", model: [activeMenu:2 , dataUser:userLoggin, applicationList: applicationList]
+            def listApp = []
+            applicationList.eachWithIndex { Application app, int i ->
+                if(app.company.id== userLoggin.company[0].id){
+                    listApp.add(app)
+                }
+            }
+
+            render view: "list", model: [activeMenu:2 , dataUser:userLoggin, applicationList: listApp]
         }
     }
 

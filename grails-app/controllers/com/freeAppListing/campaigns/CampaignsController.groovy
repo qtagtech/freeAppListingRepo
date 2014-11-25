@@ -28,6 +28,12 @@ class CampaignsController {
             def userLoggin = springSecurityService.getCurrentUser()
 
             List<Application> applicationList = Application.list()
+            def listApp = []
+            applicationList.eachWithIndex { Application app, int i ->
+                if(app.company.id== userLoggin.company[0].id){
+                    listApp.add(app)
+                }
+            }
 
             List<Publisher> publisherList = Publisher.list()
 
@@ -36,7 +42,7 @@ class CampaignsController {
             render view: "create", model: [
                     activeMenu:3 ,
                     dataUser:userLoggin,
-                    applicationList:applicationList,
+                    applicationList:listApp,
                     publisherList: publisherList,
                     platformsList: platformsList
             ]
@@ -54,7 +60,9 @@ class CampaignsController {
             def listCampaign = []
             while(campaigns.hasNext()){
                 def actual = campaigns.next()
-                listCampaign.add(actual)
+                if(actual.application.company.id == userLoggin.company[0].id ){
+                    listCampaign.add(actual)
+                }
             }
 
             render view: "list", model: [

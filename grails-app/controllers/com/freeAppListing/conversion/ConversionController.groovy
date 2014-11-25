@@ -15,38 +15,30 @@ class ConversionController {
     static allowedMethods = [index: "GET"]
 
     def securityService
+    def utilsService
 
     @Secured(['permitAll'])
     def index() {
 
         def db = mongo.getDB(grailsApplication.config.com.freeAppListing.database)
 
-        def dataUrl = params
-
-        if(dataUrl==null || dataUrl==""){
-            response.setStatus(400)
-            def result = [status: 400, code: 55514,message: 'The params to process the request is invalid.']
-            render result as JSON
-            return
-        }
-
-        if(dataUrl.ciId==null||dataUrl.ciId==""){
+        if(params.ciId==null||params.ciId==""){
             response.setStatus(400)
             def result = [status: 400, code: 55514,message: 'The campaign identifier not exist.']
             render result as JSON
             return
         }
 
-        def cid = securityService.decrypt(dataUrl.ciId)
+        def cid = securityService.decrypt(params.ceId)
 
-        if(cid == dataUrl.ciId ){
+        if(cid == params.ciId ){
             response.setStatus(400)
             def result = [status: 400, code: 456546 ,message: 'The identifier the campaign is invalid.']
             render result as JSON
             return
         }
 
-        BasicDBObject query = new BasicDBObject().append("_id", new ObjectId(cid))
+        BasicDBObject query = new BasicDBObject().append("externalId", Long.parseLong(cid))
         def campaign = db.campaign.findOne(query)
 
         if(campaign == null || campaign ==""){
@@ -56,14 +48,37 @@ class ConversionController {
             return
         }
 
-        params.remove("ciId")
+        params.remove("ceId")
         params.remove("action")
         params.remove("controller")
         params.remove("format")
 
-        response.setStatus(200)
-        def result = [status: 200, code: 200,message: 'The campaign exist and remove params']
-        render result as JSON
-        return
+        BasicDBObject conversion = new BasicDBObject()
+        params.each() { key, value ->
+            conversion.append(key, value)
+        }
+
+        def randomNum = utilsService.randomNumber(conversion)
+
+        while(randomNum == 0L){
+            randomNum = utilsService.randomNumber(conversion)
+        }
+
+        def ecrypExIdConver = securityService.encryt(randomNum.toString())
+
+        conversion.append("externalId",ecrypExIdConver)
+        conversion.append("campaign",campaign._id)
+
+        def resultadoConversion = db.conversion.insert(conversion)
+
+        if(resultadoConversion.error)
+        {
+            response.setStatus(400)
+            def result = [status: 400, code: 55512,message: 'Error saving new conversion to database: '+resultadoConversion?.lastError?.err]
+            render result as JSON
+            return
+        }
+
+        redirect url: "http://www.google.com.co"
     }
 }

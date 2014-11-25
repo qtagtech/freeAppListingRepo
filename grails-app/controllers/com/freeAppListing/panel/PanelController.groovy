@@ -8,19 +8,21 @@ import com.freeAppListing.platform.Platforms
 import com.freeAppListing.publisher.Publisher
 import grails.plugin.springsecurity.SpringSecurityService
 import grails.plugin.springsecurity.annotation.Secured
+import org.bson.types.ObjectId
 
 @Secured(['ROLE_SUPERADMIN','ROLE_USER'])
 class PanelController {
     def springSecurityService
+    def mongo
 
 
     def index() {
+        def db = mongo.getDB(grailsApplication.config.com.freeAppListing.database)
         if(springSecurityService.isLoggedIn()){
-            // get info user loggin
-            def userLoggin = springSecurityService.getCurrentUser()
 
             // Do is roler is superadmin
             sec.ifAllGranted(roles: 'ROLE_SUPERADMIN'){
+                def userLoggin = springSecurityService.getCurrentUser()
                 //get info platform
                 List<Platforms> platformsList = Platforms.list()
 
@@ -35,25 +37,41 @@ class PanelController {
 
             // Do if role is user
             sec.ifAllGranted(roles: 'ROLE_USER'){
+                def userLoggin = springSecurityService.getCurrentUser()
 
                 def countCamp = 0
-                def listCamp = ""
-                def countApp = Application.count()
-                def listApp = Application.list()
+                def listCampaign = ""
+                def listAllApp = Application.list()
+
+                def listApp = []
+                listAllApp.eachWithIndex { Application app, int i ->
+                    if(app.company.id== userLoggin.company[0].id){
+                        listApp.add(app)
+                    }
+                }
+                def countApp = listApp.size()
+
                 def countPlat = Platforms.count()
                 def listPlat = Platforms.list()
                 def countPubli = Publisher.count()
                 def listPubli = Publisher.list()
                 def countEvTp = EventType.count()
                 def listEvTp = EventType.list()
-                def countCampaign = Campaign.count()
-                def listCampaign = Campaign.list()
+                def listAllCampaign = Campaign.list()
+
+                def listCamp = []
+                listAllCampaign.eachWithIndex { value, i ->
+                    if(value.application.company.id == userLoggin.company[0].id){
+                        listCamp.add(value)
+                    }
+                }
+                def countCampaign = listCamp.size()
 
                 render view:"index",  model: [
                         activeMenu: 1,
                         dataUser:userLoggin,
                         countCamp: countCamp,
-                        listCamp: listCamp,
+                        listCamp: listCampaign,
                         countApp: countApp,
                         listApp: listApp,
                         countPlat: countPlat,
@@ -63,7 +81,7 @@ class PanelController {
                         countEvTp: countEvTp,
                         listEvTp: listEvTp.name,
                         countCampaign: countCampaign,
-                        listCampaign:listCampaign
+                        listCampaign:listCamp
                 ]
             }
 
