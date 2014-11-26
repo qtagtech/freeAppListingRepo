@@ -92,7 +92,7 @@ environments {
     }
     production {
         grails.logging.jul.usebridge = false
-        com.freeAppListing.database = "freeAppListingRepo"
+        com.freeAppListing.database = "fal"
         // TODO: grails.serverURL = "http://www.changeme.com"
     }
 }
