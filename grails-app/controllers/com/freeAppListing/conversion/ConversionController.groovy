@@ -24,7 +24,7 @@ class ConversionController {
 
         if(params.ciId==null||params.ciId==""){
             response.setStatus(400)
-            def result = [status: 400, code: 55514,message: 'The campaign identifier not exist.']
+            def result = [status: 400, code: 55514,message: "The campaign identifier doesn't not exist."]
             render result as JSON
             return
         }
