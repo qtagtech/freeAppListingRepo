@@ -31,21 +31,26 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12 condence-content">
-                                            <g:each in="${listCamp}" var="conver" status="i">
-                                                <div style="display: inline-block">
-                                                    <div class="numberClick">
-                                                        <div class="iconNumberclick">
-                                                            <i class="fa fa-hand-o-up" style="color: white"></i>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <g:each in="${listCamp}" var="conver" status="i">
+                                                        <div style="display: inline-block">
+                                                            <div class="numberClick">
+                                                                <div class="iconNumberclick">
+                                                                    <i class="fa fa-hand-o-up" style="color: white"></i>
+                                                                </div>
+                                                                ${conver.numClick}
+                                                            </div>
+                                                            <div class="content-conver">
+                                                                <p style="margin: 0"><strong>Campaign:</strong> ${conver.conver.cn}</p>
+                                                                <p style="margin: 0"><strong>Application:</strong> ${conver.conver.appName}</p>
+                                                            </div>
                                                         </div>
-                                                        ${conver.numClick}
-                                                    </div>
-                                                    <div class="content-conver">
-                                                        <p style="margin: 0"><strong>Campaign:</strong> ${conver.conver.cn}</p>
-                                                        <p style="margin: 0"><strong>Application:</strong> ${conver.conver.appName}</p>
-                                                    </div>
-                                                </div>
 
-                                            </g:each>
+                                                    </g:each>
+                                                </div>
+                                            </div>
+
                                         </div>
                                     </div>
                                     <div class="row">
