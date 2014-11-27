@@ -98,20 +98,6 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-5">
-                                        <div id="content-more-links" style="display: none" class="row">
-                                            <div class="col-md-6">
-                                                <button id="btn-save-create-link" type="button" class="btn btn-info width-total-content tooltipInfo" data-toggle="tooltip" data-placement="top" title="Add more links">
-                                                    Save and Create New Link
-                                                </button>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <button id="btn-save-link" type="button" class="btn btn-info width-total-content tooltipInfo" data-toggle="tooltip" data-placement="top" title="Delete links">
-                                                    Save unique Link
-                                                </button>
-                                            </div>
-                                            <br/>
-                                            <br/>
-                                        </div>
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <button id="btn-next" type="button" class="btn btn-info width-total-content">Next</button>

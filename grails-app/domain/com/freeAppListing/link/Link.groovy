@@ -18,5 +18,6 @@ class Link {
     static belongsTo = [application: Application]
 
     static constraints = {
+        urlHasOffer blank: true, nullable: true
     }
 }

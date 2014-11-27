@@ -74,6 +74,8 @@ class ConversionController {
          * Assigned the aplication id to conversion
          */
         //TODO agregar id de la aplicacion con links
+        conversion.append("appId", campaign.application._id)
+        conversion.append("appName", campaign.application.nombre)
 
         /**
          * Assigned event click to conversion
@@ -106,7 +108,19 @@ class ConversionController {
         /**
          * Redirect if have link to store app o hassoffers
          */
-        // TODO redireccionr correctamente
-        redirect url: "http://www.google.com.co"
+        def linkUrlHasOffers
+        def linkUrlApp
+
+        for(link in campaign.application.link){
+            linkUrlApp = link.urlDirect
+            linkUrlHasOffers = link.urlHasOffer
+        }
+
+
+        if(linkUrlHasOffers == null || linkUrlHasOffers == ""){
+            redirect url: "http://${linkUrlApp}"
+        }else{
+            redirect url: "http://${linkUrlHasOffers}"
+        }
     }
 }

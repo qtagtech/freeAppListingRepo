@@ -3,13 +3,16 @@ package com.freeAppListing.application
 import com.freeAppListing.company.Company
 import com.freeAppListing.link.Link
 import com.freeAppListing.platform.Platforms
+import com.mongodb.BasicDBObject
 import grails.converters.JSON
 import grails.plugin.springsecurity.annotation.Secured
 import grails.transaction.Transactional
 import org.apache.commons.lang.StringUtils
+import org.bson.types.ObjectId
 
 @Secured(['ROLE_USER'])
 class ApplicationController {
+    def mongo
 
     static allowedMethods = [save: "POST", delete: "POST"]
 
@@ -45,45 +48,33 @@ class ApplicationController {
 
     @Transactional
     def save(){
+        def db = mongo.getDB(grailsApplication.config.com.freeAppListing.database)
 
         def userLoggin = springSecurityService.getCurrentUser()
         def data = request.JSON
 
         def company = Company.get(userLoggin.company.id)
+        BasicDBObject platformm =  new BasicDBObject("_id", new ObjectId(data.platformid))
+        def platform = db.platforms.findOne(platformm)
 
         def application = new Application(
                 nombre: data.nombre,
                 keywords: data.keywords,
                 description: data.description,
-                company: company
+                company: company,
+                link: ""
         ).save(failOnError: true)
 
         println(application.errors.allErrors)
 
-        if(data.link.size()>1){
-            for(int i=0; i<data.link.size();i++){
+        def link = new Link(
+                urlDirect: data.urlDirect,
+                urlHasOffer: data.urlHasOffers,
+                platforms: platform,
+                application: application
+        ).save(failOnError: true)
 
-                def platform = Platforms.get(data.link[i].platformsId)
-
-                def link = new Link(
-                        platforms: platform,
-                        urlDirect: data.link[i].urlDirect,
-                        urlHasOffer: data.link[i].urlHasOffer
-                )
-
-                application.addToLink(link)
-            }
-        }else{
-            def platform = Platforms.get(data.link[0].platformsId)
-
-            def link = new Link(
-                    platforms: platform,
-                    urlDirect: data.link[0].urlDirect,
-                    urlHasOffer: data.link[0].urlHasOffer
-            )
-
-            application.addToLink(link)
-        }
+        application.addToLink(link)
 
         application.save(failOnError: true)
 
