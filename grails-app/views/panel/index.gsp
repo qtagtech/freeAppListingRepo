@@ -31,26 +31,34 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12 condence-content">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <g:each in="${listCamp}" var="conver" status="i">
-                                                        <div style="display: inline-block">
-                                                            <div class="numberClick">
-                                                                <div class="iconNumberclick">
-                                                                    <i class="fa fa-hand-o-up" style="color: white"></i>
-                                                                </div>
-                                                                ${conver.numClick}
+                                            <h3> Activity of Campaigns <small>look all activities about our campaigns as click and installs</small></h3>
+                                            <div style="margin-top: 20px">
+                                                <g:each in="${listCamp}" var="conver" status="i">
+                                                    <div style="display: inline-block; margin-right: 30px">
+                                                        <div class="numberClick">
+                                                            <div class="iconNumberclick">
+                                                                <i class="fa fa-hand-o-up" style="color: white"></i>
                                                             </div>
-                                                            <div class="content-conver">
-                                                                <p style="margin: 0"><strong>Campaign:</strong> ${conver.conver.cn}</p>
-                                                                <p style="margin: 0"><strong>Application:</strong> ${conver.conver.appName}</p>
-                                                            </div>
+                                                            ${conver.numClick}
                                                         </div>
-
-                                                    </g:each>
-                                                </div>
+                                                        <div class="numberClick">
+                                                            <div class="iconNumberclick">
+                                                                <i class="fa fa-download" style="color: white"></i></i>
+                                                            </div>
+                                                            ${conver.numInstall}
+                                                        </div>
+                                                        <div class="content-conver">
+                                                            <p style="margin: 0">${conver.conver.cn}</p>
+                                                            <p style="margin: 0">${conver.conver.appName}</p>
+                                                        </div>
+                                                    </div>
+                                                </g:each>
                                             </div>
-
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div>
+                                            <div class="border-separed"></div>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -106,6 +114,7 @@
                                                                 <th >#</th>
                                                                 <th >Name</th>
                                                                 <th >Keywords</th>
+                                                                <th >Link App</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
@@ -120,6 +129,7 @@
                                                                         <td>${i+1}</td>
                                                                         <td>${app.nombre}</td>
                                                                         <td>${app.keywords}</td>
+                                                                        <td><a class="btn btn-xs btn-info" target="_blank" href="http://${app.link[0].urlDirect}">See App</a> </td>
                                                                     </tr>
                                                                 </g:each>
                                                             </g:else>

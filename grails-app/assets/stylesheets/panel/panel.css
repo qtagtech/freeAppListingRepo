@@ -53,12 +53,10 @@
 
 .content-conver{
     display: inline-block;
-    padding: 4px 0;
-    padding-left: 35px;
-    padding-right: 8px;
+    padding: 3px 8px 4px 84px;
     background: rgb(0, 0, 0);
     border-radius: 0 4px 4px 0;
-    margin-left: -34px;
+    margin-left: -80px;
     z-index: -5;
     color: white;
     position: relative;

@@ -72,14 +72,17 @@ class PanelController {
                     def listMap = [:]
                     def conversion = db.conversion.findOne(new BasicDBObject("campaignId",camp._id))
                     def countConversion = db.conversion.count(new BasicDBObject("campaignId",camp._id))
+                    def serve = db.serve.findOne(new BasicDBObject("campaignId",camp._id))
+                    def countServe = db.serve.count(new BasicDBObject("campaignId",camp._id))
 
                     if(!(conversion==null)){
                         listMap.put("conver",conversion)
                         listMap.put("numClick",countConversion)
+                        listMap.put("serve",serve)
+                        listMap.put("numInstall",countServe)
 
                         listConversion.add(listMap)
                     }
-                    def one
                 }
 
                 def countCamp = listConversion.size()
