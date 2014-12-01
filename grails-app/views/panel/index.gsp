@@ -456,6 +456,68 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="row" style="margin-bottom: 20px">
+                        <div class="col-md-6">
+                            <div class="background-blocks-title-admin">
+                                <h4 style="color: #f5f5f5">List Users</h4>
+                            </div>
+                            <div class="row">
+                                <g:if test="${listUser == null}">
+                                    <div class="col-md-12">
+                                        <div class="height-fixed-setting background-blocks-admin">
+                                            <h2 style="color: darkgray">Register a new User</h2>
+                                        </div>
+                                    </div>
+                                </g:if>
+                                <g:else>
+                                    <div class="col-md-12">
+                                        <div class="height-fixed-setting background-blocks-admin">
+                                            <table id="table-users" class="table table-responsive table-condensed">
+                                                <thead>
+                                                <tr>
+                                                    <th><input id="chb-all-users" type="checkbox"></th>
+                                                    <th>#</th>
+                                                    <th>Name</th>
+                                                    <th>Email</th>
+                                                    <th>Username</th>
+                                                    <th>Enabled/Inactive</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <g:each in="${listUser}" var="users" status="i">
+                                                    <tr data-id="${users.user.id}">
+                                                        <td><input type="checkbox" value="${users.user.id}"></td>
+                                                        <td>${i+1}</td>
+                                                        <td data-colunmvalue="${users.user.fullName}">${users.user.fullName}</td>
+                                                        <td data-colunmvalue="${users.user.email}">${users.user.email}</td>
+                                                        <td data-colunmvalue="${users.user.username}">${users.user.username}</td>
+                                                        <td data-colunmvalue="${users.user.enabled}">${users.user.enabled}</td>
+                                                        <td><button data-id="${users.user.id}" class="btn btn-xs btn-info">View All</button></td>
+                                                    </tr>
+                                                </g:each>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </g:else>
+                                <div class="clearfix visible-md-block"></div>
+                                <div class="col-md-12">
+                                    <div class="background-blocks-btn-admin">
+                                        <div class="row" style="padding: 4px 10px">
+                                            <div class="col-md-6">
+                                                <button class="btn btn-success width-total-content" data-toggle="modal" data-target="#create-eventType">Create</button>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <button id="btn-delete-users" class="btn btn-danger width-total-content" >Delete</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
             </div>

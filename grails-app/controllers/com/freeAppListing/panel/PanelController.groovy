@@ -6,6 +6,9 @@ import com.freeAppListing.company.Company
 import com.freeAppListing.eventType.EventType
 import com.freeAppListing.platform.Platforms
 import com.freeAppListing.publisher.Publisher
+import com.freeAppListing.sprinSecurity.auth.SecRole
+import com.freeAppListing.sprinSecurity.auth.SecUserSecRole
+import com.freeAppListing.userDetails.UserDetails
 import com.mongodb.BasicDBObject
 import grails.plugin.springsecurity.SpringSecurityService
 import grails.plugin.springsecurity.annotation.Secured
@@ -33,7 +36,30 @@ class PanelController {
                 // get infor event Type
                 List<EventType> eventTypeList = EventType.list()
 
-                render view:"index", model:[activeMenu: 1, dataUser:userLoggin,platformsList:platformsList, publisherList: publisherList, eventTypeList: eventTypeList]
+                List<UserDetails> userDetailsList = UserDetails.list()
+
+                List<SecRole> roleList = SecRole.list()
+
+                def listUser = []
+                for(user in userDetailsList ){
+                    def map = [:]
+                    for( role in roleList){
+                        if(SecUserSecRole.exists(user.id, role.id)){
+                            map.put("user",user)
+                            map.put("role",role)
+                            listUser.add(map)
+                        }
+                    }
+                }
+
+                render view:"index", model:[
+                        activeMenu: 1,
+                        dataUser:userLoggin,
+                        platformsList:platformsList,
+                        publisherList: publisherList,
+                        eventTypeList: eventTypeList,
+                        listUser : listUser
+                ]
             }
 
             // Do if role is user
