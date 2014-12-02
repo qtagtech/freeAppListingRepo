@@ -479,7 +479,7 @@
                                                     <th><input id="chb-all-users" type="checkbox"></th>
                                                     <th>#</th>
                                                     <th>Name</th>
-                                                    <th>Email</th>
+                                                    <th>Role</th>
                                                     <th>Username</th>
                                                     <th>Enabled/Inactive</th>
                                                     <th>Action</th>
@@ -488,10 +488,10 @@
                                                 <tbody>
                                                 <g:each in="${listUser}" var="users" status="i">
                                                     <tr data-id="${users.user.id}">
-                                                        <td><input type="checkbox" value="${users.user.id}"></td>
+                                                        <td><input type="checkbox" value="${users.user.id+","+users.role.id}"></td>
                                                         <td>${i+1}</td>
                                                         <td data-colunmvalue="${users.user.fullName}">${users.user.fullName}</td>
-                                                        <td data-colunmvalue="${users.user.email}">${users.user.email}</td>
+                                                        <td data-colunmvalue="${users.role.authority}"><g:if test="${users.role.authority=="ROLE_USER"}">USER</g:if><g:else>MANAGER</g:else></td>
                                                         <td data-colunmvalue="${users.user.username}">${users.user.username}</td>
                                                         <td data-colunmvalue="${users.user.enabled}">${users.user.enabled}</td>
                                                         <td><button data-id="${users.user.id}" class="btn btn-xs btn-info">View All</button></td>
