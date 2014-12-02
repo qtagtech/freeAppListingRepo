@@ -507,7 +507,7 @@
                                     <div class="background-blocks-btn-admin">
                                         <div class="row" style="padding: 4px 10px">
                                             <div class="col-md-6">
-                                                <button class="btn btn-success width-total-content" data-toggle="modal" data-target="#create-eventType">Create</button>
+                                                <button class="btn btn-success width-total-content hide" data-toggle="modal" data-target="#create-">Create</button>
                                             </div>
                                             <div class="col-md-6">
                                                 <button id="btn-delete-users" class="btn btn-danger width-total-content" >Delete</button>
