@@ -146,6 +146,8 @@ class CampaignsController {
                     "plataforma",plataforma
             ).append(
                     "publisher",publisher
+            ).append(
+                    "trakSubpublisher",params.traksubpublisher
             )
 
             DBCollection collection =  db.getCollection("campaign")

@@ -1,12 +1,15 @@
 package com.freeAppListing.serve
 
 import com.mongodb.BasicDBObject
-import grails.converters.JSON
 import grails.plugin.springsecurity.annotation.Secured
+import groovyx.net.http.HTTPBuilder
+import org.apache.commons.logging.LogFactory
 import org.bson.types.ObjectId
 
 @Secured(['permitAll'])
 class ServeController {
+
+    private static final log = LogFactory.getLog(ServeController.class)
 
     def mongo
 
@@ -17,6 +20,7 @@ class ServeController {
     def securityService
     def utilsService
 
+
     def index() {
         def db = mongo.getDB(grailsApplication.config.com.freeAppListing.database)
 
@@ -25,41 +29,61 @@ class ServeController {
          */
             // Look at if id of the url exist
         if(params.ciId==null||params.ciId==""){
-            response.setStatus(400)
-            def result = [status: 400, code: 55514,message: "The campaign identifier doesn't not exist."]
-            render result as JSON
-            return
+            log.error "The campaign identifier doesn't not exist."
         }
 
         def cid = securityService.decrypt(params.ceId)
 
         if(cid == params.ciId ){
-            response.setStatus(400)
-            def result = [status: 400, code: 456546 ,message: 'The identifier the campaign is invalid.']
-            render result as JSON
-            return
+            log.error "The identifier the campaign is invalid."
         }
 
         BasicDBObject query = new BasicDBObject().append("externalId", Long.parseLong(cid))
         def campaign = db.campaign.findOne(query)
 
         if(campaign == null || campaign ==""){
-            response.setStatus(400)
-            def result = [status: 400, code: 55514,message: 'Don\'t found the campaign with the identifier obtained']
-            render result as JSON
-            return
+            log.error "Don't found the campaign with the identifier obtained"
+        }
+
+        /**
+         * Redirect if have link to store app o hassoffers
+         */
+        def linkUrlHasOffers
+        def linkUrlApp
+
+        for(link in campaign.application.link){
+            linkUrlApp = link.urlDirect
+            linkUrlHasOffers = link.urlHasOffer
         }
 
         def ciid = securityService.decrypt(params.ciId)
 
         BasicDBObject queryConversion = new BasicDBObject().append("campaignId", new ObjectId(ciid))
-        def conversion = db.conversion.findOne(queryConversion)
+        def conversion = db.conversion.find(queryConversion)
+        def countConversCamp = conversion.count()
 
-        if(conversion==null){
-            response.setStatus(400)
-            def result = [status: 400, code: 55514,message: "The event install save done."]
-            render result as JSON
-            return
+        if(countConversCamp==0){
+            log.error "The event install don't save because don't have events type click."
+            if(linkUrlHasOffers == null || linkUrlHasOffers == ""){
+                redirect url: "http://${linkUrlApp}"
+            }else{
+                redirect url: "http://${linkUrlHasOffers}"
+            }
+        }
+
+        BasicDBObject queryServe = new BasicDBObject().append("campaignId", new ObjectId(ciid))
+        def serveExist = db.serve.find(queryServe)
+        def countServeCamp = serveExist.count()
+
+        if(countConversCamp <= countServeCamp){
+            log.error "The event install don't save because don't have events type click."
+            if(linkUrlHasOffers == null || linkUrlHasOffers == ""){
+                redirect url: "http://${linkUrlApp}"
+                return
+            }else{
+                redirect url: "http://${linkUrlHasOffers}"
+                return
+            }
         }
 
         params.remove("ceId")
@@ -110,23 +134,16 @@ class ServeController {
          */
         if(resultadoServe.error)
         {
-            response.setStatus(400)
-            def result = [status: 400, code: 55512,message: 'Error saving new conversion to database: '+resultadoServe?.lastError?.err]
-            render result as JSON
-            return
+            log.error "Error saving new conversion to database: " + resultadoServe?.lastError?.err
+        }else{
+            log.info "The install event  was saved successfully."
         }
 
-        /**
-         * Redirect if have link to store app o hassoffers
-         */
-        def linkUrlHasOffers
-        def linkUrlApp
-
-        for(link in campaign.application.link){
-            linkUrlApp = link.urlDirect
-            linkUrlHasOffers = link.urlHasOffer
+        def http = new HTTPBuilder("http://${campaign.trakSubpublisher}")
+        http.get(path:'/'){resp ->
+            assert resp.statusLine.statusCode == 200
+            log.info "The request to url the sub publisher was successful"
         }
-
 
         if(linkUrlHasOffers == null || linkUrlHasOffers == ""){
             redirect url: "http://${linkUrlApp}"

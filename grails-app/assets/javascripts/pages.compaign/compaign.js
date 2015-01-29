@@ -126,12 +126,14 @@ var amplificiusCampaigns = ( function ($) {
                     var applicationId = $("#sltApplication").val();
                     var publisherId = $("#sltPublisher").val();
                     var platformId = $("#sltPlatforms").val();
+                    var trakingSubpublisher = $("#txtSubpublisher").val();
 
                     var dataToSend = {
                         "name":name,
                         "appId" : applicationId,
                         "plshrId" : publisherId,
-                        "plfmId" : platformId
+                        "plfmId" : platformId,
+                        "traksubpublisher" : trakingSubpublisher
                     };
 
                     $.ajax({

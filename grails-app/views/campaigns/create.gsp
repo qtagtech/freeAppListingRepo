@@ -53,6 +53,12 @@
                                                 </g:each>
                                             </select>
                                         </div>
+
+                                        <div class="form-group">
+                                            <label for="txtSubpublisher">Sub-publisher:</label>
+                                            <input type="text" id="txtSubpublisher"  class="form-control" placeholder="Link traking sub-publisher"/>
+                                        </div>
+
                                         <div class="form-group">
                                             <label for="sltPlatforms">Platforms:</label>
                                             <select id="sltPlatforms" class="form-control">
