@@ -30,6 +30,38 @@
                                         </div>
                                     </div>
                                     <div class="row">
+                                        <div class="col-md-12 condence-content">
+                                            <h3> Activity of Campaigns <small>look all activities about our campaigns as click and installs</small></h3>
+                                            <div style="margin-top: 20px">
+                                                <g:each in="${listCamp}" var="conver" status="i">
+                                                    <div style="display: inline-block; margin-right: 30px">
+                                                        <div class="numberClick">
+                                                            <div class="iconNumberclick">
+                                                                <i class="fa fa-hand-o-up" style="color: white"></i>
+                                                            </div>
+                                                            ${conver.numClick}
+                                                        </div>
+                                                        <div class="numberClick">
+                                                            <div class="iconNumberclick">
+                                                                <i class="fa fa-download" style="color: white"></i></i>
+                                                            </div>
+                                                            ${conver.numInstall}
+                                                        </div>
+                                                        <div class="content-conver">
+                                                            <p style="margin: 0">${conver.conver.cn}</p>
+                                                            <p style="margin: 0">${conver.conver.appName}</p>
+                                                        </div>
+                                                    </div>
+                                                </g:each>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div>
+                                            <div class="border-separed"></div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
                                         <div class="col-md-6 condence-content">
                                             <div class="content-title-dashboard">
                                                 <h3 style="margin: 0"> <i class="fa fa-globe"></i> Campaigns</h3>
@@ -82,6 +114,7 @@
                                                                 <th >#</th>
                                                                 <th >Name</th>
                                                                 <th >Keywords</th>
+                                                                <th >Link App</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
@@ -96,6 +129,7 @@
                                                                         <td>${i+1}</td>
                                                                         <td>${app.nombre}</td>
                                                                         <td>${app.keywords}</td>
+                                                                        <td><a class="btn btn-xs btn-info" target="_blank" href="http://${app.link[0].urlDirect}">See App</a> </td>
                                                                     </tr>
                                                                 </g:each>
                                                             </g:else>
@@ -250,55 +284,235 @@
                 </div>
             </div>
             <div class="row" style="padding-top: 30px">
-                <div class="col-md-4">
-                    <div class="background-blocks-title-admin">
-                        <h4 id="" style="color: #f5f5f5"> List Platforms </h4>
-                    </div>
-                    <div class="row">
-                        <g:if test="${platformsList.empty}">
-                            <div class="col-md-12">
-                                <div class="height-fixed-setting background-blocks-admin">
-                                    <h2 style="color: darkgray">Register a new Platform</h2>
-                                </div>
+                <div class="col-md-12">
+                    <div class="row" style="margin-bottom: 20px">
+                        <div class="col-md-6">
+                            <div class="background-blocks-title-admin">
+                                <h4 id="" style="color: #f5f5f5"> List Platforms </h4>
                             </div>
-                        </g:if>
-                        <g:else>
-                            <div class="col-md-12">
-                                <div class="height-fixed-setting background-blocks-admin">
-                                    <table id="table-platforms" class="table table-responsive table-condensed">
-                                        <thead>
-                                        <tr>
-                                            <th><input id="chb-all-platforms" type="checkbox"></th>
-                                            <th>#</th>
-                                            <th>Name</th>
-                                            <th>Web</th>
-                                            <th>Action</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <g:each in="${platformsList}" var="platforms" status="i">
-                                            <tr data-id="${platforms.id}">
-                                                <td><input type="checkbox" value="${platforms.id}"></td>
-                                                <td>${i+1}</td>
-                                                <td data-colunmvalue="${platforms.name}">${platforms.name}</td>
-                                                <td data-colunmvalue="${platforms.web}">${platforms.web}</td>
-                                                <td><button data-id="${platforms.id}" class="btn btn-xs btn-info">View All</button></td>
-                                            </tr>
-                                        </g:each>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </g:else>
-                        <div class="clearfix visible-md-block"></div>
-                        <div class="col-md-12">
-                            <div class="background-blocks-btn-admin">
-                                <div class="row" style="padding: 4px 10px">
-                                    <div class="col-md-6">
-                                        <button id="btn-create-platform" class="btn btn-success width-total-content" data-toggle="modal" data-target="#create-platform">Create</button>
+                            <div class="row">
+                                <g:if test="${platformsList.empty}">
+                                    <div class="col-md-12">
+                                        <div class="height-fixed-setting background-blocks-admin">
+                                            <h2 style="color: darkgray">Register a new Platform</h2>
+                                        </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <button id="btn-delete-platform" class="btn btn-danger width-total-content" >Delete</button>
+                                </g:if>
+                                <g:else>
+                                    <div class="col-md-12">
+                                        <div class="height-fixed-setting background-blocks-admin">
+                                            <table id="table-platforms" class="table table-responsive table-condensed">
+                                                <thead>
+                                                <tr>
+                                                    <th><input id="chb-all-platforms" type="checkbox"></th>
+                                                    <th>#</th>
+                                                    <th>Name</th>
+                                                    <th>Web</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <g:each in="${platformsList}" var="platforms" status="i">
+                                                    <tr data-id="${platforms.id}">
+                                                        <td><input type="checkbox" value="${platforms.id}"></td>
+                                                        <td>${i+1}</td>
+                                                        <td data-colunmvalue="${platforms.name}">${platforms.name}</td>
+                                                        <td data-colunmvalue="${platforms.web}">${platforms.web}</td>
+                                                        <td><button data-id="${platforms.id}" class="btn btn-xs btn-info">View All</button></td>
+                                                    </tr>
+                                                </g:each>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </g:else>
+                                <div class="clearfix visible-md-block"></div>
+                                <div class="col-md-12">
+                                    <div class="background-blocks-btn-admin">
+                                        <div class="row" style="padding: 4px 10px">
+                                            <div class="col-md-6">
+                                                <button id="btn-create-platform" class="btn btn-success width-total-content" data-toggle="modal" data-target="#create-platform">Create</button>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <button id="btn-delete-platform" class="btn btn-danger width-total-content" >Delete</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-bottom: 20px">
+                        <div class="col-md-6">
+                            <div class="background-blocks-title-admin">
+                                <h4 style="color: #f5f5f5">List Publisher</h4>
+                            </div>
+                            <div class="row">
+                                <g:if test="${publisherList.empty}">
+                                    <div class="col-md-12">
+                                        <div class="height-fixed-setting background-blocks-admin">
+                                            <h2 style="color: darkgray">Register a new Publisher</h2>
+                                        </div>
+                                    </div>
+                                </g:if>
+                                <g:else>
+                                    <div class="col-md-12">
+                                        <div class="height-fixed-setting background-blocks-admin">
+                                            <table id="table-publisher" class="table table-responsive table-condensed">
+                                                <thead>
+                                                <tr>
+                                                    <th><input id="chb-all-publisher" type="checkbox"></th>
+                                                    <th>#</th>
+                                                    <th>Name</th>
+                                                    <th>Key</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <g:each in="${publisherList}" var="publisher" status="i">
+                                                    <tr data-id="${publisher.id}">
+                                                        <td><input type="checkbox" value="${publisher.id}"></td>
+                                                        <td>${i+1}</td>
+                                                        <td data-colunmvalue="${publisher.name}">${publisher.name}</td>
+                                                        <td data-colunmvalue="${publisher.key}">${publisher.key}</td>
+                                                        <td><button data-id="${publisher.id}" class="btn btn-xs btn-info">View All</button></td>
+                                                    </tr>
+                                                </g:each>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </g:else>
+                                <div class="clearfix visible-md-block"></div>
+                                <div class="col-md-12">
+                                    <div class="background-blocks-btn-admin">
+                                        <div class="row" style="padding: 4px 10px">
+                                            <div class="col-md-6">
+                                                <button class="btn btn-success width-total-content" data-toggle="modal" data-target="#create-publisher">Create</button>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <button id="btn-delete-publisher" class="btn btn-danger width-total-content" >Delete</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-bottom: 20px">
+                        <div class="col-md-6">
+                            <div class="background-blocks-title-admin">
+                                <h4 style="color: #f5f5f5">List Event Type</h4>
+                            </div>
+                            <div class="row">
+                                <g:if test="${eventTypeList.empty}">
+                                    <div class="col-md-12">
+                                        <div class="height-fixed-setting background-blocks-admin">
+                                            <h2 style="color: darkgray">Register a new Event Type</h2>
+                                        </div>
+                                    </div>
+                                </g:if>
+                                <g:else>
+                                    <div class="col-md-12">
+                                        <div class="height-fixed-setting background-blocks-admin">
+                                            <table id="table-eventype" class="table table-responsive table-condensed">
+                                                <thead>
+                                                <tr>
+                                                    <th><input id="chb-all-eventtype" type="checkbox"></th>
+                                                    <th>#</th>
+                                                    <th>Name</th>
+                                                    <th>Description</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <g:each in="${eventTypeList}" var="eventType" status="i">
+                                                    <tr data-id="${eventType.id}">
+                                                        <td><input type="checkbox" value="${eventType.id}"></td>
+                                                        <td>${i+1}</td>
+                                                        <td data-colunmvalue="${eventType.name}">${eventType.name}</td>
+                                                        <td data-colunmvalue="${eventType.description}">${eventType.description}</td>
+                                                        <td><button data-id="${eventType.id}" class="btn btn-xs btn-info">View All</button></td>
+                                                    </tr>
+                                                </g:each>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </g:else>
+                                <div class="clearfix visible-md-block"></div>
+                                <div class="col-md-12">
+                                    <div class="background-blocks-btn-admin">
+                                        <div class="row" style="padding: 4px 10px">
+                                            <div class="col-md-6">
+                                                <button class="btn btn-success width-total-content" data-toggle="modal" data-target="#create-eventType">Create</button>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <button id="btn-delete-eventtype" class="btn btn-danger width-total-content" >Delete</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-bottom: 20px">
+                        <div class="col-md-6">
+                            <div class="background-blocks-title-admin">
+                                <h4 style="color: #f5f5f5">List Users</h4>
+                            </div>
+                            <div class="row">
+                                <g:if test="${listUser == null}">
+                                    <div class="col-md-12">
+                                        <div class="height-fixed-setting background-blocks-admin">
+                                            <h2 style="color: darkgray">Register a new User</h2>
+                                        </div>
+                                    </div>
+                                </g:if>
+                                <g:else>
+                                    <div class="col-md-12">
+                                        <div class="height-fixed-setting background-blocks-admin">
+                                            <table id="table-users" class="table table-responsive table-condensed">
+                                                <thead>
+                                                <tr>
+                                                    <th><input id="chb-all-users" type="checkbox"></th>
+                                                    <th>#</th>
+                                                    <th>Name</th>
+                                                    <th>Role</th>
+                                                    <th>Username</th>
+                                                    <th>Enabled/Inactive</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <g:each in="${listUser}" var="users" status="i">
+                                                    <tr data-id="${users.user.id}">
+                                                        <td><input type="checkbox" value="${users.user.id+","+users.role.id}"></td>
+                                                        <td>${i+1}</td>
+                                                        <td data-colunmvalue="${users.user.fullName}">${users.user.fullName}</td>
+                                                        <td data-colunmvalue="${users.role.authority}"><g:if test="${users.role.authority=="ROLE_USER"}">USER</g:if><g:else>MANAGER</g:else></td>
+                                                        <td data-colunmvalue="${users.user.username}">${users.user.username}</td>
+                                                        <td data-colunmvalue="${users.user.enabled}">${users.user.enabled}</td>
+                                                        <td><button data-id="${users.user.id}" class="btn btn-xs btn-info">View All</button></td>
+                                                    </tr>
+                                                </g:each>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </g:else>
+                                <div class="clearfix visible-md-block"></div>
+                                <div class="col-md-12">
+                                    <div class="background-blocks-btn-admin">
+                                        <div class="row" style="padding: 4px 10px">
+                                            <div class="col-md-6">
+                                                <button class="btn btn-success width-total-content hide" data-toggle="modal" data-target="#create-">Create</button>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <button id="btn-delete-users" class="btn btn-danger width-total-content" >Delete</button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -306,117 +520,6 @@
                     </div>
                 </div>
 
-                <div class="col-md-4">
-                    <div class="background-blocks-title-admin">
-                        <h4 style="color: #f5f5f5">List Publisher</h4>
-                    </div>
-                    <div class="row">
-                        <g:if test="${publisherList.empty}">
-                            <div class="col-md-12">
-                                <div class="height-fixed-setting background-blocks-admin">
-                                    <h2 style="color: darkgray">Register a new Publisher</h2>
-                                </div>
-                            </div>
-                        </g:if>
-                        <g:else>
-                            <div class="col-md-12">
-                                <div class="height-fixed-setting background-blocks-admin">
-                                    <table id="table-publisher" class="table table-responsive table-condensed">
-                                        <thead>
-                                        <tr>
-                                            <th><input id="chb-all-publisher" type="checkbox"></th>
-                                            <th>#</th>
-                                            <th>Name</th>
-                                            <th>Key</th>
-                                            <th>Action</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <g:each in="${publisherList}" var="publisher" status="i">
-                                            <tr data-id="${publisher.id}">
-                                                <td><input type="checkbox" value="${publisher.id}"></td>
-                                                <td>${i+1}</td>
-                                                <td data-colunmvalue="${publisher.name}">${publisher.name}</td>
-                                                <td data-colunmvalue="${publisher.key}">${publisher.key}</td>
-                                                <td><button data-id="${publisher.id}" class="btn btn-xs btn-info">View All</button></td>
-                                            </tr>
-                                        </g:each>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </g:else>
-                        <div class="clearfix visible-md-block"></div>
-                        <div class="col-md-12">
-                            <div class="background-blocks-btn-admin">
-                                <div class="row" style="padding: 4px 10px">
-                                    <div class="col-md-6">
-                                        <button class="btn btn-success width-total-content" data-toggle="modal" data-target="#create-publisher">Create</button>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <button id="btn-delete-publisher" class="btn btn-danger width-total-content" >Delete</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="background-blocks-title-admin">
-                        <h4 style="color: #f5f5f5">List Event Type</h4>
-                    </div>
-                    <div class="row">
-                        <g:if test="${eventTypeList.empty}">
-                            <div class="col-md-12">
-                                <div class="height-fixed-setting background-blocks-admin">
-                                    <h2 style="color: darkgray">Register a new Event Type</h2>
-                                </div>
-                            </div>
-                        </g:if>
-                        <g:else>
-                            <div class="col-md-12">
-                                <div class="height-fixed-setting background-blocks-admin">
-                                    <table id="table-eventype" class="table table-responsive table-condensed">
-                                        <thead>
-                                        <tr>
-                                            <th><input id="chb-all-eventtype" type="checkbox"></th>
-                                            <th>#</th>
-                                            <th>Name</th>
-                                            <th>Description</th>
-                                            <th>Action</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <g:each in="${eventTypeList}" var="eventType" status="i">
-                                            <tr data-id="${eventType.id}">
-                                                <td><input type="checkbox" value="${eventType.id}"></td>
-                                                <td>${i+1}</td>
-                                                <td data-colunmvalue="${eventType.name}">${eventType.name}</td>
-                                                <td data-colunmvalue="${eventType.description}">${eventType.description}</td>
-                                                <td><button data-id="${eventType.id}" class="btn btn-xs btn-info">View All</button></td>
-                                            </tr>
-                                        </g:each>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </g:else>
-                        <div class="clearfix visible-md-block"></div>
-                        <div class="col-md-12">
-                            <div class="background-blocks-btn-admin">
-                                <div class="row" style="padding: 4px 10px">
-                                    <div class="col-md-6">
-                                        <button class="btn btn-success width-total-content" data-toggle="modal" data-target="#create-eventType">Create</button>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <button id="btn-delete-eventtype" class="btn btn-danger width-total-content" >Delete</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>

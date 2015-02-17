@@ -62,12 +62,13 @@
                 <div id="footer" class="footer-login footer-position-mobile">
                     <div class="col-xs-12 col-md-10 col-md-offset-2">
                         <div class="row">
-                            <div class=" col-md-4 col-xs-4 col-md-offset-8 col-xs-offset-8">
-                                <figure style="display: inline-block; margin-top: 6px; margin-right: 10px ;color: #FFF">
+                            <div class=" col-md-12 text-center">
+                                <p style="color: #B5B5B5">FreeAppListing </p>
+                                <figure style="display: inline-block;">
                                     <i class="fa fa-facebook-square fa-2x"></i>
                                 </figure>
-                                <figure style="display: inline-block; margin-top: 6px; color: #FFF">
-                                    <i class="fa fa-twitter fa-2x"></i>
+                                <figure style="display: inline-block; ">
+                                    <i class="fa fa-twitter-square fa-2x"></i>
                                 </figure>
                             </div>
                         </div>

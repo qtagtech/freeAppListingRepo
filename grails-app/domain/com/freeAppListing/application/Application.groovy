@@ -2,6 +2,7 @@ package com.freeAppListing.application
 
 import com.freeAppListing.company.Company
 import com.freeAppListing.link.Link
+import com.freeAppListing.platform.Platforms
 import org.bson.types.ObjectId
 
 class Application {

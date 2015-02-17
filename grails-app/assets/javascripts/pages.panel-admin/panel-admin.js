@@ -25,6 +25,9 @@ var appfreeApplistingregister =(function($){
                 this.$btnDeleteEventType = $("#btn-delete-eventtype");
                 this.$inputsTypeCheckboxEventType = $("#table-eventype tbody tr td input");
                 this.$allSelectTypeCheckboxEventtype = $("#chb-all-eventtype");
+                this.$btnDeleteUsers = $("#btn-delete-users");
+                this.$allSelectTypeCheckboxUsers = $("#chb-all-users");
+                this.$inputsTypeCheckboxUsers = $("#table-users tbody tr td input");
             },
             bindEvents: function(){
                 this.$btnCreatePlatform.off("click").on("click", platform.createNew);
@@ -39,6 +42,9 @@ var appfreeApplistingregister =(function($){
                 this.$btnDeleteEventType.off("click").on("click", eventType.delete);
                 this.$inputsTypeCheckboxEventType.off("click").on("click", eventType.saveIds);
                 this.$allSelectTypeCheckboxEventtype.off("click").on("click", eventType.allSelectedEventType);
+                this.$btnDeleteUsers.off("click").on("click", users.delete)
+                this.$inputsTypeCheckboxUsers.off("click").on("click", users.saveIds);
+                this.$allSelectTypeCheckboxUsers.off("click").on("click", users.allSelectedUsers);
             },
             instance:{
                 tooltipsIns:function(){
@@ -49,6 +55,7 @@ var appfreeApplistingregister =(function($){
                     $("#table-platforms").data("platids", ids);
                     $("#table-publisher").data("publisherids", ids);
                     $("#table-eventype").data("eventypeids", ids);
+                    $("#table-users").data("idUsers", ids);
                 },
                 actionModalPlatform : function () {
                     $("#create-platform").on("hidden.bs.modal", function () {
@@ -58,6 +65,61 @@ var appfreeApplistingregister =(function($){
             }
         }
     };
+    
+    var users = {
+        delete : function () {
+            sweetAlert({
+                title:"Delete Users",
+                type:"warning",
+                text: "¿Are you sure of delete (this/these) users?",
+                confirmButtonText: "Confirm",
+                closeOnConfirm: true,
+                showCancelButton: true,
+                cancelButtonText: "Cancel",
+                closeOnCancel: false
+            },function(isConfirm){
+
+                if (isConfirm) {
+
+
+                } else {
+                    swal({
+                        title:"Cancelled",
+                        text:"Operation cancelled",
+                        type:"error"
+                    });
+                }
+            });
+        },
+        saveIds: function () {
+
+            if($(this)[0].checked){
+                var ids = $("#table-users").data("idUsers");
+                var eventTypeId = $(this).val();
+
+                if( ids=="" || ids == null){
+                    ids.push(eventTypeId);
+                    $("#table-users").data("idUsers",ids);
+                }else{
+                    var respon = idsActions.existIdsPlatforms(eventTypeId,ids);
+                    if(!respon){
+                        ids.push(eventTypeId);
+                        $("#table-users").data("idUsers",ids);
+                    }
+                }
+            }else{
+                var usersId = $(this).val();
+                var ids = $("#table-users").data("idUsers");
+                var respon = idsActions.existIdsPlatforms(usersId,ids);
+                if(respon){
+                    idsActions.elminarIdPlatforms(usersId,ids);
+                }
+            }
+        },
+        allSelectedUsers: function () {
+            $("#table-users tbody tr td input").click()
+        }
+    }
 
     var eventType = {
         createNew : function () {

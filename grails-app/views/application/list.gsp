@@ -35,6 +35,7 @@
                                         <th>Name</th>
                                         <th>Description</th>
                                         <th>Keywords</th>
+                                        <th>Link App</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -45,6 +46,7 @@
                                         <td>${application.nombre}</td>
                                         <td>${application.description}</td>
                                         <td>${application.keywords}</td>
+                                        <td><a class="btn btn-xs btn-info" target="_blank" href="http://${application.link[0].urlDirect}">Ver page app </a></td>
                                         <td><button data-id="${application.id}" class="btn-delete-app btn btn-danger btn-xs">Delete</button></td>
                                     </tr>
                                     </g:each>

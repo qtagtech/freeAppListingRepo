@@ -16,8 +16,6 @@ var appfreeApplistingApplication =(function($){
         bindEvents : function () {
             this.$btnNext.off("click").on("click", controllSlide.next);
             this.$btnBack.off("click").on("click", controllSlide.back);
-            this.$saveMoreLinks.off("click").on("click", saveLinks.saveAndMoreLinks);
-            this.$savelinks.off("click").on("click", saveLinks.saveLinks);
             this.$regiserApp.off("click").on("click", registerApp.save)
         },
         instance : {
@@ -39,13 +37,25 @@ var appfreeApplistingApplication =(function($){
             var name = $("#txtName").val();
             var description = $("#txtDescription").val();
             var keywords = $("#txtKeywords").val();
-            var link = $.makeArray($(".form-links").data("links"));
+            var platformId = $("#sltPlatforms").val();
+            var urlDirect = $("#txtUrlDirect").val();
+            var urlHasOffers = $("#txtUrlHasoffers").val();
+
+            if(platformId==null||platformId==""){
+                swal("Platform","You need select someone platform","error")
+            }
+
+            if(urlDirect==null || urlDirect==""){
+                swal("Url App","The url of your app is empty","error")
+            };
 
             var dataToSend = {
                 "nombre":name,
                 "description":description,
                 "keywords":keywords,
-                "link": link
+                "platformid": platformId,
+                "urlDirect": urlDirect,
+                "urlHasOffers":urlHasOffers
             };
 
             $.ajax({
@@ -68,81 +78,7 @@ var appfreeApplistingApplication =(function($){
             });
         }
     }
-    
-    var saveLinks = {
-        saveAndMoreLinks: function () {
-            sweetAlert({
-                title:"Links",
-                text:"¿Are you sure of save this Link to create a new Link?",
-                type:"warning",
-                showCancelButton:true,
-                closeOnConfirm: false,
-                closeOnCancel: false
-            },function(isConfirm){
-                if(isConfirm){
-                    var links = $(".form-links").data("links");
 
-                    var link = {
-                        "urlDirect": $("#txtUrlDirect").val(),
-                        "urlHasOffer": $("#txtUrlHasoffers").val(),
-                        "platformsId": $("#sltPlatforms").val()
-                    };
-
-                    links.push(link);
-
-                    swal({
-                        title:"Links",
-                        text:"Save successfully",
-                        type:"success"
-                    });
-                }else{
-                    swal({
-                        title:"Links",
-                        text:"Cancel operation",
-                        type:"error"
-                    });
-                }
-            });
-        },
-        saveLinks : function () {
-            sweetAlert({
-                title:"Links",
-                text:"¿Are you sure of save the unique Link?",
-                type:"warning",
-                showCancelButton:true,
-                closeOnConfirm: false,
-                closeOnCancel: false
-            },function(isConfirm){
-                if(isConfirm){
-                    var links = $(".form-links").data("links");
-
-                    var link = {
-                        "urlDirect": $("#txtUrlDirect").val(),
-                        "urlHasOffer": $("#txtUrlHasoffers").val(),
-                        "platformsId": $("#sltPlatforms").val()
-                    };
-
-                    links.push(link);
-
-                    swal({
-                        title:"Links",
-                        text:"Save successfully, wait while the information be registered.",
-                        type:"success",
-                        timer: 3000
-                    });
-
-                    $("#btn-register-app").click();
-
-                }else{
-                    swal({
-                        title:"Links",
-                        text:"Cancel operation",
-                        type:"error"
-                    });
-                }
-            });
-        }
-    }
 
     var controllSlide = {
         next : function (e) {

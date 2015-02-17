@@ -16,12 +16,12 @@
                 <ul id="one" class="nav nav-pills nav-stacked collapse in" <g:if test="${activeMenu==2}">style="background: #f5f5f5; border-radius: 0 0 5px 5px "</g:if>>
                     <li role="presentation">
                         <a href="<g:createLink controller="application" action="create"/>">
-                            <div style="padding-left: 10px"><i class="fa fa-arrow-right" style="color: #C52D39"></i> Create</div>
+                            <div style="padding-left: 10px"><i class="fa fa-arrow-right" style="color: #000000"></i> Create</div>
                         </a>
                     </li>
                     <li role="presentation">
                         <a href="<g:createLink controller="application" action="list"/>">
-                            <div style="padding-left: 10px"><i class="fa fa-arrow-right" style="color: #C52D39"></i> List</div>
+                            <div style="padding-left: 10px"><i class="fa fa-arrow-right" style="color: #000000"></i> List</div>
                         </a>
                     </li>
                 </ul>
@@ -35,12 +35,12 @@
                 <ul id="two" class="nav nav-pills nav-stacked collapse in" <g:if test="${activeMenu==3}">style="background: #f5f5f5; border-radius: 0 0 5px 5px "</g:if>>
                     <li role="presentation">
                         <a href="<g:createLink controller="campaigns" action="create"/>">
-                            <div style="padding-left: 10px"><i class="fa fa-arrow-right" style="color: #C52D39"></i> Create</div>
+                            <div style="padding-left: 10px"><i class="fa fa-arrow-right" style="color: #000000"></i> Create</div>
                         </a>
                     </li>
                     <li role="presentation">
                         <a href="<g:createLink controller="campaigns" action="list"/>">
-                            <div style="padding-left: 10px"><i class="fa fa-arrow-right" style="color: #C52D39"></i> List</div>
+                            <div style="padding-left: 10px"><i class="fa fa-arrow-right" style="color: #000000"></i> List</div>
                         </a>
                     </li>
                 </ul>

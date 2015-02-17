@@ -6,6 +6,10 @@ import com.freeAppListing.company.Company
 import com.freeAppListing.eventType.EventType
 import com.freeAppListing.platform.Platforms
 import com.freeAppListing.publisher.Publisher
+import com.freeAppListing.sprinSecurity.auth.SecRole
+import com.freeAppListing.sprinSecurity.auth.SecUserSecRole
+import com.freeAppListing.userDetails.UserDetails
+import com.mongodb.BasicDBObject
 import grails.plugin.springsecurity.SpringSecurityService
 import grails.plugin.springsecurity.annotation.Secured
 import org.bson.types.ObjectId
@@ -32,17 +36,40 @@ class PanelController {
                 // get infor event Type
                 List<EventType> eventTypeList = EventType.list()
 
-                render view:"index", model:[activeMenu: 1, dataUser:userLoggin,platformsList:platformsList, publisherList: publisherList, eventTypeList: eventTypeList]
+                List<UserDetails> userDetailsList = UserDetails.list()
+
+                List<SecRole> roleList = SecRole.list()
+
+                def listUser = []
+                for(user in userDetailsList ){
+                    def map = [:]
+                    for( role in roleList){
+                        if(SecUserSecRole.exists(user.id, role.id)){
+                            map.put("user",user)
+                            map.put("role",role)
+                            listUser.add(map)
+                        }
+                    }
+                }
+
+                render view:"index", model:[
+                        activeMenu: 1,
+                        dataUser:userLoggin,
+                        platformsList:platformsList,
+                        publisherList: publisherList,
+                        eventTypeList: eventTypeList,
+                        listUser : listUser
+                ]
             }
 
             // Do if role is user
             sec.ifAllGranted(roles: 'ROLE_USER'){
                 def userLoggin = springSecurityService.getCurrentUser()
 
-                def countCamp = 0
-                def listCampaign = ""
+                /**
+                 * List appliction by company
+                 */
                 def listAllApp = Application.list()
-
                 def listApp = []
                 listAllApp.eachWithIndex { Application app, int i ->
                     if(app.company.id== userLoggin.company[0].id){
@@ -51,14 +78,10 @@ class PanelController {
                 }
                 def countApp = listApp.size()
 
-                def countPlat = Platforms.count()
-                def listPlat = Platforms.list()
-                def countPubli = Publisher.count()
-                def listPubli = Publisher.list()
-                def countEvTp = EventType.count()
-                def listEvTp = EventType.list()
+                /**
+                 * List campaign by company
+                 */
                 def listAllCampaign = Campaign.list()
-
                 def listCamp = []
                 listAllCampaign.eachWithIndex { value, i ->
                     if(value.application.company.id == userLoggin.company[0].id){
@@ -67,11 +90,47 @@ class PanelController {
                 }
                 def countCampaign = listCamp.size()
 
+                /**
+                 * Look at all events click
+                 */
+                def listConversion = []
+                for(camp in listCamp){
+                    def listMap = [:]
+                    def conversion = db.conversion.findOne(new BasicDBObject("campaignId",camp._id))
+                    def countConversion = db.conversion.count(new BasicDBObject("campaignId",camp._id))
+                    def serve = db.serve.findOne(new BasicDBObject("campaignId",camp._id))
+                    def countServe = db.serve.count(new BasicDBObject("campaignId",camp._id))
+
+                    if(!(conversion==null)){
+                        listMap.put("conver",conversion)
+                        listMap.put("numClick",countConversion)
+                        listMap.put("serve",serve)
+                        listMap.put("numInstall",countServe)
+
+                        listConversion.add(listMap)
+                    }
+                }
+
+                def countCamp = listConversion.size()
+
+                /**
+                 * Generic list to see in frontend
+                 */
+                def countPlat = Platforms.count()
+                def listPlat = Platforms.list()
+                def countPubli = Publisher.count()
+                def listPubli = Publisher.list()
+                def countEvTp = EventType.count()
+                def listEvTp = EventType.list()
+
+                /**
+                 * Respond to view
+                 */
                 render view:"index",  model: [
                         activeMenu: 1,
                         dataUser:userLoggin,
                         countCamp: countCamp,
-                        listCamp: listCampaign,
+                        listCamp: listConversion,
                         countApp: countApp,
                         listApp: listApp,
                         countPlat: countPlat,
